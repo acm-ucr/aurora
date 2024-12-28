@@ -1,4 +1,5 @@
 import { InputWithClear } from "@/components/ui/input";
+import React from "react";
 
 interface props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -8,7 +9,9 @@ interface props {
 }
 
 const Toolbar = ({ data, setSearch }: props) => {
+  const [searchValue, setSearchValue] = React.useState("");
   const onChange = (value: string) => {
+    setSearchValue(value);
     if (value === "") {
       setSearch(data);
     } else {
@@ -27,6 +30,7 @@ const Toolbar = ({ data, setSearch }: props) => {
     <InputWithClear
       id="search"
       placeholder="Search"
+      value={searchValue}
       onClear={() => onChange("")}
       onChange={(e) => onChange(e.target.value)}
       maxLength={100}
