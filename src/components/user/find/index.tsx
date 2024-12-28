@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { api } from "@/utils/api";
 
 interface idea {
-  idea: string;
+  title: string;
   languages: string[];
   details: string;
   contact: string;
@@ -69,7 +69,7 @@ const Find = () => {
                     transform: `translateY(${start}px)`,
                   }}
                 >
-                  {row.map(({ idea, languages, details, contact }, i) => (
+                  {row.map(({ title, languages, details, contact }, i) => (
                     <div
                       key={`column: ${i}`}
                       ref={measureElement}
@@ -77,7 +77,7 @@ const Find = () => {
                       className="flex items-start p-2"
                     >
                       <Idea
-                        title={idea}
+                        title={title}
                         languages={languages}
                         description={details}
                         contact={contact}

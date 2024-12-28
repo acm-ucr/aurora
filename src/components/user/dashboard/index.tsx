@@ -1,6 +1,6 @@
 import { options } from "@/utils/auth";
 import { getServerSession } from "next-auth";
-import Providers from "../providers";
+import Providers from "../../providers";
 import Dashboard from "./dashboard";
 
 const DashboardWrapper = async () => {

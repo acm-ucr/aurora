@@ -5,7 +5,7 @@ import { addDoc, collection, getDocs, query } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
 interface idea {
-  idea: string;
+  title: string;
   languages: string[];
   details: string;
   contact: string;
@@ -62,7 +62,7 @@ export const POST = async (req: Request) => {
 
   try {
     await addDoc(collection(db, "ideas"), {
-      idea,
+      title: idea,
       languages,
       details,
       contact,

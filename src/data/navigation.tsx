@@ -18,7 +18,11 @@ import {
   Gavel,
   Timer,
   Newspaper,
+  Code,
+  Globe,
 } from "lucide-react";
+import data from "./config";
+import { SiInstagram } from "@icons-pack/react-simple-icons";
 
 const iconStyle = "mr-2 w-4 h-4";
 
@@ -41,62 +45,62 @@ export const TABS: Tabs = {
       expand: true,
       tabs: [
         {
-          name: "participants",
+          name: "Participants",
           link: "/admin/participants",
           icon: <User className={iconStyle} />,
         },
         {
-          name: "teams",
+          name: "Teams",
           link: "/admin/teams",
           icon: <Users className={iconStyle} />,
         },
         {
-          name: "judges",
+          name: "Judges",
           link: "/admin/judges",
           icon: <Gavel className={iconStyle} />,
         },
         {
-          name: "volunteers",
+          name: "Volunteers",
           link: "/admin/volunteers",
           icon: <Heart className={iconStyle} />,
         },
         {
-          name: "mentors",
+          name: "Mentors",
           link: "/admin/mentors",
           icon: <HandHeart className={iconStyle} />,
         },
         {
-          name: "admin",
+          name: "Admin",
           link: "/admin/admins",
           icon: <Lock className={iconStyle} />,
         },
         {
-          name: "committees",
+          name: "Committees",
           link: "/admin/committees",
           icon: <Handshake className={iconStyle} />,
         },
         {
-          name: "sponsors",
+          name: "Sponsors",
           link: "/admin/sponsors",
           icon: <Users className={iconStyle} />,
         },
         {
-          name: "panelists",
+          name: "Panelists",
           link: "/admin/panelists",
           icon: <Users className={iconStyle} />,
         },
         {
-          name: "interests",
+          name: "Interests",
           link: "/admin/interests",
           icon: <AlertCircle className={iconStyle} />,
         },
         {
-          name: "feedback",
+          name: "Feedback",
           link: "/admin/feedback",
           icon: <MessagesSquare className={iconStyle} />,
         },
         {
-          name: "leads",
+          name: "Leads",
           link: "/admin/leads",
           icon: <Hand className={iconStyle} />,
         },
@@ -106,39 +110,64 @@ export const TABS: Tabs = {
       expand: true,
       tabs: [
         {
-          name: "calendar",
+          name: "Calendar",
           link: "/admin/calendar",
           icon: <Calendar className={iconStyle} />,
         },
         {
-          name: "contacts",
+          name: "Contacts",
           link: "/admin/contacts",
           icon: <Mail className={iconStyle} />,
         },
         {
-          name: "check in",
+          name: "Checkin",
           link: "/admin/checkin",
           icon: <QrCode className={iconStyle} />,
         },
         {
-          name: "judging",
+          name: "Judging",
           link: "/admin/judging",
           icon: <MonitorCog className={iconStyle} />,
         },
         {
-          name: "statistics",
+          name: "Statistics",
           link: "/admin/statistics",
           icon: <BarChart className={iconStyle} />,
         },
         {
-          name: "settings",
+          name: "Settings",
           link: "/admin/settings",
           icon: <Settings className={iconStyle} />,
         },
         {
-          name: "timer",
+          name: "Timer",
           link: "/admin/timer",
           icon: <Timer className={iconStyle} />,
+        },
+      ],
+    },
+    Links: {
+      expand: true,
+      tabs: [
+        {
+          name: "Feedback",
+          link: "/form/feedback",
+          icon: <Search className={iconStyle} />,
+        },
+        {
+          name: "Devpost",
+          link: data.devpost,
+          icon: <Code className={iconStyle} />,
+        },
+        {
+          name: "Website",
+          link: "/",
+          icon: <Globe className={iconStyle} />,
+        },
+        {
+          name: "Instagram",
+          link: data.instagram,
+          icon: <SiInstagram className={iconStyle} />,
         },
       ],
     },
@@ -148,34 +177,69 @@ export const TABS: Tabs = {
       expand: true,
       tabs: [
         {
-          name: "dashboard",
+          name: "Dashboard",
           link: "/user/dashboard",
           icon: <User className={iconStyle} />,
         },
         {
-          name: "checkin",
+          name: "Checkin",
           link: "/user/checkin",
           icon: <QrCode className={iconStyle} />,
         },
         {
-          name: "schedule",
+          name: "Schedule",
           link: "/user/schedule",
           icon: <Calendar className={iconStyle} />,
         },
         {
-          name: "team",
+          name: "Team",
           link: "/user/team",
           icon: <Users className={iconStyle} />,
         },
         {
-          name: "resources",
+          name: "Resources",
           link: "/user/resources",
           icon: <Newspaper className={iconStyle} />,
         },
         {
-          name: "find a team",
+          name: "Find a Team",
           link: "/user/find",
           icon: <Search className={iconStyle} />,
+        },
+      ],
+    },
+    Forms: {
+      expand: true,
+      tabs: [
+        {
+          name: "Post Team Idea",
+          link: "/form/idea",
+          icon: <Search className={iconStyle} />,
+        },
+        {
+          name: "Feedback",
+          link: "/form/feedback",
+          icon: <Search className={iconStyle} />,
+        },
+      ],
+    },
+    Links: {
+      expand: true,
+      tabs: [
+        {
+          name: "Devpost",
+          link: data.devpost,
+          icon: <Code className={iconStyle} />,
+        },
+        {
+          name: "Website",
+          link: "/",
+          icon: <Globe className={iconStyle} />,
+        },
+        {
+          name: "Instagram",
+          link: data.instagram,
+          icon: <SiInstagram className={iconStyle} />,
         },
       ],
     },

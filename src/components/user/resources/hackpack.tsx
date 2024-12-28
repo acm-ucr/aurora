@@ -4,12 +4,12 @@ import { SiGithub as Github } from "@icons-pack/react-simple-icons";
 
 type props = {
   text: string;
-  techs: string[];
+  languages: string[];
   link: string;
   description: string;
 };
 
-const Hackpack = ({ text, techs, link, description }: props) => {
+const Hackpack = ({ text, languages, link, description }: props) => {
   return (
     <Link
       data-cy="hackpack-link"
@@ -27,16 +27,16 @@ const Hackpack = ({ text, techs, link, description }: props) => {
         </div>
       </div>
       <div className="my-2 flex flex-wrap gap-2" data-cy="hackpack-techs">
-        {techs.map((tech, index) => (
+        {languages.map((language, index) => (
           <div
             key={index}
             className="flex items-center gap-1 text-gray-400"
             data-cy="hackpack-tech"
           >
             <div className="text-hackathon-blue-100" data-cy="hackpack-icon">
-              {TECHSTACKS[tech]}
+              {TECHSTACKS[language]}
             </div>
-            {tech}
+            {language}
           </div>
         ))}
       </div>

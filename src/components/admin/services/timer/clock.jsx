@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/input-otp";
 
 const Timer = ({ onRemove }) => {
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(true);
   const [play, setPlay] = useState(false);
   const [total, setTotal] = useState(60000);
   const [original, setOriginal] = useState(0);

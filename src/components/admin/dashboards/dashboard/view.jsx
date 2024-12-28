@@ -39,7 +39,7 @@ const View = ({ title, src }) => {
       </Dialog>
 
       <Badge
-        className="rounded-lg border-2 border-black text-black"
+        className="text-black hover:cursor-pointer"
         onClick={() => setModal({ src, title, visible: true })}
       >
         view

@@ -1,4 +1,3 @@
-// import { COLORS } from "@/data/Tags";
 import { Badge } from "@/components/ui/badge";
 
 interface props {

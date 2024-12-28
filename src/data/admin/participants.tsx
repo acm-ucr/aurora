@@ -1,4 +1,3 @@
-import View from "@/components/admin/dashboards/dashboard/view";
 import { ICONS } from "./icons";
 import { generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
@@ -98,18 +97,6 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     ),
   },
   generateStatus(STATUSES),
-  {
-    accessorKey: "resume",
-    header: "Resume",
-    enableSorting: false,
-    searchable: true,
-    cell: (props: CellContext<Participant, Participant["resume"]>) =>
-      props.getValue() ? (
-        <View title="Resume" src={props.getValue()} />
-      ) : (
-        <div>N/A</div>
-      ),
-  },
 ];
 
 const attributes: string[] = [

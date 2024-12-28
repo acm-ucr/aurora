@@ -6,7 +6,7 @@ import Link from "next/link";
 import { TABS } from "@/data/navigation";
 import { usePathname } from "next/navigation";
 import data from "@/data/config";
-import { LogIn, Globe, Code, MessageSquare, ChevronDown } from "lucide-react";
+import { LogIn, ChevronDown } from "lucide-react";
 import { signOut } from "next-auth/react";
 import {
   Sidebar,
@@ -29,24 +29,6 @@ const Navigation = () => {
   const pathName = usePathname();
 
   const tabs = TABS[pathName.split("/")[1]];
-
-  const global = [
-    {
-      name: "feedback",
-      link: "/form/feedback",
-      icon: <MessageSquare />,
-    },
-    {
-      name: "devpost",
-      link: data.devpost,
-      icon: <Code />,
-    },
-    {
-      name: "website",
-      link: "/",
-      icon: <Globe />,
-    },
-  ];
 
   return (
     <Sidebar className="text-white">
@@ -90,11 +72,6 @@ const Navigation = () => {
         ))}
       </SidebarContent>
       <SidebarFooter className="mx-auto mb-1 grid grid-cols-4 *:mx-2">
-        {global.map((tab, index) => (
-          <Link key={index} href={tab.link} target="_blank">
-            {tab.icon}
-          </Link>
-        ))}
         <LogIn onClick={() => signOut({ callbackUrl: "/", redirect: true })} />
       </SidebarFooter>
     </Sidebar>

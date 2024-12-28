@@ -36,8 +36,8 @@ export const TECHSTACKS: Record<string, React.ReactNode> = {
 export const HACKPACKS = [
   {
     link: "https://github.com/acm-ucr/firebase-nextjs-hackpack",
-    text: "Firebase Web App",
-    techs: [
+    title: "Firebase Web App",
+    languages: [
       "Javascript",
       "Next.js",
       "Firebase",
@@ -51,8 +51,8 @@ export const HACKPACKS = [
   },
   {
     link: "https://github.com/acm-ucr/firebase-nextjs-hackpack",
-    text: "MongoDB Web App",
-    techs: [
+    title: "MongoDB Web App",
+    languages: [
       "Javascript",
       "Next.js",
       "MongoDB",
@@ -66,8 +66,8 @@ export const HACKPACKS = [
   },
   {
     link: "https://github.com/acm-ucr/nextjs-hackpack",
-    text: "Full Stack Web App",
-    techs: [
+    title: "Full Stack Web App",
+    languages: [
       "Javascript",
       "Next.js",
       "Tailwind",
@@ -80,50 +80,56 @@ export const HACKPACKS = [
   },
   {
     link: "https://github.com/acm-ucr/arduino-hackpack",
-    text: "Hardware",
-    techs: ["Arduino", "C++"],
+    title: "Hardware",
+    languages: ["Arduino", "C++"],
     description:
       "A starter for Arduino projects. Perfect for IoT, robotics, and hands-on hardware experiments with C++.",
   },
   {
     link: "https://github.com/acm-ucr/unity-hackpack",
-    text: "Game Development",
-    techs: ["Unity"],
+    title: "Game Development",
+    languages: ["Unity"],
     description:
       "Unity starter pack for 2D and 3D games. Includes foundational scripts for quick game prototyping.",
   },
   {
     link: "https://github.com/acm-ucr/discord-javascript-hackpack",
-    text: "Javascript Discord Bot",
-    techs: ["Javascript", "Discord", "Prettier", "Eslint", "Github Actions"],
+    title: "Javascript Discord Bot",
+    languages: [
+      "Javascript",
+      "Discord",
+      "Prettier",
+      "Eslint",
+      "Github Actions",
+    ],
     description:
       "JavaScript starter for Discord bots, with templates for commands and events. Great for chat automation and community tools.",
   },
   {
     link: "https://github.com/acm-ucr/discord-python-hackpack",
-    text: "Python Discord Bot",
-    techs: ["Python"],
+    title: "Python Discord Bot",
+    languages: ["Python"],
     description:
       "Python-based starter for Discord bots. Ideal for chat management and interactive bot functionalities.",
   },
   {
     link: "https://github.com/acm-ucr/discord-python-hackpack",
-    text: "Computer Vision",
-    techs: ["Python"],
+    title: "Computer Vision",
+    languages: ["Python"],
     description:
       "Python starter pack for computer vision. Suitable for image processing and object detection projects.",
   },
   {
     link: "https://github.com/acm-ucr/python-hackpack",
-    text: "Python",
-    techs: ["Python"],
+    title: "Python",
+    languages: ["Python"],
     description:
       "A general-purpose Python starter, useful for scripting, automation, and data analysis projects.",
   },
   {
     link: "https://github.com/acm-ucr/python-hackpack",
-    text: "Machine Learning",
-    techs: ["Python", "Jupyter", "Pandas"],
+    title: "Machine Learning",
+    languages: ["Python", "Jupyter", "Pandas"],
     description:
       "Python + Jupyter starter for machine learning. Perfect for data analysis and predictive modeling with Pandas.",
   },

@@ -14,10 +14,10 @@ const Timer = () => {
 
   const addTimer = () => {
     setTimers([
-      ...timers,
       {
         id: uuidv4(),
       },
+      ...timers,
     ]);
   };
 
@@ -34,7 +34,7 @@ const Timer = () => {
       <div className="mb-4 flex gap-3">
         <Label className="pr-5 text-2xl font-bold">Timer</Label>
 
-        <Button onClick={addTimer}>+ add timer</Button>
+        <Button onClick={addTimer}>Add Timer</Button>
         <Button variant="destructive" onClick={clearAll}>
           clear all
         </Button>
