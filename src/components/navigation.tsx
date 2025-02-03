@@ -43,7 +43,7 @@ const Navigation = () => {
         {Object.entries(tabs).map(([title, subTabs], index) => (
           <Collapsible key={index} defaultOpen className="group/collapsible">
             <SidebarGroup>
-              <SidebarGroupLabel asChild className="text-xl font-bold">
+              <SidebarGroupLabel asChild className="text-xl font-bold text-white">
                 <CollapsibleTrigger>
                   {title}
                   <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />

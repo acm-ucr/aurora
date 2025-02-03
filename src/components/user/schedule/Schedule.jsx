@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Toolbar from "./Toolbar";
-import Events from "./Events";
+import Event from "./Event";
 import data from "@/data/config";
 
 const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
@@ -61,7 +61,7 @@ const Schedule = ({ eventList }) => {
                 return event.day === dayIndex + 1;
               })
               .map((events, eventIndex) => (
-                <Events event={events} setEvents={setEvents} key={eventIndex} />
+                <Event event={events} setEvents={setEvents} key={eventIndex} />
               ))}
           </div>
         ))}

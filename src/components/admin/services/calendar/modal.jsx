@@ -1,13 +1,11 @@
 import { X, MapPin, User } from "lucide-react";
-// import { LABELS } from "@/data/admin/Calendar";
-// import { COLORS } from "@/data/Tags";
 import { Badge } from "@/components/ui/badge";
 
 const CalendarModal = ({ event, setEvent }) => {
   return (
-    <div className="absolute left-1/2 top-1/2 z-10 w-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl">
+    <div className="absolute left-1/2 top-1/2 z-10 w-1/2 -translate-x-1/2 -translate-y-1/2 rounded">
       <div
-        className={`bg-hackathon-red-200 flex items-center justify-between rounded-t-xl p-3 ${event.color}`}
+        className={`bg-hackathon-red-200 flex items-center justify-between rounded-t p-3 ${event.color}`}
       >
         <span className="text-3xl font-bold text-white">{event.summary}</span>
         <X
@@ -15,7 +13,7 @@ const CalendarModal = ({ event, setEvent }) => {
           className="text-xl text-white hover:cursor-pointer hover:!text-red-500"
         />
       </div>
-      <div className="border-hackathon-darkgray rounded-b-xl border-x-2 border-b-2 bg-white px-3 py-2">
+      <div className="border-hackathon-darkgray rounded-b border-x-2 border-b-2 bg-white px-3 py-2">
         <div className="flex items-center justify-between">
           <div>
             {event.startDate.toLocaleString("default", {

@@ -13,8 +13,6 @@ const Toolbar = ({ data, setSearch }: props) => {
   const [inputValue, setInputValue] = useState("");
   const onChange = (value: string) => {
     setInputValue(value);
-    console.log(value);
-
     if (value === "") {
       setSearch(data);
     } else {
@@ -25,7 +23,6 @@ const Toolbar = ({ data, setSearch }: props) => {
             language.toLowerCase().includes(value.toLowerCase()),
           ),
       );
-      console.log(filter);
       setSearch(filter);
     }
   };

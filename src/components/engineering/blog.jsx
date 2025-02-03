@@ -37,7 +37,7 @@ const Blog = async () => {
             <Link
               href={`/engineering/blog/${link}`}
               key={index}
-              className="rounded-lg bg-hackathon-blue-200 px-3 py-2 text-white hover:cursor-pointer hover:opacity-80"
+              className="rounded bg-hackathon-blue-200 px-3 py-2 text-white hover:cursor-pointer hover:opacity-80"
             >
               <p className="text-lg font-semibold">{title}</p>
               <p className="text-sm text-gray-300">{author}</p>

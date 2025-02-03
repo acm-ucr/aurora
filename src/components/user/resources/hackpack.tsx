@@ -1,6 +1,7 @@
 import { TECHSTACKS } from "@/data/user/hackpacks";
 import Link from "next/link";
 import { SiGithub as Github } from "@icons-pack/react-simple-icons";
+import { Badge } from "@/components/ui/badge";
 
 type props = {
   text: string;
@@ -13,7 +14,7 @@ const Hackpack = ({ text, languages, link, description }: props) => {
   return (
     <Link
       data-cy="hackpack-link"
-      className="items-center justify-between rounded-xl bg-white p-3 opacity-100 hover:opacity-70"
+      className="items-center justify-between rounded bg-white p-3 opacity-100 hover:opacity-70"
       href={link}
       target="_black"
     >
@@ -26,9 +27,9 @@ const Hackpack = ({ text, languages, link, description }: props) => {
           <Github size={20} />
         </div>
       </div>
-      <div className="my-2 flex flex-wrap gap-2" data-cy="hackpack-techs">
+      <div className="flex flex-wrap gap-2" data-cy="hackpack-techs">
         {languages.map((language, index) => (
-          <div
+          <Badge
             key={index}
             className="flex items-center gap-1 text-gray-400"
             data-cy="hackpack-tech"
@@ -37,7 +38,7 @@ const Hackpack = ({ text, languages, link, description }: props) => {
               {TECHSTACKS[language]}
             </div>
             {language}
-          </div>
+          </Badge>
         ))}
       </div>
       <p className="mt-2">{description}</p>

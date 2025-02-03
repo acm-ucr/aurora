@@ -12,7 +12,7 @@ export const GRADES = [
   "Prefer not to answer",
 ];
 
-export const GENDERS = ["Female", "Male", "Transgender", "Nonbinary", "Other"];
+export const GENDERS = ["Female", "Male", "Nonbinary", "Other"];
 
 export const AGES = ["<16", "16", "17", "18", "19", "20", "21", "22", "23+"];
 

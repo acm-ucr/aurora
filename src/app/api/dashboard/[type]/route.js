@@ -55,27 +55,52 @@ export const POST = async (req, { params }) => {
         element[attribute] = body[attribute];
       });
 
-      await Promise.all([
-        updateDoc(doc(db, "users", user.id), {
-          ...element,
-          timestamp: Timestamp.now(),
-          [`roles.${params.type}`]: 0,
-        }),
-        updateDoc(doc(db, "statistics", "statistics"), {
-          [`${params.type}.status.0`]: increment(1),
-          [`${params.type}.shirt.0.${element.size}`]: increment(1),
-          [`${params.type}.diet.0.${element.diet}`]: increment(1),
-          [`${params}.participants.school.0.${element.school}`]: increment(1),
-        }),
-        send({
-          email: user.email,
-          id: "confirmation",
-          name: user.name,
-          position: params.type.slice(0, -1),
-          subject: `[${data.name}] Thank you for applying!`,
-          preview: `Thank you for applying to ${data.name}`,
-        }),
-      ]);
+      updateDoc(doc(db, "users", user.id), {
+        ...element,
+        timestamp: Timestamp.now(),
+        [`roles.${params.type}`]: 0,
+      });
+
+      updateDoc(doc(db, "statistics", "shirts"), {
+        [`${params.type}`]: {
+          0: {
+            [element.shirt]: increment(1),
+          },
+        },
+      });
+
+      updateDoc(doc(db, "statistics", "diets"), {
+        [`${params.type}`]: {
+          0: {
+            [element.diet]: increment(1),
+          },
+        },
+      });
+
+      updateDoc(doc(db, "statistics", "genders"), {
+        [`${params.type}`]: {
+          0: {
+            [element.gender]: increment(1),
+          },
+        },
+      });
+
+      updateDoc(doc(db, "statistics", "ages"), {
+        [`${params.type}`]: {
+          0: {
+            [element.age]: increment(1),
+          },
+        },
+      });
+
+      send({
+        email: user.email,
+        id: "confirmation",
+        name: user.name,
+        position: params.type.slice(0, -1),
+        subject: `[${data.name}] Thank you for applying!`,
+        preview: `Thank you for applying to ${data.name}`,
+      });
     }
 
     return res.json({ message: "OK" }, { status: 200 });

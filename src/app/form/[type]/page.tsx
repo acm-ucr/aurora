@@ -2,7 +2,6 @@ import Admin from "@/components/form/admin";
 import Committee from "@/components/form/committee";
 import Feedback from "@/components/form/feedback";
 import Interest from "@/components/form/interest";
-import Judge from "@/components/form/judge";
 import Mentor from "@/components/form/mentor";
 import Participant from "@/components/form/participant";
 import Sponsor from "@/components/form/sponsor";
@@ -23,7 +22,6 @@ const components: Record<string, React.ReactElement> = {
   committee: <Committee />,
   feedback: <Feedback />,
   interest: <Interest />,
-  judge: <Judge />,
   mentor: <Mentor />,
   participant: <Participant />,
   sponsor: <Sponsor />,

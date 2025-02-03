@@ -36,7 +36,7 @@ const Table = ({
     <>
       <div className="flex h-[75vh] flex-col justify-between overflow-y-scroll bg-white">
         <Datatable>
-          <TableHeader className="rounded-t-lg bg-hackathon-blue-200 text-white">
+          <TableHeader className="rounded-t bg-hackathon-blue-200 text-white">
             {getHeaderGroups().map(({ headers, id }) => (
               <TableRow key={id}>
                 {headers.map(({ id, column, getContext }) => (
@@ -104,7 +104,7 @@ const Table = ({
           </TableBody>
         </Datatable>
       </div>
-      <div className="flex w-full items-center justify-end rounded-b-lg bg-white p-4 text-lg">
+      <div className="flex w-full items-center justify-end rounded-b bg-white p-4 text-lg">
         <div className="mx-2">{getRowModel().rows.length} row(s)</div>
         <Link
           href={`/admin/${page}?direction=prev&index=${

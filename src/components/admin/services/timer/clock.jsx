@@ -49,7 +49,7 @@ const Timer = ({ onRemove }) => {
     .padStart(2, "0");
 
   return (
-    <div className="mb-4 flex scroll-m-4 flex-col items-center justify-between rounded-md bg-white p-4">
+    <div className="mb-4 flex scroll-m-4 flex-col items-center justify-between rounded bg-white p-4">
       <div className="flex w-full items-center justify-between">
         <input
           disabled={!edit}
