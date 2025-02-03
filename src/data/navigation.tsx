@@ -47,7 +47,7 @@ export const TABS: Tabs = {
       expand: true,
       tabs: [
         {
-          name: "Admin",
+          name: "Admins",
           link: "/admin/admins",
           icon: <Lock className={iconStyle} />,
         },
