@@ -74,7 +74,9 @@ const Table = ({
           </TableHeader>
           <TableBody>
             {loading ? (
-              <Loading />
+              <div className="h-full w-full bg-blue-500">
+                <Loading />
+              </div>
             ) : (
               <>
                 {getRowModel().rows.length === 0 && (

@@ -47,7 +47,7 @@ const Find = () => {
   return (
     <div className="flex h-[calc(100vh-48px)] w-full flex-col">
       <div className="pb-3 pt-4">
-        <Label className="pr-5 text-2xl font-bold">Team</Label>
+        <Label className="pr-5 text-2xl font-bold">Find a Team</Label>
       </div>
       <Toolbar data={ideas} setSearch={setSearch} />
       <div ref={ref} className="relative h-full overflow-y-scroll">
@@ -63,7 +63,7 @@ const Find = () => {
               return (
                 <div
                   key={`row: ${Math.floor(index / 4)}`}
-                  className="absolute left-0 top-0 grid w-full grid-cols-4"
+                  className="grid w-full grid-cols-4 gap-4 bg-blue-500"
                   style={{
                     height: `${size}px`,
                     transform: `translateY(${start}px)`,
@@ -74,7 +74,7 @@ const Find = () => {
                       key={`column: ${i}`}
                       ref={measureElement}
                       data-index={index + i}
-                      className="flex items-start p-2"
+                      className="gap-4 bg-red-500 py-3"
                     >
                       <Idea
                         title={title}
