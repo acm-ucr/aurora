@@ -100,7 +100,7 @@ const Select = ({
         <DropdownMenuTrigger className="w-full" asChild>
           <Button
             data-cy="select-toggle"
-            className="w-full justify-between whitespace-normal break-words"
+            className="w-full justify-between whitespace-normal break-words text-left"
             variant="outline"
             disabled={disabled}
           >
