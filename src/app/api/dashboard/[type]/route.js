@@ -62,35 +62,19 @@ export const POST = async (req, { params }) => {
       });
 
       updateDoc(doc(db, "statistics", "shirt"), {
-        [`${params.type}`]: {
-          0: {
-            [element.shirt]: increment(1),
-          },
-        },
+        [`${params.type}.0.${element.shirt}`]: increment(1),
       });
 
       updateDoc(doc(db, "statistics", "diet"), {
-        [`${params.type}`]: {
-          0: {
-            [element.diet]: increment(1),
-          },
-        },
+        [`${params.type}.0.${element.diet}`]: increment(1),
       });
 
       updateDoc(doc(db, "statistics", "gender"), {
-        [`${params.type}`]: {
-          0: {
-            [element.gender]: increment(1),
-          },
-        },
+        [`${params.type}.0.${element.gender}`]: increment(1),
       });
 
       updateDoc(doc(db, "statistics", "age"), {
-        [`${params.type}`]: {
-          0: {
-            [element.age]: increment(1),
-          },
-        },
+        [`${params.type}.0.${element.age}`]: increment(1),
       });
 
       send({
@@ -256,22 +240,22 @@ export const PUT = async (req, { params }) => {
 
           updateDoc(doc(db, "statistics", "shirt"), {
             [`${params.type}.${status}.${object.shirt}`]: increment(1),
-            [`${params.type}.0.${object.shirt}`]: increment(1),
+            [`${params.type}.0.${object.shirt}`]: decrement(1),
           });
 
           updateDoc(doc(db, "statistics", "diet"), {
             [`${params.type}.${status}.${object.diet}`]: increment(1),
-            [`${params.type}.0.${object.diet}`]: increment(1),
+            [`${params.type}.0.${object.diet}`]: decrement(1),
           });
 
           updateDoc(doc(db, "statistics", "gender"), {
             [`${params.type}.${status}.${object.gender}`]: increment(1),
-            [`${params.type}.0.${object.gender}`]: increment(1),
+            [`${params.type}.0.${object.gender}`]: decrement(1),
           });
 
           updateDoc(doc(db, "statistics", "age"), {
             [`${params.type}.${status}.${object.age}`]: increment(1),
-            [`${params.type}.0.${object.age}`]: increment(1),
+            [`${params.type}.0.${object.age}`]: decrement(1),
           });
         }),
       );
