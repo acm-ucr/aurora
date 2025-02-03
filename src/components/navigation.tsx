@@ -52,23 +52,23 @@ const Navigation = () => {
               <CollapsibleContent className="pt-3">
                 <SidebarGroupContent>
                   <SidebarMenu>
-                  {subTabs.tabs &&
+                    {subTabs.tabs &&
                       subTabs.tabs.map((tab, index) => {
                         const isActive = pathName === tab.link;
                         return (
-                        <Link key={index} href={tab.link}>
-                          <SidebarMenuItem
-                            key={index}
-                            className= {`flex items-center pl-3 text-lg ${
-                              isActive ? "bg-pink-300 rounded-md" : ""
-                            }`}
-                          >
-                            <span className="mr-2">{tab.icon}</span>
-                            {tab.name}
-                          </SidebarMenuItem>
-                        </Link>
-                      );
-                    })}
+                          <Link key={index} href={tab.link}>
+                            <SidebarMenuItem
+                              key={index}
+                              className={`flex items-center pl-3 text-lg ${
+                                isActive ? "rounded-md bg-pink-300" : ""
+                              }`}
+                            >
+                              <span className="mr-2">{tab.icon}</span>
+                              {tab.name}
+                            </SidebarMenuItem>
+                          </Link>
+                        );
+                      })}
                   </SidebarMenu>
                 </SidebarGroupContent>
               </CollapsibleContent>
