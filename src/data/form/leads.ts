@@ -205,7 +205,7 @@ export const FIELDS: Fields = {
     width: 12,
     field: "diet",
     options: DIETS,
-    required: false,
+    required: true,
     editable: true,
   },
   eventSource: {

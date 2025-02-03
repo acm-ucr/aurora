@@ -18,6 +18,7 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   Collapsible,
@@ -29,10 +30,11 @@ const Navigation = () => {
   const pathName = usePathname();
 
   const tabs = TABS[pathName.split("/")[1]];
+  const { open } = useSidebar();
 
   return (
-    <Sidebar className="text-white">
-      <SidebarHeader className="py-8">
+    <Sidebar collapsible="icon" className="text-white">
+      <SidebarHeader className={`${open ? "py-8" : "py-4"}`}>
         <Image
           src={LOGO}
           className="mx-auto h-12 w-12"
@@ -41,15 +43,21 @@ const Navigation = () => {
       </SidebarHeader>
       <SidebarContent>
         {Object.entries(tabs).map(([title, subTabs], index) => (
-          <Collapsible key={index} defaultOpen className="group/collapsible">
-            <SidebarGroup>
-              <SidebarGroupLabel asChild className="text-xl font-bold">
-                <CollapsibleTrigger>
-                  {title}
-                  <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-                </CollapsibleTrigger>
-              </SidebarGroupLabel>
-              <CollapsibleContent className="pt-3">
+          <Collapsible
+            key={index}
+            defaultOpen
+            className="group/collapsible pt-0"
+          >
+            <SidebarGroup className="pt-0">
+              {open && (
+                <SidebarGroupLabel asChild className="pt-0 text-xl font-bold">
+                  <CollapsibleTrigger>
+                    {title}
+                    <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                  </CollapsibleTrigger>
+                </SidebarGroupLabel>
+              )}
+              <CollapsibleContent>
                 <SidebarGroupContent>
                   <SidebarMenu>
                     {subTabs.tabs &&
@@ -57,10 +65,12 @@ const Navigation = () => {
                         <Link key={index} href={tab.link}>
                           <SidebarMenuItem
                             key={index}
-                            className="flex items-center pl-3 text-lg"
+                            className={`${open ? "h-7" : "h-6"} flex items-center pl-3 text-lg`}
                           >
-                            <span className="mr-2">{tab.icon}</span>
-                            {tab.name}
+                            <span className={`${!open && "mx-auto"}`}>
+                              {tab.icon}
+                            </span>
+                            {open && <span className="ml-2">{tab.name}</span>}
                           </SidebarMenuItem>
                         </Link>
                       ))}
