@@ -92,6 +92,7 @@ export const DIETS = [
   "Nut Allergy",
   "No Gluten",
   "Halal",
+  "None",
 ];
 
 export const SOURCES = [

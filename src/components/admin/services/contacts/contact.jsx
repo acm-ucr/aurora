@@ -10,6 +10,8 @@ import {
   Users,
   CircleAlert,
   MessagesSquare,
+  HandCoins,
+  Cat,
 } from "lucide-react";
 import Select from "@/components/select";
 import { useState } from "react";
@@ -33,11 +35,11 @@ const roleIcons = {
   mentors: <HandHeart className="mx-2" />,
   admins: <Lock className="mx-2" />,
   committees: <Handshake className="mx-2" />,
-  sponsors: <Users className="mx-2" />,
+  sponsors: <HandCoins className="mx-2" />,
   interests: <CircleAlert className="mx-2" />,
   feedback: <MessagesSquare className="mx-2" />,
   leads: <Crown className="mx-2" />,
-  panelists: <Users className="mx-2" />,
+  panelists: <Cat className="mx-2" />,
   teams: <Users className="mx-2" />,
 };
 
