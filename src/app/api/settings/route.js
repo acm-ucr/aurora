@@ -1,176 +1,77 @@
 import {
   collection,
-  updateDoc,
   doc,
   query,
+  setDoc,
+  getDocs,
   where,
-  getCountFromServer,
 } from "firebase/firestore";
-import { db } from "../../../utils/firebase";
-import { NextResponse } from "next/server";
-import { authenticate } from "@/utils/auth";
+import { db } from "@/utils/firebase";
+import { AGES, DIETS, GENDERS, SHIRTS } from "@/data/form/information";
 
-const syncStatsWithDatabase = async () => {
-  await Promise.all([
-    updateRoleCounts("participants"),
-    updateRoleCounts("volunteers"),
-    updateRoleCounts("judges"),
-    updateRoleCounts("mentors"),
-    updateRoleCounts("committees"),
-    updateRoleCounts("sponsors"),
-    updateRoleCounts("admins"),
-    updateRoleCounts("panels"),
-    updateRoleCounts("teams"),
-  ]);
+const roles = [
+  "participants",
+  "judges",
+  "volunteers",
+  "mentors",
+  "admins",
+  "committees",
+  "sponsors",
+  "panelists",
+];
+
+const orders = {
+  shirts: SHIRTS,
+  diets: DIETS,
+  ages: AGES,
+  genders: GENDERS,
 };
-const getRoleCount = async (role, value, subType, subValue) => {
-  if (role === "teams") {
-    return (
-      await getCountFromServer(
-        query(collection(db, "teams"), where(`status`, "==", value)),
-      )
-    ).data().count;
-  }
 
-  if (subType) {
-    return (
-      await getCountFromServer(
-        query(
-          collection(db, "users"),
-          where(`${subType}`, "==", subValue),
-          where(`roles.${role}`, "==", value),
-        ),
-      )
-    ).data().count;
-  }
-  if (role === "participants" && subType === "school") {
-    return (
-      await getCountFromServer(
-        query(
-          collection(db, "users"),
-          where(`school`, "==", subValue),
-          where(`roles.${role}`, "==", value),
-        ),
-      )
-    ).data().count;
-  }
-  return (
-    await getCountFromServer(
-      query(collection(db, "users"), where(`roles.${role}`, "==", value)),
-    )
-  ).data().count;
-};
-const updateRoleCounts = async (role) => {
-  const [roleMinusOneCount, roleZeroCount, roleOneCount] = await Promise.all([
-    getRoleCount(role, -1),
-    getRoleCount(role, 0),
-    getRoleCount(role, 1),
-  ]);
+const heatmaps = {};
 
-  const shirtSizes = ["XS", "S", "M", "L", "XL", "XXL"];
-  const dietOptions = [
-    "Halal",
-    "Vegan",
-    "Vegetarian",
-    "Nut Allergy",
-    "No Gluten",
-    "Lactose Intolerant",
-  ];
-  const schoolOptions = [
-    "University of California, Riverside",
-    "New York University",
-  ];
-
-  const [schoolMinusOneCount, schoolZeroCount, schoolOneCount] =
-    await Promise.all([
-      Promise.all(
-        schoolOptions.map((school) =>
-          getRoleCount("participants", -1, "school", school),
-        ),
-      ),
-      Promise.all(
-        schoolOptions.map((school) =>
-          getRoleCount("participants", 0, "school", school),
-        ),
-      ),
-      Promise.all(
-        schoolOptions.map((school) =>
-          getRoleCount("participants", 1, "school", school),
-        ),
-      ),
-    ]);
-
-  const [shirtMinusOneCount, shirtZeroCount, shirtOneCount] = await Promise.all(
-    [
-      Promise.all(
-        shirtSizes.map((size) => getRoleCount(role, -1, "shirt", size)),
-      ),
-      Promise.all(
-        shirtSizes.map((size) => getRoleCount(role, 0, "shirt", size)),
-      ),
-      Promise.all(
-        shirtSizes.map((size) => getRoleCount(role, 1, "shirt", size)),
-      ),
-    ],
+const getStatistic = async (role, status, statistic) => {
+  const snapshot = await getDocs(
+    query(collection(db, "users"), where(`roles.${role}`, "==", status)),
   );
 
-  const [dietMinusOneCount, dietZeroCount, dietOneCount] = await Promise.all([
-    Promise.all(
-      dietOptions.map((option) => getRoleCount(role, -1, "diet", option)),
-    ),
-    Promise.all(
-      dietOptions.map((option) => getRoleCount(role, 0, "diet", option)),
-    ),
-    Promise.all(
-      dietOptions.map((option) => getRoleCount(role, 1, "diet", option)),
-    ),
-  ]);
+  const results = [];
 
-  const updateData = {
-    [`${role}.status.-1`]: roleMinusOneCount,
-    [`${role}.status.0`]: roleZeroCount,
-    [`${role}.status.1`]: roleOneCount,
-  };
+  const singular = statistic.slice(0, statistic.length - 1);
+  snapshot.forEach((doc) => results.push(doc.data()[singular]));
 
-  schoolOptions.forEach((school, index) => {
-    updateData[`participants.school.-1.${school}`] = schoolMinusOneCount[index];
-    updateData[`participants.school.0.${school}`] = schoolZeroCount[index];
-    updateData[`participants.school.1.${school}`] = schoolOneCount[index];
+  const frequency = {};
+  for (const option of orders[statistic]) {
+    frequency[option] = 0;
+  }
+
+  results.forEach((value) => {
+    frequency[value] += 1;
   });
 
-  shirtSizes.forEach((size, index) => {
-    updateData[`${role}.shirt.-1.${size}`] = shirtMinusOneCount[index];
-    updateData[`${role}.shirt.0.${size}`] = shirtZeroCount[index];
-    updateData[`${role}.shirt.1.${size}`] = shirtOneCount[index];
-  });
-
-  dietOptions.forEach((option, index) => {
-    updateData[`${role}.diet.-1.${option}`] = dietMinusOneCount[index];
-    updateData[`${role}.diet.0.${option}`] = dietZeroCount[index];
-    updateData[`${role}.diet.1.${option}`] = dietOneCount[index];
-  });
-
-  await updateDoc(doc(db, "statistics", "statistics"), updateData);
+  return frequency;
 };
-export const GET = async () => {
-  const res = NextResponse;
-  const { auth, message } = await authenticate({
-    admins: [1],
-  });
 
-  if (auth !== 200) {
-    return res.json(
-      { message: `Authentication Error: ${message}` },
-      { status: auth },
-    );
+export const GET = async () => {
+  for (const statistic of Object.keys(orders)) {
+    heatmaps[statistic] = {};
+
+    for (const role of roles) {
+      heatmaps[statistic][role] = {
+        0: {},
+        1: {},
+        "-1": {},
+      };
+
+      heatmaps[statistic][role]["-1"] = await getStatistic(role, -1, statistic);
+      heatmaps[statistic][role]["0"] = await getStatistic(role, 0, statistic);
+      heatmaps[statistic][role]["1"] = await getStatistic(role, 1, statistic);
+    }
   }
-  try {
-    syncStatsWithDatabase();
-    return res.json({ status: 200 });
-  } catch (err) {
-    return res.json(
-      { message: `Internal Server Error: ${err}` },
-      { status: 500 },
-    );
-  }
+
+  await setDoc(doc(db, "statistics", "shirts"), heatmaps["shirts"]);
+  await setDoc(doc(db, "statistics", "genders"), heatmaps["genders"]);
+  await setDoc(doc(db, "statistics", "ages"), heatmaps["ages"]);
+  await setDoc(doc(db, "statistics", "diets"), heatmaps["diets"]);
+
+  return Response.json(heatmaps);
 };
