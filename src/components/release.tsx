@@ -6,7 +6,7 @@ type props = {
 const Release = ({ release, children }: props): React.ReactNode => {
   if (process.env.NODE_ENV === "development") return children;
 
-  return release < new Date() && new Date() < release && children;
+  return release < new Date() ? children : null;
 };
 
 export default Release;

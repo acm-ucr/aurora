@@ -5,7 +5,7 @@ import Live from "@/components/live";
 const Page = () => {
   return (
     <div className="w-full">
-      <Release release={RELEASES.LIVE}>
+      <Release release={RELEASES["/"]}>
         <Live />
       </Release>
     </div>

@@ -3,6 +3,7 @@ type page = {
 };
 
 const RELEASES: page = {
+  "/": new Date("10/01/2023"),
   "/admin/participants": new Date("10/01/2023"),
   "/admin/timer": new Date("10/01/2023"),
   "/admin/teams": new Date("10/01/2023"),
