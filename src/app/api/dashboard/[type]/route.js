@@ -61,36 +61,20 @@ export const POST = async (req, { params }) => {
         [`roles.${params.type}`]: 0,
       });
 
-      updateDoc(doc(db, "statistics", "shirts"), {
-        [`${params.type}`]: {
-          0: {
-            [element.shirt]: increment(1),
-          },
-        },
+      updateDoc(doc(db, "statistics", "shirt"), {
+        [`${params.type}.0.${element.shirt}`]: increment(1),
       });
 
-      updateDoc(doc(db, "statistics", "diets"), {
-        [`${params.type}`]: {
-          0: {
-            [element.diet]: increment(1),
-          },
-        },
+      updateDoc(doc(db, "statistics", "diet"), {
+        [`${params.type}.0.${element.diet}`]: increment(1),
       });
 
-      updateDoc(doc(db, "statistics", "genders"), {
-        [`${params.type}`]: {
-          0: {
-            [element.gender]: increment(1),
-          },
-        },
+      updateDoc(doc(db, "statistics", "gender"), {
+        [`${params.type}.0.${element.gender}`]: increment(1),
       });
 
-      updateDoc(doc(db, "statistics", "ages"), {
-        [`${params.type}`]: {
-          0: {
-            [element.age]: increment(1),
-          },
-        },
+      updateDoc(doc(db, "statistics", "age"), {
+        [`${params.type}.0.${element.age}`]: increment(1),
       });
 
       send({
@@ -254,35 +238,25 @@ export const PUT = async (req, { params }) => {
             preview: preview,
           });
 
-          const size = object.shirt;
-          const diet = object.diet;
-          const school = object.school;
+          updateDoc(doc(db, "statistics", "shirt"), {
+            [`${params.type}.${status}.${object.shirt}`]: increment(1),
+            [`${params.type}.0.${object.shirt}`]: decrement(1),
+          });
 
-          if (status === 1) {
-            await updateDoc(doc(db, "statistics", "statistics"), {
-              [`${params.type}.status.1`]: increment(1),
-              [`${params.type}.status.0`]: increment(-1),
-              [`${params.type}.shirt.1.${size}`]: increment(1),
-              [`${params.type}.shirt.0${size}`]: increment(-1),
-              [`${params.type}.diet.1.${diet}`]: increment(1),
-              [`${params.type}.diet.0${diet}`]: increment(-1),
-              [`${params}.participants.school.1.${school}`]: increment(1),
-              [`${params}.participants.school.0.${school}`]: increment(-1),
-            });
-          }
+          updateDoc(doc(db, "statistics", "diet"), {
+            [`${params.type}.${status}.${object.diet}`]: increment(1),
+            [`${params.type}.0.${object.diet}`]: decrement(1),
+          });
 
-          if (status === -1) {
-            await updateDoc(doc(db, "statistics", "statistics"), {
-              [`${params.type}.status.-1`]: increment(1),
-              [`${params.type}.status.0`]: increment(-1),
-              [`${params.type}.shirt.-1.${size}`]: increment(1),
-              [`${params.type}.shirt.0.${size}`]: increment(-1),
-              [`${params.type}.diet.-1.${diet}`]: increment(1),
-              [`${params.type}.diet.0.${diet}`]: increment(-1),
-              [`${params}.participants.school.-1.${school}`]: increment(1),
-              [`${params}.participants.school.0.${school}`]: increment(-1),
-            });
-          }
+          updateDoc(doc(db, "statistics", "gender"), {
+            [`${params.type}.${status}.${object.gender}`]: increment(1),
+            [`${params.type}.0.${object.gender}`]: decrement(1),
+          });
+
+          updateDoc(doc(db, "statistics", "age"), {
+            [`${params.type}.${status}.${object.age}`]: increment(1),
+            [`${params.type}.0.${object.age}`]: decrement(1),
+          });
         }),
       );
     }

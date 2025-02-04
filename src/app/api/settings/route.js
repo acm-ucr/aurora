@@ -27,8 +27,6 @@ const orders = {
   gender: GENDERS,
 };
 
-const heatmaps = {};
-
 const getStatistic = async (role, status, statistic) => {
   const snapshot = await getDocs(
     query(collection(db, "users"), where(`roles.${role}`, "==", status)),
@@ -36,10 +34,10 @@ const getStatistic = async (role, status, statistic) => {
 
   const results = [];
 
-  const singular = statistic.slice(0, statistic.length - 1);
-  snapshot.forEach((doc) => results.push(doc.data()[singular]));
+  snapshot.forEach((doc) => results.push(doc.data()[statistic]));
 
   const frequency = {};
+
   for (const option of orders[statistic]) {
     frequency[option] = 0;
   }
@@ -52,6 +50,8 @@ const getStatistic = async (role, status, statistic) => {
 };
 
 export const GET = async () => {
+  const heatmaps = {};
+
   for (const statistic of Object.keys(orders)) {
     heatmaps[statistic] = {};
 
@@ -69,7 +69,7 @@ export const GET = async () => {
   }
 
   await setDoc(doc(db, "statistics", "shirt"), heatmaps["shirt"]);
-  await setDoc(doc(db, "statistics", "genders"), heatmaps["gender"]);
+  await setDoc(doc(db, "statistics", "gender"), heatmaps["gender"]);
   await setDoc(doc(db, "statistics", "age"), heatmaps["age"]);
   await setDoc(doc(db, "statistics", "diet"), heatmaps["diet"]);
 

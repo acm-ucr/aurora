@@ -22,6 +22,8 @@ import {
   Globe,
   FileSearch,
   FolderSearch2,
+  HandCoins,
+  Cat,
 } from "lucide-react";
 import data from "./config";
 import { SiInstagram } from "@icons-pack/react-simple-icons";
@@ -47,7 +49,7 @@ export const TABS: Tabs = {
       expand: true,
       tabs: [
         {
-          name: "Admin",
+          name: "Admins",
           link: "/admin/admins",
           icon: <Lock className={iconStyle} />,
         },
@@ -84,7 +86,7 @@ export const TABS: Tabs = {
         {
           name: "Panelists",
           link: "/admin/panelists",
-          icon: <Users className={iconStyle} />,
+          icon: <Cat className={iconStyle} />,
         },
         {
           name: "Participants",
@@ -94,7 +96,7 @@ export const TABS: Tabs = {
         {
           name: "Sponsors",
           link: "/admin/sponsors",
-          icon: <Users className={iconStyle} />,
+          icon: <HandCoins className={iconStyle} />,
         },
         {
           name: "Teams",

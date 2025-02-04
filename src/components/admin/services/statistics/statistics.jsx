@@ -38,6 +38,8 @@ const Statistics = () => {
     ),
   }));
 
+  console.log(Object.keys(STATUSES));
+
   return (
     <div className="flex h-full flex-col py-4 font-poppins">
       <Label className="pr-5 text-2xl font-bold">Statistics</Label>
@@ -46,19 +48,19 @@ const Statistics = () => {
           <Label className="pr-5 text-xl font-medium capitalize">{key}</Label>
           <div className="grid grid-cols-3 gap-4">
             <Heatmap
-              label="Rejected"
+              label="Pending"
               data={values[0]}
               xLabels={labels}
               yLabels={roles}
             />
             <Heatmap
-              label="Pending"
+              label="Accepted"
               data={values[1]}
               xLabels={labels}
               yLabels={roles}
             />
             <Heatmap
-              label="Accepted"
+              label="Rejected"
               data={values[2]}
               xLabels={labels}
               yLabels={roles}

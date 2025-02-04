@@ -75,14 +75,16 @@ type label =
   | "No Gluten"
   | "Vegetarian"
   | "Nut Allergy"
-  | "Halal";
+  | "Halal"
+  | "None";
 type dietLong =
   | "Vegan"
   | "Lactose Intolerant"
   | "No Gluten"
   | "Vegetarian"
   | "Nut Allergy"
-  | "Halal";
+  | "Halal"
+  | "None";
 interface diets {
   label: dietLong;
   className: string;
@@ -116,6 +118,11 @@ export const DIETS: Record<label, diets> = {
   },
   Halal: {
     label: "Halal",
+    className: "fill-hackathon-tags-teal-text",
+    fill: "bg-hackathon-tags-teal-text",
+  },
+  None: {
+    label: "None",
     className: "fill-hackathon-tags-teal-text",
     fill: "bg-hackathon-tags-teal-text",
   },
