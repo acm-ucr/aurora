@@ -9,6 +9,7 @@ import Volunteer from "@/components/form/volunteer";
 import Panel from "@/components/form/panelist";
 import Lead from "@/components/form/lead";
 import Ideas from "@/components/form/ideas";
+import Judge from "@/components/form/judge";
 import ProtectedPage from "@/components/protected";
 import Fault from "@/utils/error";
 import React from "react";
@@ -24,6 +25,7 @@ const components: Record<string, React.ReactElement> = {
   interest: <Interest />,
   mentor: <Mentor />,
   participant: <Participant />,
+  judge: <Judge />,
   sponsor: <Sponsor />,
   panel: <Panel />,
   volunteer: <Volunteer />,
