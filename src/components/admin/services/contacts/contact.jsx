@@ -20,7 +20,7 @@ import toaster from "@/utils/toaster";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const STATUSES = ["confirmed", "pending", "not attending"];
+const STATUSES = ["Confirmed", "Pending", "Not attending"];
 
 const MAPPINGS = {
   confirmed: 1,

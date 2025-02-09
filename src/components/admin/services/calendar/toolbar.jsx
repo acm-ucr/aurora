@@ -64,7 +64,7 @@ const CustomToolbar = ({ onView, onNavigate, date, setTag }) => {
                 </Badge>
               ))}
           </div>
-          <div className="my-2 flex flex-wrap items-center justify-center gap-x-2 md:justify-end">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 md:justify-end">
             {Object.entries(LABELS)
               .filter(([_, { type }]) => type !== "leads")
               .map(([key], index) => (
