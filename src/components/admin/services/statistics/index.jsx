@@ -59,8 +59,10 @@ const Statistics = () => {
             if (value) setValue(value);
           }}
         >
-          {Object.keys(mappings).map((value) => (
-            <ToggleGroupItem value={value}>{value}</ToggleGroupItem>
+          {Object.keys(mappings).map((value, index) => (
+            <ToggleGroupItem value={value} key={index}>
+              {value}
+            </ToggleGroupItem>
           ))}
         </ToggleGroup>
       </div>
