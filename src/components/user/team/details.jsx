@@ -3,6 +3,8 @@ import { useState } from "react";
 import toaster from "@/utils/toaster";
 import { Copy, Link } from "lucide-react";
 import { api } from "@/utils/api";
+import { IoMdMail } from "react-icons/io";
+import { FaDiscord } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -84,6 +86,19 @@ const Details = ({ team }) => {
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex flex-col space-y-1.5">
+          <Label htmlFor="name">Team Name</Label>
+          <Input
+            id="name"
+            value={details.name}
+            onChange={(e) =>
+              setDetails({
+                ...details,
+                name: e.target.value,
+              })
+            }
+          />
+        </div>
+        <div className="flex flex-col space-y-1.5">
           <Label htmlFor="team">Team ID</Label>
           <div className="flex items-center gap-4">
             <Input id="team" placeholder={details.id} disabled />
@@ -98,18 +113,27 @@ const Details = ({ team }) => {
           </div>
         </div>
 
-        <div className="flex flex-col space-y-1.5">
-          <Label htmlFor="name">Team Name</Label>
-          <Input
-            id="name"
-            value={details.name}
-            onChange={(e) =>
-              setDetails({
-                ...details,
-                name: e.target.value,
-              })
-            }
-          />
+        <div className="flex flex-col">
+          <Label htmlFor="team">Team Members</Label>
+          <div className="flex flex-wrap gap-4 py-2">
+            {details.members.length === 0 &&
+              "No Team Members. Invite others to join your team."}
+
+            {details.members.map((member, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-start space-y-1 rounded-lg bg-gray-100 p-4"
+              >
+                <p className="text-sm font-medium leading-none">
+                  {member.name}
+                </p>
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <FaDiscord size={20} />
+                  <span>{member.discord}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-col space-y-1.5">
@@ -156,34 +180,14 @@ const Details = ({ team }) => {
             }
           />
         </div>
-
-        <div className="flex flex-col space-y-1.5">
-          <Label htmlFor="team">Team Members</Label>
-
-          {details.members.length === 0 &&
-            "No Team Members. Invite others to join your team."}
-
-          {details.members.map((member, index) => (
-            <div
-              key={index}
-              className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
-            >
-              <span className="flex h-2 w-2 translate-y-1 rounded-full bg-black" />
-              <div className="space-y-1">
-                <p className="text-sm font-medium leading-none">
-                  {member.name} - {member.discord}
-                </p>
-                <p className="text-muted-foreground text-sm"></p>
-              </div>
-            </div>
-          ))}
-        </div>
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button variant="destructive" onClick={handleLeave}>
           Leave Team
         </Button>
-        <Button onClick={handleSave}>Save Team</Button>
+        <Button onClick={handleSave} className="bg-hackathon-green-400">
+          Save Team
+        </Button>
       </CardFooter>
     </Card>
   );
