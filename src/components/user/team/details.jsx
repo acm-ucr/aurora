@@ -3,7 +3,6 @@ import { useState } from "react";
 import toaster from "@/utils/toaster";
 import { Copy, Link } from "lucide-react";
 import { api } from "@/utils/api";
-import { IoMdMail } from "react-icons/io";
 import { FaDiscord } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import {
