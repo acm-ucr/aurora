@@ -66,18 +66,28 @@ const Timer = ({ onRemove }) => {
         value={hours + minutes + seconds}
         className="mt-4"
       >
-        <InputOTPGroup>
-          <InputOTPSlot index={0} />
-          <InputOTPSlot index={1} />
-        </InputOTPGroup>
-        <InputOTPGroup>
-          <InputOTPSlot index={2} />
-          <InputOTPSlot index={3} />
-        </InputOTPGroup>
-        <InputOTPGroup>
-          <InputOTPSlot index={4} />
-          <InputOTPSlot index={5} />
-        </InputOTPGroup>
+        <div className="mr-11 flex flex-col items-center">
+          <InputOTPGroup className="">
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+          </InputOTPGroup>
+          <p className="text-xl font-semibold">Hours</p>
+        </div>
+
+        <div className="flex flex-col items-center">
+          <InputOTPGroup className="">
+            <InputOTPSlot index={2} />
+            <InputOTPSlot index={3} />
+          </InputOTPGroup>
+          <p className="text-xl font-semibold">Minutes</p>
+        </div>
+        <div className="ml-11 flex flex-col items-center">
+          <InputOTPGroup className="">
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+          <p className="text-xl font-semibold">Seconds</p>
+        </div>
       </InputOTP>
 
       <div className="mt-4">
@@ -95,10 +105,7 @@ const Timer = ({ onRemove }) => {
         )}
       </div>
 
-      <Progress
-        value={(total / (original + total)) * 100}
-        className="mt-4 w-full"
-      />
+      <Progress value={(total / (original + total)) * 100} className="mt-4" />
     </div>
   );
 };
