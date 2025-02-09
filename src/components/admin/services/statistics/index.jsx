@@ -59,9 +59,9 @@ const Statistics = () => {
             if (value) setValue(value);
           }}
         >
-          <ToggleGroupItem value="Pending">Pending</ToggleGroupItem>
-          <ToggleGroupItem value="Accepted">Accepted</ToggleGroupItem>
-          <ToggleGroupItem value="Rejected">Rejected</ToggleGroupItem>
+          {Object.keys(mappings).map((value) => (
+            <ToggleGroupItem value={value}>{value}</ToggleGroupItem>
+          ))}
         </ToggleGroup>
       </div>
 
