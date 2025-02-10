@@ -120,7 +120,7 @@ const NewTeam = () => {
                 Team ID
               </Label>
               <Input
-                className="h-14 w-1/2 rounded border-2 border-hackathon-blue-200 text-xl"
+                className="w-1/2 rounded border-2 border-hackathon-blue-200 py-6 text-xl"
                 id="team"
                 placeholder="ie. abc123"
                 onChange={(e) => setTeam({ id: e.target.value, name: "" })}
@@ -152,7 +152,7 @@ const NewTeam = () => {
                 Team Name
               </Label>
               <Input
-                className="h-14 w-1/2 rounded border-2 border-hackathon-blue-200 text-xl"
+                className="w-1/2 rounded border-2 border-hackathon-blue-200 py-6 text-xl"
                 id="name"
                 type="text"
                 placeholder="ie. Cool Coders"
