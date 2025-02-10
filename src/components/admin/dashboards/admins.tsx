@@ -1,5 +1,5 @@
 "use client";
-import { TAGS, COLUMNS, DROPDOWN } from "@/data/admin/admins";
+import { TAGS, COLUMNS, SUBCOLUMNS } from "@/data/admin/admins";
 import { STATUSES } from "@/data/statuses";
 import Table from "./dashboard/dashboard";
 import { SearchParams } from "@/types/dashboard";
@@ -15,9 +15,9 @@ const Admin = ({ searchParams }: props) => {
         searchParams={searchParams}
         title="Admins"
         columns={COLUMNS}
+        subcolumns={SUBCOLUMNS}
         tags={TAGS}
         statuses={STATUSES}
-        Dropdown={DROPDOWN}
       />
     </div>
   );

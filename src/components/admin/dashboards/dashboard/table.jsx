@@ -20,7 +20,7 @@ import {
 const Table = ({
   getHeaderGroups,
   getRowModel,
-  // Dropdown,
+  subcolumns,
   empty,
   loading,
   meta,
@@ -88,20 +88,38 @@ const Table = ({
                   </TableRow>
                 )}
                 {getRowModel().rows.map(
-                  ({ id, getVisibleCells, getIsSelected }) => (
-                    <TableRow
-                      key={id}
-                      className={`${getIsSelected() && "bg-hackathon-green-100"}`}
-                    >
-                      {getVisibleCells().map(({ id, column, getContext }) => (
-                        <TableCell key={id}>
-                          {flexRender(column.columnDef.cell, getContext())}
-                        </TableCell>
-                      ))}
+                  ({ id, getVisibleCells, getIsSelected, original }) => (
+                    <>
+                      <TableRow
+                        key={id}
+                        className={`${getIsSelected() && "bg-hackathon-green-100"}`}
+                      >
+                        {getVisibleCells().map(({ id, column, getContext }) => (
+                          <TableCell key={id}>
+                            {flexRender(column.columnDef.cell, getContext())}
+                          </TableCell>
+                        ))}
+                      </TableRow>
 
-                      {/* TODO: ADD DROPDOWN CONTENT UPON CLICKING THE ROW */}
-                      {/* <Dropdown object={original} /> */}
-                    </TableRow>
+                      {getIsSelected() && (
+                        <>
+                          <TableRow>
+                            {subcolumns?.map(({ header }, index) => (
+                              <TableHead key={index} className="text-xs">
+                                {header}
+                              </TableHead>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            {subcolumns?.map(({ accessorKey }, index) => (
+                              <TableCell key={index} className="text-xs">
+                                {original[accessorKey]}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                        </>
+                      )}
+                    </>
                   ),
                 )}
               </>
