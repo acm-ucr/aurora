@@ -120,12 +120,12 @@ export const AVAILABILITY = [
 ];
 
 export const AFFILIATIONS = {
-  director: "director",
-  marketing: "marketing",
-  sponsorship: "sponsorship",
-  recruitment: "recruitment",
-  software: "software",
-  uiux: "uiux",
-  operations: "operations",
-  student: "student",
+  director: "Director",
+  marketing: "Marketing",
+  sponsorship: "Sponsorship",
+  recruitment: "Recruitment",
+  software: "Software",
+  uiux: "UI/UX",
+  operations: "Operations",
+  student: "Student",
 };
