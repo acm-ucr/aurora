@@ -20,8 +20,6 @@ import toaster from "@/utils/toaster";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const STATUSES = ["Confirmed", "Pending", "Not attending"];
-
 const MAPPINGS = {
   confirmed: 1,
   pending: 0,
@@ -72,14 +70,14 @@ const Contact = ({ role, disabled, setDisabled }) => {
   return (
     <Card key={role} className="flex w-full flex-col">
       <CardHeader>
-        <CardTitle className="flex items-center">
+        <CardTitle className="flex items-center capitalize">
           {roleIcons[role]} {role}
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
         <Select
-          items={STATUSES}
-          placeholder="Select a status..."
+          items={Object.keys(MAPPINGS)}
+          placeholder="Select a Status..."
           field="status"
           user={status}
           setUser={setStatus}
