@@ -8,7 +8,7 @@ import Interests from "@/components/admin/dashboards/interests";
 import Judges from "@/components/admin/dashboards/judges";
 import Judging from "@/components/admin/services/judging/judging";
 import Mentors from "@/components/admin/dashboards/mentors";
-import Contacts from "@/components/admin/services/contacts/contacts";
+import Contacts from "@/components/admin/services/contacts";
 import Participants from "@/components/admin/dashboards/participants";
 import Sponsors from "@/components/admin/dashboards/sponsors";
 import Panelists from "@/components/admin/dashboards/panelists";
