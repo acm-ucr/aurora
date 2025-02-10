@@ -1,5 +1,5 @@
 "use client";
-import { TAGS, COLUMNS, DROPDOWN } from "@/data/admin/mentors";
+import { TAGS, COLUMNS } from "@/data/admin/mentors";
 import { STATUSES } from "@/data/statuses";
 import Table from "./dashboard/dashboard";
 import { SearchParams } from "@/types/dashboard";
@@ -15,9 +15,9 @@ const Mentors = ({ searchParams }: props) => {
         searchParams={searchParams}
         title="Mentors"
         columns={COLUMNS}
+        subcolumns={[]}
         tags={TAGS}
         statuses={STATUSES}
-        Dropdown={DROPDOWN}
       />
     </div>
   );
