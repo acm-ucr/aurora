@@ -16,9 +16,9 @@ import Statistics from "@/components/admin/services/statistics";
 import Teams from "@/components/admin/dashboards/teams";
 import Volunteers from "@/components/admin/dashboards/volunteers";
 import Leads from "@/components/admin/dashboards/leads";
-import Fault from "@/utils/error";
 import Settings from "@/components/admin/services/settings";
 import Timer from "@/components/admin/services/timer";
+import { notFound } from "next/navigation";
 
 const Page = ({ params, searchParams }) => {
   const components = {
@@ -57,11 +57,7 @@ const Page = ({ params, searchParams }) => {
       </ProtectedPage>
     );
   } else {
-    throw new Fault(
-      404,
-      "Page Not Found",
-      "The page you are looking for does not seem to exist",
-    );
+    notFound();
   }
 };
 

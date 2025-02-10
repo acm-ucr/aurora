@@ -27,7 +27,7 @@ const CustomToolbar = ({ onView, onNavigate, date, setTag }) => {
   return (
     <div className="mb-2 flex flex-col items-center justify-between md:flex-row">
       <div className="flex flex-col items-center">
-        <div className="my-2 flex items-center justify-center">
+        <div className="flex items-center justify-center">
           <ChevronLeft
             onClick={() => onNavigate("PREV")}
             className="mx-2 hover:cursor-pointer"
@@ -50,29 +50,38 @@ const CustomToolbar = ({ onView, onNavigate, date, setTag }) => {
           </Badge>
         </div>
       </div>
-      <div className="flex flex-col items-center gap-y-2 md:items-end">
+      <div className="flex flex-col items-center gap-2 md:items-end">
         <Badge onClick={() => setTag("all")} type={"gray"}>
-          all events
+          All Events
         </Badge>
-        <div className="flex flex-col md:block">
-          <div className="flex flex-wrap items-center justify-center gap-x-2 md:justify-end">
-            {Object.entries(LABELS)
-              .filter(([_, { type }]) => type === "leads")
-              .map(([key], index) => (
-                <Badge key={index} type={key} onClick={() => setTag(key)}>
-                  {key}
-                </Badge>
-              ))}
-          </div>
-          <div className="my-2 flex flex-wrap items-center justify-center gap-x-2 md:justify-end">
-            {Object.entries(LABELS)
-              .filter(([_, { type }]) => type !== "leads")
-              .map(([key], index) => (
-                <Badge key={index} type={key} onClick={() => setTag(key)}>
-                  {key}
-                </Badge>
-              ))}
-          </div>
+        <div className="flex flex-wrap items-center justify-center gap-x-2 md:justify-end">
+          {Object.entries(LABELS)
+            .filter(([_, { type }]) => type === "leads")
+            .map(([key], index) => (
+              <Badge
+                key={index}
+                type={key}
+                onClick={() => setTag(key)}
+                className="capitalize"
+              >
+                {key}
+              </Badge>
+            ))}
+        </div>
+
+        <div className="flex flex-wrap items-center justify-center gap-x-2 md:justify-end">
+          {Object.entries(LABELS)
+            .filter(([_, { type }]) => type !== "leads")
+            .map(([key], index) => (
+              <Badge
+                key={index}
+                type={key}
+                onClick={() => setTag(key)}
+                className="capitalize"
+              >
+                {key}
+              </Badge>
+            ))}
         </div>
       </div>
     </div>

@@ -51,7 +51,7 @@ const Navigation = () => {
             <SidebarGroup className="pt-0">
               {open && (
                 <SidebarGroupLabel asChild className="pt-0 text-xl font-bold">
-                  <CollapsibleTrigger>
+                  <CollapsibleTrigger className="text-white">
                     {title}
                     <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                   </CollapsibleTrigger>

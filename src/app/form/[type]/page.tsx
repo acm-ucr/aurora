@@ -11,8 +11,8 @@ import Lead from "@/components/form/lead";
 import Ideas from "@/components/form/ideas";
 import Judge from "@/components/form/judge";
 import ProtectedPage from "@/components/protected";
-import Fault from "@/utils/error";
 import React from "react";
+import { notFound } from "next/navigation";
 
 type props = {
   params: { type: string };
@@ -47,11 +47,7 @@ const Page = ({ params }: props) => {
       </ProtectedPage>
     );
   } else {
-    throw new Fault(
-      404,
-      "Page Not Found",
-      "The page you are looking for does not seem to exist",
-    );
+    notFound();
   }
 };
 

@@ -237,9 +237,6 @@ export const PUT = async (req, { params }) => {
           preview: preview,
         });
 
-        console.log(`${params.type}.${status}.${object.shirt}`);
-        console.log(`${params.type}.0.${object.shirt}`);
-
         try {
           updateDoc(doc(db, "statistics", "shirt"), {
             [`${params.type}.${status}.${object.shirt}`]: increment(1),
