@@ -16,7 +16,6 @@ export const getEvents = async () => {
 export const getUser = async (user: string | null) => {
   const { items } = await api({
     method: "GET",
-    // TODO: THIS SHOULD BE A DB CALL DIRECTLY NOW SINCE WE ARE IN ACTIONS TERRIROTY
     url: `/api/checkin?uid=${user}`,
   });
 

@@ -1,6 +1,5 @@
 import View from "@/components/admin/dashboards/dashboard/view";
 import { generateSelect, generateStatus } from "./columns";
-// import { COLORS } from "@/data/Tags";
 import { STATUSES } from "@/data/statuses";
 import { Badge } from "@/components/ui/badge";
 

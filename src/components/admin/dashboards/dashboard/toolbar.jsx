@@ -3,7 +3,6 @@ import { api } from "@/utils/api";
 import { useState, useEffect } from "react";
 import { Trash2, RotateCcw } from "lucide-react";
 import toaster from "@/utils/toaster";
-// import { COLORS } from "@/data/Tags";
 import Select from "@/components/select";
 import { InputWithClear } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
