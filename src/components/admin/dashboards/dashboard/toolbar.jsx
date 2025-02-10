@@ -167,7 +167,7 @@ const Toolbar = ({
               COLORS[tag.text]?.background,
               COLORS[tag.text]?.text,
               COLORS[tag.text]?.hover,
-              "text-nowrap",
+              "text-nowrap capitalize",
             )}
           >
             {tag.text}
