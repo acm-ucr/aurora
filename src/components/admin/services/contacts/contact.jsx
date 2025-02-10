@@ -5,8 +5,8 @@ import {
   Handshake,
   Lock,
   Heart,
+  Hand,
   HandHeart,
-  Crown,
   Users,
   CircleAlert,
   MessagesSquare,
@@ -36,7 +36,7 @@ const roleIcons = {
   sponsors: <HandCoins className="mx-2" />,
   interests: <CircleAlert className="mx-2" />,
   feedback: <MessagesSquare className="mx-2" />,
-  leads: <Crown className="mx-2" />,
+  leads: <Hand className="mx-2" />,
   panelists: <Cat className="mx-2" />,
   teams: <Users className="mx-2" />,
 };
