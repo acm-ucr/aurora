@@ -12,7 +12,7 @@ type Team = {
   discords: string[];
   links: {
     name: string;
-    url: string;
+    link: string;
   }[];
 };
 
