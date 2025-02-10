@@ -1,5 +1,3 @@
-import Checkbox from "@/components/checkbox";
-import { AVAILABILITY } from "../form/information";
 import { generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
 import { Tags } from "@/types/dashboard";
@@ -15,12 +13,6 @@ type Volunteer = {
   availability: string[];
   gender: string;
   shirt: string;
-};
-
-type dropdownProps = {
-  object: {
-    availability: string[];
-  };
 };
 
 export const TAGS: Tags[] = [
@@ -100,21 +92,3 @@ export const COLUMNS: (ColumnDef<Volunteer, string> & {
   },
   generateStatus(STATUSES),
 ];
-
-export const DROPDOWN: React.FC<dropdownProps> = ({ object }) => {
-  return (
-    <div className="flex justify-center">
-      <div className="grid w-11/12 grid-flow-col grid-rows-4">
-        {AVAILABILITY.map((text, index) => (
-          <Checkbox
-            id="availability"
-            checked={object.availability.includes(text)}
-            key={index}
-          >
-            {text}
-          </Checkbox>
-        ))}
-      </div>
-    </div>
-  );
-};

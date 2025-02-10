@@ -25,13 +25,6 @@ type Feedback = {
   helpful: string;
 };
 
-type dropdownProps = {
-  object: {
-    additionalComments: string;
-    notBeneficial: string;
-  };
-};
-
 export const COLUMNS: (ColumnDef<Feedback, string> & {
   searchable?: boolean;
 })[] = [
@@ -70,20 +63,3 @@ export const COLUMNS: (ColumnDef<Feedback, string> & {
   },
   generateStatus(STATUSES),
 ];
-
-export const DROPDOWN: React.FC<dropdownProps> = ({ object }) => {
-  return (
-    <div className="flex justify-center">
-      <div className="grid w-11/12 grid-cols-2">
-        <div>
-          <span className="font-bold">Additional Comments: </span>
-          {object.additionalComments}
-        </div>
-        <div>
-          <span className="font-bold">Not Beneficial: </span>
-          {object.notBeneficial}
-        </div>
-      </div>
-    </div>
-  );
-};
