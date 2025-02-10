@@ -1,5 +1,3 @@
-import Countdown from "../user/dashboard/countdown";
-
 const Landing = () => {
   return <div className="flex flex-col items-center justify-center"></div>;
 };

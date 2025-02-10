@@ -3,11 +3,7 @@ type props = {
 };
 
 const Title = ({ children }: props) => {
-  return (
-    <div className="flex items-center justify-center text-xl font-bold">
-      {children}
-    </div>
-  );
+  return <div className="text-xl font-bold">{children}</div>;
 };
 
 export default Title;
