@@ -53,7 +53,7 @@ const VirtualizedContent = ({ items, setSelected, userFn, searchable }) => {
 
             return (
               <DropdownMenuItem
-                className="absolute left-0 top-0 w-full"
+                className="absolute left-0 top-0 w-full capitalize"
                 style={{
                   height: `${virtualRow.size}px`,
                   transform: `translateY(${virtualRow.start}px)`,
