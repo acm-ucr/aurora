@@ -17,13 +17,9 @@ const Timer = ({ onRemove }) => {
   const onChange = (value) => {
     if (!edit) return;
 
-    const [hours, minutes, seconds] = value.match(/.{2}/g);
+    const [minutes, seconds] = value.match(/.{2}/g);
 
-    setTotal(
-      parseInt(hours) * (1000 * 60 * 60) +
-        parseInt(minutes) * (1000 * 60) +
-        parseInt(seconds) * 1000,
-    );
+    setTotal(parseInt(minutes) * (1000 * 60) + parseInt(seconds) * 1000);
   };
 
   useEffect(() => {
@@ -35,10 +31,6 @@ const Timer = ({ onRemove }) => {
 
     return () => clearInterval(id);
   }, [play, total]);
-
-  const hours = Math.max(Math.floor((total / (1000 * 60 * 60)) % 24), 0)
-    .toString()
-    .padStart(2, "0");
 
   const minutes = Math.max(Math.floor((total / 1000 / 60) % 60), 0)
     .toString()
@@ -61,30 +53,35 @@ const Timer = ({ onRemove }) => {
 
       <InputOTP
         disabled={!edit}
-        maxLength={6}
+        maxLength={4}
         onChange={onChange}
-        value={hours + minutes + seconds}
+        value={minutes + seconds}
         className="mt-4"
       >
         <div className="mr-11 flex flex-col items-center">
           <InputOTPGroup className="">
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
+            <InputOTPSlot
+              index={0}
+              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+            />
+            <InputOTPSlot
+              index={1}
+              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+            />
           </InputOTPGroup>
-          <p className="text-xl font-semibold">Hours</p>
+          <p className="text-xl font-semibold">Minutes</p>
         </div>
 
         <div className="flex flex-col items-center">
           <InputOTPGroup className="">
-            <InputOTPSlot index={2} />
-            <InputOTPSlot index={3} />
-          </InputOTPGroup>
-          <p className="text-xl font-semibold">Minutes</p>
-        </div>
-        <div className="ml-11 flex flex-col items-center">
-          <InputOTPGroup className="">
-            <InputOTPSlot index={4} />
-            <InputOTPSlot index={5} />
+            <InputOTPSlot
+              index={2}
+              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+            />
+            <InputOTPSlot
+              index={3}
+              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+            />
           </InputOTPGroup>
           <p className="text-xl font-semibold">Seconds</p>
         </div>
