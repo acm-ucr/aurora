@@ -109,7 +109,10 @@ const Table = ({
                         <>
                           <TableRow>
                             {subcolumns?.map(({ header }, index) => (
-                              <TableHead key={index} className="text-xs">
+                              <TableHead
+                                key={index}
+                                className="bg-hackathon-gray-100 text-xs"
+                              >
                                 {header}
                               </TableHead>
                             ))}

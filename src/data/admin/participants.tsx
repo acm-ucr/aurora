@@ -58,7 +58,12 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Participant, Participant["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -68,7 +73,12 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Participant, Participant["discord"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -78,7 +88,12 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Participant, Participant["team"]>) => (
-      <div>{props.getValue() ?? "N/A"}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue() ?? "N/A"}
+      </div>
     ),
   },
   {
@@ -88,7 +103,12 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Participant, Participant["shirt"]>) => (
-      <div>{props.getValue() ?? "N/A"}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue() ?? "N/A"}
+      </div>
     ),
   },
   generateStatus(STATUSES),
