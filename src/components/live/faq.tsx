@@ -5,10 +5,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { QUESTIONS } from "@/data/faq";
+import Title from "@/components/ui/title";
 
 const FAQ = () => {
   return (
     <div className="flex w-full flex-col items-center">
+      <Title>FAQ</Title>
       <div className="w-10/12">
         <Accordion type="single" collapsible className="w-full">
           {QUESTIONS.map(({ question, answer }, index) => (

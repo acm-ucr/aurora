@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-// import { COLORS } from "@/data/Tags";
 import { Badge } from "@/components/ui/badge";
 
 const Status = ({ object, statuses, setState }) => {

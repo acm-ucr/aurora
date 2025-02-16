@@ -37,7 +37,6 @@ const Heatmap = ({ label, data, xLabels, yLabels }: props) => {
         xLabelsPos="bottom"
         onClick={(x, y) => alert(`Clicked (${x}, ${y})`)}
         yLabelsPos="left"
-        // square
       />
     </div>
   );

@@ -4,9 +4,10 @@ import { Label } from "@/components/ui/label";
 import Toolbar from "../toolbar";
 import Idea from "./idea";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { api } from "@/utils/api";
-
+import { useQuery } from "@tanstack/react-query";
+import Loading from "@/components/loading";
 interface idea {
   title: string;
   languages: string[];
@@ -16,21 +17,23 @@ interface idea {
 
 const Find = () => {
   const ref = useRef(null);
-  const [ideas, setIdeas] = useState<idea[]>([]);
   const [search, setSearch] = useState<idea[]>([]);
 
-  useEffect(() => {
-    const getIdeas = async () => {
-      const { items } = await api({
-        url: "/api/dashboard/ideas",
-        method: "GET",
-      });
-      setIdeas(items);
-      setSearch(items);
-    };
+  const getIdeas = async () => {
+    const { items }: { items: idea[] } = await api({
+      url: "/api/dashboard/ideas",
+      method: "GET",
+    });
 
-    getIdeas();
-  }, []);
+    setSearch(items);
+
+    return items;
+  };
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["findTeams"],
+    queryFn: getIdeas,
+  });
 
   const { measureElement, getVirtualItems } = useVirtualizer({
     count: search.length,
@@ -44,12 +47,13 @@ const Find = () => {
     overscan: 4,
   });
 
+  if (isLoading) return <Loading />;
   return (
     <div className="flex h-[calc(100vh-48px)] w-full flex-col">
       <div className="pb-3 pt-4">
-        <Label className="pr-5 text-2xl font-bold">Team</Label>
+        <Label className="pr-5 text-2xl font-bold">Find a Team</Label>
       </div>
-      <Toolbar data={ideas} setSearch={setSearch} />
+      <Toolbar data={data ?? []} setSearch={setSearch} />
       <div ref={ref} className="relative h-full overflow-y-scroll">
         {search.length === 0 ? (
           <div className="flex h-full items-center justify-center">
@@ -60,10 +64,11 @@ const Find = () => {
             {getVirtualItems().map(({ index, size, start }) => {
               if (index % 4) return null;
               const row = search.slice(index, index + 4);
+
               return (
                 <div
                   key={`row: ${Math.floor(index / 4)}`}
-                  className="absolute left-0 top-0 grid w-full grid-cols-4"
+                  className="grid w-full grid-cols-4 gap-4"
                   style={{
                     height: `${size}px`,
                     transform: `translateY(${start}px)`,
@@ -74,7 +79,7 @@ const Find = () => {
                       key={`column: ${i}`}
                       ref={measureElement}
                       data-index={index + i}
-                      className="flex items-start p-2"
+                      className="py-4"
                     >
                       <Idea
                         title={title}

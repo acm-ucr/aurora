@@ -18,7 +18,7 @@ export const schema = z.object({
   shirt: z.enum(SHIRTS as [string, ...string[]], {
     required_error: "Please select your shirt size",
   }),
-  photo: z.string().min(1, { message: "Photo is required" }), // photo validation assumes a string path is used
+  photo: z.string().min(1, { message: "Photo is required" }),
   requirements: z
     .array(z.string())
     .min(1, { message: "You must agree to the terms and conditions" }),

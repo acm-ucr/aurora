@@ -20,7 +20,7 @@ import {
 const Table = ({
   getHeaderGroups,
   getRowModel,
-  // Dropdown,
+  subcolumns,
   empty,
   loading,
   meta,
@@ -74,29 +74,56 @@ const Table = ({
           </TableHeader>
           <TableBody>
             {loading ? (
-              <Loading />
+              <TableRow>
+                <TableCell colSpan={100} className="py-4 text-center">
+                  <Loading />
+                </TableCell>
+              </TableRow>
             ) : (
               <>
                 {getRowModel().rows.length === 0 && (
                   <TableRow className="w-full bg-white py-8 text-center">
-                    <TableCell colSpan={12}>{empty}</TableCell>
+                    <TableCell
+                      className="h-[70vh] items-center justify-center"
+                      colSpan={12}
+                    >
+                      {empty}
+                    </TableCell>
                   </TableRow>
                 )}
                 {getRowModel().rows.map(
-                  ({ id, getVisibleCells, getIsSelected }) => (
-                    <TableRow
-                      key={id}
-                      className={`${getIsSelected() && "bg-hackathon-green-100"}`}
-                    >
-                      {getVisibleCells().map(({ id, column, getContext }) => (
-                        <TableCell key={id}>
-                          {flexRender(column.columnDef.cell, getContext())}
-                        </TableCell>
-                      ))}
+                  ({ id, getVisibleCells, getIsSelected, original }) => (
+                    <>
+                      <TableRow
+                        key={id}
+                        className={`${getIsSelected() && "bg-hackathon-green-100"}`}
+                      >
+                        {getVisibleCells().map(({ id, column, getContext }) => (
+                          <TableCell key={id}>
+                            {flexRender(column.columnDef.cell, getContext())}
+                          </TableCell>
+                        ))}
+                      </TableRow>
 
-                      {/* TODO: ADD DROPDOWN CONTENT UPON CLICKING THE ROW */}
-                      {/* <Dropdown object={original} /> */}
-                    </TableRow>
+                      {getIsSelected() && (
+                        <>
+                          <TableRow>
+                            {subcolumns?.map(({ header }, index) => (
+                              <TableHead key={index} className="text-xs">
+                                {header}
+                              </TableHead>
+                            ))}
+                          </TableRow>
+                          <TableRow>
+                            {subcolumns?.map(({ accessorKey }, index) => (
+                              <TableCell key={index} className="text-xs">
+                                {original[accessorKey]}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                        </>
+                      )}
+                    </>
                   ),
                 )}
               </>

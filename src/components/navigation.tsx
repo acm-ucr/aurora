@@ -18,6 +18,7 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
+  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 import {
@@ -27,10 +28,10 @@ import {
 } from "./ui/collapsible";
 
 const Navigation = () => {
-  const pathName = usePathname();
+  const pathname = usePathname();
 
-  const tabs = TABS[pathName.split("/")[1]];
-  const { open } = useSidebar();
+  const tabs = TABS[pathname.split("/")[1]];
+  const { open, toggleSidebar } = useSidebar();
 
   return (
     <Sidebar collapsible="icon" className="text-white">
@@ -51,7 +52,7 @@ const Navigation = () => {
             <SidebarGroup className="pt-0">
               {open && (
                 <SidebarGroupLabel asChild className="pt-0 text-xl font-bold">
-                  <CollapsibleTrigger>
+                  <CollapsibleTrigger className="text-white">
                     {title}
                     <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                   </CollapsibleTrigger>
@@ -65,7 +66,7 @@ const Navigation = () => {
                         <Link key={index} href={tab.link}>
                           <SidebarMenuItem
                             key={index}
-                            className={`${open ? "h-7" : "h-6"} flex items-center pl-3 text-lg`}
+                            className={`${open ? "h-7" : "h-6"} flex items-center pl-3 text-lg ${tab.link === pathname && "bg-hackathon-blue-100"} rounded`}
                           >
                             <span className={`${!open && "mx-auto"}`}>
                               {tab.icon}
@@ -82,8 +83,25 @@ const Navigation = () => {
           </Collapsible>
         ))}
       </SidebarContent>
-      <SidebarFooter className="mx-auto mb-1 grid grid-cols-4 *:mx-2">
-        <LogIn onClick={() => signOut({ callbackUrl: "/", redirect: true })} />
+      <SidebarFooter className="my-1 flex flex-col p-0 pb-2 pl-1">
+        <span
+          onClick={() => toggleSidebar()}
+          className={`${open ? "h-7 pl-3" : "mx-auto h-6"} flex items-center text-lg hover:cursor-pointer`}
+        >
+          <span className={`${!open && "mx-auto"}`}>
+            <SidebarTrigger className="hover:bg-inherit hover:text-current" />
+          </span>
+          {open && <span className="ml-2">Close Sidebar</span>}
+        </span>
+        <span
+          onClick={() => signOut({ callbackUrl: "/", redirect: true })}
+          className={`${open ? "h-7 pl-3" : "mx-auto h-6"} flex items-center text-lg hover:cursor-pointer`}
+        >
+          <span className={`${!open && "mx-auto"}`}>
+            <LogIn className="mr-1 h-7 p-0.5" />
+          </span>
+          {open && <span className="ml-2">Log Out</span>}
+        </span>
       </SidebarFooter>
     </Sidebar>
   );

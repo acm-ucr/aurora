@@ -90,52 +90,82 @@ const NewTeam = () => {
         </AlertDialogContent>
       </AlertDialog>
 
-      <Tabs defaultValue="join" className="w-[400px]">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="join">Join a Team</TabsTrigger>
-          <TabsTrigger value="create">Create a Team</TabsTrigger>
+      <Tabs defaultValue="join" className="w-full">
+        <TabsList className="mb-8 grid w-full grid-cols-2 space-x-4 bg-transparent">
+          <TabsTrigger
+            className="rounded bg-gray-200 py-2 text-xl font-bold text-gray-500 data-[state=active]:text-hackathon-blue-200 md:text-2xl"
+            value="join"
+          >
+            Join a Team
+          </TabsTrigger>
+          <TabsTrigger
+            className="rounded bg-gray-200 py-2 text-xl font-bold text-gray-500 data-[state=active]:text-hackathon-blue-200 md:text-2xl"
+            value="create"
+          >
+            Create a Team
+          </TabsTrigger>
         </TabsList>
-        <TabsContent value="join">
+        <TabsContent className="items-center" value="join">
           <Card>
-            <CardHeader>
-              <CardTitle>Join a Team</CardTitle>
-              <CardDescription>
+            <CardHeader className="items-center">
+              <CardTitle className="text-4xl font-bold text-hackathon-blue-200">
+                Join a Team
+              </CardTitle>
+              <CardDescription className="text-xl">
                 Ask your teammates for a team id to join their team.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2">
-              <Label htmlFor="team">Team ID</Label>
+            <CardContent className="mt-8 flex flex-col items-center space-y-2">
+              <Label className="text-xl font-semibold" htmlFor="team">
+                Team ID
+              </Label>
               <Input
+                className="w-1/2 rounded border-2 border-hackathon-blue-200 py-6 text-xl"
                 id="team"
                 placeholder="ie. abc123"
                 onChange={(e) => setTeam({ id: e.target.value, name: "" })}
               />
             </CardContent>
-            <CardFooter>
-              <Button onClick={handleJoin}>Join Team</Button>
+            <CardFooter className="flex flex-col items-center">
+              <Button
+                className="w-1/8 mt-5 h-14 rounded bg-hackathon-blue-200 text-2xl font-bold"
+                onClick={handleJoin}
+              >
+                Join Team
+              </Button>
             </CardFooter>
           </Card>
         </TabsContent>
-        <TabsContent value="create">
+        <TabsContent className="items-center" value="create">
           <Card>
-            <CardHeader>
-              <CardTitle>Create a Team</CardTitle>
-              <CardDescription>
+            <CardHeader className="items-center">
+              <CardTitle className="text-4xl font-bold text-hackathon-blue-200">
+                Create a Team
+              </CardTitle>
+              <CardDescription className="text-xl">
                 Enter a unique and fun team name! You can change this name
                 later.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2">
-              <Label htmlFor="name">Team Name</Label>
+            <CardContent className="mt-8 flex flex-col items-center space-y-2">
+              <Label className="text-xl font-semibold" htmlFor="name">
+                Team Name
+              </Label>
               <Input
+                className="w-1/2 rounded border-2 border-hackathon-blue-200 py-6 text-xl"
                 id="name"
                 type="text"
                 placeholder="ie. Cool Coders"
                 onChange={(e) => setTeam({ name: e.target.value, id: "" })}
               />
             </CardContent>
-            <CardFooter>
-              <Button onClick={handleCreate}>Create Team</Button>
+            <CardFooter className="flex flex-col items-center">
+              <Button
+                className="w-1/8 mt-5 h-14 rounded bg-hackathon-blue-200 text-2xl font-bold"
+                onClick={handleCreate}
+              >
+                Create Team
+              </Button>
             </CardFooter>
           </Card>
         </TabsContent>

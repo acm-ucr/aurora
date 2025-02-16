@@ -1,6 +1,5 @@
 import { generateAffiliation, generateSelect, generateStatus } from "./columns";
 import { AFFILIATIONS } from "../form/information";
-import { ICONS } from "./icons";
 import { STATUSES } from "../statuses";
 import { CellContext, ColumnDef } from "@tanstack/react-table";
 import { Tags } from "@/types/dashboard";
@@ -14,10 +13,8 @@ type Admin = {
   grade: string;
   gender: string;
   shirt: string;
-};
-
-type dropdownProps = {
-  object: Record<string, string[]>;
+  age: string;
+  diet: string;
 };
 
 export const TAGS: Tags[] = [
@@ -89,32 +86,46 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
   generateStatus(STATUSES),
 ];
 
-const attributes: string[] = [
-  "email",
-  "phone",
-  "age",
-  "gender",
-  "school",
-  "major",
-  "grade",
-  "shirt",
-  "diet",
-  "restriction",
+export const SUBCOLUMNS = [
+  generateSelect(),
+  {
+    accessorKey: "grade",
+    header: "Grade",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Admin, Admin["grade"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "major",
+    header: "Major",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Admin, Admin["major"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "diet",
+    header: "Diet",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Admin, Admin["diet"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "age",
+    header: "Age",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Admin, Admin["age"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
 ];
-
-export const DROPDOWN: React.FC<dropdownProps> = ({ object }) => {
-  return (
-    <div className="grid grid-cols-3 gap-4 p-4 text-sm">
-      {attributes.map((attribute, index) => (
-        <div key={index} className="flex items-center">
-          {ICONS[attribute] && <span className="mr-2">{ICONS[attribute]}</span>}
-          {Array.isArray(object[attribute])
-            ? object[attribute].length !== 0
-              ? object[attribute].join(",")
-              : "N/A"
-            : object[attribute]}
-        </div>
-      ))}
-    </div>
-  );
-};

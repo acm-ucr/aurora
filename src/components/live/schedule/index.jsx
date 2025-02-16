@@ -1,5 +1,6 @@
 import { api } from "@/utils/api";
 import Events from "./events";
+import Title from "@/components/ui/title";
 
 const Schedule = async () => {
   const { items } = await api({
@@ -26,7 +27,12 @@ const Schedule = async () => {
     "Sunday",
   ];
 
-  return <Events events={items} totalDays={totalDays} />;
+  return (
+    <div>
+      {" "}
+      <Title text="Schedule" /> <Events events={items} totalDays={totalDays} />
+    </div>
+  );
 };
 
 export default Schedule;

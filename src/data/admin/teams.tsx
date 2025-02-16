@@ -12,7 +12,7 @@ type Team = {
   discords: string[];
   links: {
     name: string;
-    url: string;
+    link: string;
   }[];
 };
 
@@ -87,8 +87,8 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     enableSorting: false,
     cell: (props: CellContext<Team, Team["links"]>) => (
       <div>
-        {props.getValue().map(({ name, url }, index) => (
-          <Link key={index} href={url} className="mx-2 inline-flex">
+        {props.getValue().map(({ name, link }, index) => (
+          <Link key={index} href={link} className="mx-2 inline-flex">
             {ICONS[name]}
           </Link>
         ))}

@@ -4,7 +4,6 @@ import Navigation from "@/components/navigation";
 import { headers } from "next/headers";
 import { getSession } from "@/utils/auth";
 import SignIn from "@/utils/signin";
-import { SidebarTrigger } from "./ui/sidebar";
 
 const ProtectedPage = async ({ children, restrictions, title }) => {
   const session = await getSession();
@@ -44,10 +43,6 @@ const ProtectedPage = async ({ children, restrictions, title }) => {
       <title>{title}</title>
       {navigation && <Navigation />}
       <div className="relative z-0 flex h-screen w-full items-start justify-center overflow-x-hidden bg-hackathon-page">
-        {navigation && (
-          <SidebarTrigger className="absolute left-0 h-10 w-10 scale-125 hover:bg-transparent" />
-        )}
-
         <div className="h-full w-11/12 py-10 md:py-0">{children}</div>
       </div>
     </>

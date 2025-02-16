@@ -13,12 +13,6 @@ type Sponsor = {
   comments: string;
 };
 
-type dropdownProps = {
-  object: {
-    response: string;
-  };
-};
-
 export const TAGS: Tags[] = [
   {
     text: "accept",
@@ -77,11 +71,3 @@ export const COLUMNS: (ColumnDef<Sponsor, string> & {
   generateTiers(TIERS),
   generateStatus(STATUSES),
 ];
-
-export const DROPDOWN: React.FC<dropdownProps> = ({ object }) => {
-  return (
-    <>
-      <p className="ml-5 mt-3">{object.response}</p>
-    </>
-  );
-};

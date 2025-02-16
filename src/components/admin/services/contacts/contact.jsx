@@ -5,8 +5,8 @@ import {
   Handshake,
   Lock,
   Heart,
+  Hand,
   HandHeart,
-  Crown,
   Users,
   CircleAlert,
   MessagesSquare,
@@ -19,8 +19,6 @@ import { api } from "@/utils/api";
 import toaster from "@/utils/toaster";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-const STATUSES = ["confirmed", "pending", "not attending"];
 
 const MAPPINGS = {
   confirmed: 1,
@@ -38,7 +36,7 @@ const roleIcons = {
   sponsors: <HandCoins className="mx-2" />,
   interests: <CircleAlert className="mx-2" />,
   feedback: <MessagesSquare className="mx-2" />,
-  leads: <Crown className="mx-2" />,
+  leads: <Hand className="mx-2" />,
   panelists: <Cat className="mx-2" />,
   teams: <Users className="mx-2" />,
 };
@@ -72,14 +70,14 @@ const Contact = ({ role, disabled, setDisabled }) => {
   return (
     <Card key={role} className="flex w-full flex-col">
       <CardHeader>
-        <CardTitle className="flex items-center">
+        <CardTitle className="flex items-center capitalize">
           {roleIcons[role]} {role}
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
         <Select
-          items={STATUSES}
-          placeholder="Select a status..."
+          items={Object.keys(MAPPINGS)}
+          placeholder="Select a Status..."
           field="status"
           user={status}
           setUser={setStatus}
@@ -88,7 +86,7 @@ const Contact = ({ role, disabled, setDisabled }) => {
         />
 
         <Button onClick={onClick} disabled={status.status === "" || disabled}>
-          copy
+          Copy
         </Button>
       </CardContent>
     </Card>
