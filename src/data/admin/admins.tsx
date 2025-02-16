@@ -39,7 +39,12 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Admin, Admin["name"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -49,7 +54,12 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Admin, Admin["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -59,7 +69,12 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Admin, Admin["discord"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -69,7 +84,12 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Admin, Admin["shirt"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -79,7 +99,12 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Admin, Admin["gender"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateAffiliation(AFFILIATIONS),
@@ -95,7 +120,12 @@ export const SUBCOLUMNS = [
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Admin, Admin["grade"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -105,7 +135,12 @@ export const SUBCOLUMNS = [
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Admin, Admin["major"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -115,7 +150,12 @@ export const SUBCOLUMNS = [
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Admin, Admin["diet"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -125,7 +165,12 @@ export const SUBCOLUMNS = [
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Admin, Admin["age"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
 ];

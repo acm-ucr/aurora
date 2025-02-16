@@ -35,7 +35,12 @@ export const COLUMNS: (ColumnDef<Sponsor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Sponsor, Sponsor["name"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -45,7 +50,12 @@ export const COLUMNS: (ColumnDef<Sponsor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Sponsor, Sponsor["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -55,7 +65,12 @@ export const COLUMNS: (ColumnDef<Sponsor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Sponsor, Sponsor["company"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -65,7 +80,12 @@ export const COLUMNS: (ColumnDef<Sponsor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Sponsor, Sponsor["position"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateTiers(TIERS),
