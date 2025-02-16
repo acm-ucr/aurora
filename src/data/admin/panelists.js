@@ -22,7 +22,14 @@ export const COLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: ({ getValue }) => <div>{getValue()}</div>,
+    cell: ({ getValue }) => (
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {getValue()}
+      </div>
+    ),
   },
   {
     accessorKey: "email",
@@ -30,7 +37,14 @@ export const COLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: ({ getValue }) => <div>{getValue()}</div>,
+    cell: ({ getValue }) => (
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {getValue()}
+      </div>
+    ),
   },
   {
     accessorKey: "title",
@@ -38,7 +52,14 @@ export const COLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: ({ getValue }) => <div>{getValue()}</div>,
+    cell: ({ getValue }) => (
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {getValue()}
+      </div>
+    ),
   },
   {
     accessorKey: "panelist",

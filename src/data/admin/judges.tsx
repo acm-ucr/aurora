@@ -42,7 +42,12 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Judge, Judge["name"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -52,7 +57,12 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Judge, Judge["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -62,7 +72,12 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Judge, Judge["shirt"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
 
@@ -73,7 +88,12 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Judge, Judge["title"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateAffiliation(AFFILIATIONS),

@@ -34,7 +34,12 @@ export const COLUMNS: (ColumnDef<Feedback, string> & {
     header: "Rating",
     searchable: true,
     cell: (props: CellContext<Feedback, Feedback["rating"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -42,7 +47,12 @@ export const COLUMNS: (ColumnDef<Feedback, string> & {
     header: "Event Source",
     searchable: true,
     cell: (props: CellContext<Feedback, Feedback["eventSource"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -50,7 +60,12 @@ export const COLUMNS: (ColumnDef<Feedback, string> & {
     header: "Improvements",
     searchable: true,
     cell: (props: CellContext<Feedback, Feedback["improvements"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -58,7 +73,12 @@ export const COLUMNS: (ColumnDef<Feedback, string> & {
     header: "Helpful",
     searchable: true,
     cell: (props: CellContext<Feedback, Feedback["helpful"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateStatus(STATUSES),

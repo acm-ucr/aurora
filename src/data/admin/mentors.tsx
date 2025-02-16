@@ -36,7 +36,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["name"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -46,7 +51,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -56,7 +66,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["discord"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -66,7 +81,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["gender"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -76,7 +96,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["shirt"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -86,7 +111,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["grade"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateStatus(STATUSES),

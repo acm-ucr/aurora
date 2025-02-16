@@ -41,7 +41,12 @@ export const COLUMNS: (ColumnDef<Committee, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Committee, Committee["name"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -51,7 +56,12 @@ export const COLUMNS: (ColumnDef<Committee, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Committee, Committee["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -61,7 +71,12 @@ export const COLUMNS: (ColumnDef<Committee, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Committee, Committee["discord"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -71,7 +86,12 @@ export const COLUMNS: (ColumnDef<Committee, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Committee, Committee["shirt"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -81,7 +101,12 @@ export const COLUMNS: (ColumnDef<Committee, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Committee, Committee["grade"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateAffiliation(AFFILIATIONS),
