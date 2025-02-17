@@ -33,6 +33,16 @@ const Timer = ({ onRemove }) => {
     return () => clearInterval(id);
   }, [play, total]);
 
+  const pressPlay = () => {
+    setEdit(false);
+    setPlay(true);
+  };
+
+  const pressPause = () => {
+    setEdit(true);
+    setPlay(false);
+  };
+
   const minutes = Math.max(Math.floor((total / 1000 / 60) % 60), 0)
     .toString()
     .padStart(2, "0");
@@ -49,7 +59,7 @@ const Timer = ({ onRemove }) => {
           className="flex-grow bg-transparent pl-2 text-3xl font-semibold outline-none"
           placeholder="Untitled Timer"
         />
-        <Controls edit={edit} setEdit={setEdit} onRemove={onRemove} />
+        <Controls edit={edit} onRemove={onRemove} />
       </div>
 
       <InputOTP
@@ -63,11 +73,11 @@ const Timer = ({ onRemove }) => {
           <InputOTPGroup className="">
             <InputOTPSlot
               index={0}
-              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
             />
             <InputOTPSlot
               index={1}
-              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
             />
           </InputOTPGroup>
           <p className="text-xl font-semibold">Minutes</p>
@@ -77,11 +87,11 @@ const Timer = ({ onRemove }) => {
           <InputOTPGroup className="">
             <InputOTPSlot
               index={2}
-              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
             />
             <InputOTPSlot
               index={3}
-              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
             />
           </InputOTPGroup>
           <p className="text-xl font-semibold">Seconds</p>
@@ -91,15 +101,12 @@ const Timer = ({ onRemove }) => {
       <div className="mt-4">
         {play && (
           <Pause
-            onClick={() => !edit && setPlay(false)}
+            onClick={() => pressPause()}
             className="hover:cursor-pointer"
           />
         )}
         {!play && (
-          <Play
-            onClick={() => !edit && setPlay(true)}
-            className="hover:cursor-pointer"
-          />
+          <Play onClick={() => pressPlay()} className="hover:cursor-pointer" />
         )}
       </div>
 
