@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Controls from "./controls";
+import { Trash2 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Pause, Play } from "lucide-react";
 import {
@@ -59,7 +59,9 @@ const Timer = ({ onRemove }) => {
           className="flex-grow bg-transparent pl-2 text-3xl font-semibold outline-none"
           placeholder="Untitled Timer"
         />
-        <Controls edit={edit} onRemove={onRemove} />
+        <div className="flex gap-4">
+          <Trash2 onClick={onRemove} className="hover:cursor-pointer" />
+        </div>
       </div>
 
       <InputOTP
