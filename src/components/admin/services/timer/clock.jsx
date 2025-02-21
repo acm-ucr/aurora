@@ -34,11 +34,11 @@ const Timer = ({ onRemove }) => {
 
   function pressPlay() {
     setPlay(true);
-  };
+  }
 
   function pressPause() {
     setPlay(false);
-  };
+  }
 
   const minutes = Math.max(Math.floor((total / 1000 / 60) % 60), 0)
     .toString()
