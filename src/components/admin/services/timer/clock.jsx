@@ -17,6 +17,7 @@ const Timer = ({ onRemove }) => {
     if (play) return;
 
     const [minutes, seconds] = value.match(/.{2}/g);
+
     if (!isNaN(minutes) && !isNaN(seconds)) {
       setTotal(parseInt(minutes) * (1000 * 60) + parseInt(seconds) * 1000);
     }
@@ -31,14 +32,6 @@ const Timer = ({ onRemove }) => {
 
     return () => clearInterval(id);
   }, [play, total]);
-
-  function pressPlay() {
-    setPlay(true);
-  }
-
-  function pressPause() {
-    setPlay(false);
-  }
 
   const minutes = Math.max(Math.floor((total / 1000 / 60) % 60), 0)
     .toString()
@@ -99,9 +92,17 @@ const Timer = ({ onRemove }) => {
 
       <div className="mt-4">
         {play && (
-          <Pause onClick={pressPause} className="hover:cursor-pointer" />
+          <Pause
+            onClick={() => setPlay(false)}
+            className="hover:cursor-pointer"
+          />
         )}
-        {!play && <Play onClick={pressPlay} className="hover:cursor-pointer" />}
+        {!play && (
+          <Play
+            onClick={() => setPlay(true)}
+            className="hover:cursor-pointer"
+          />
+        )}
       </div>
 
       <Progress value={(total / (original + total)) * 100} className="mt-4" />
