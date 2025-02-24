@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Controls from "./controls";
+import { Trash2 } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Pause, Play } from "lucide-react";
 import {
@@ -9,15 +9,15 @@ import {
 } from "@/components/ui/input-otp";
 
 const Timer = ({ onRemove }) => {
-  const [edit, setEdit] = useState(true);
   const [play, setPlay] = useState(false);
   const [total, setTotal] = useState(60000);
   const [original, setOriginal] = useState(0);
 
   const onChange = (value) => {
-    if (!edit) return;
+    if (play) return;
 
     const [minutes, seconds] = value.match(/.{2}/g);
+
     if (!isNaN(minutes) && !isNaN(seconds)) {
       setTotal(parseInt(minutes) * (1000 * 60) + parseInt(seconds) * 1000);
     }
@@ -45,15 +45,18 @@ const Timer = ({ onRemove }) => {
     <div className="mb-4 flex scroll-m-4 flex-col items-center justify-between rounded bg-white p-4">
       <div className="flex w-full items-center justify-between">
         <input
-          disabled={!edit}
+          disabled={play}
           className="flex-grow bg-transparent pl-2 text-3xl font-semibold outline-none"
           placeholder="Untitled Timer"
         />
-        <Controls edit={edit} setEdit={setEdit} onRemove={onRemove} />
+        <Trash2
+          onClick={onRemove}
+          className="hover:cursor-pointer hover:text-red-500"
+        />
       </div>
 
       <InputOTP
-        disabled={!edit}
+        disabled={play}
         maxLength={4}
         onChange={onChange}
         value={minutes + seconds}
@@ -63,11 +66,11 @@ const Timer = ({ onRemove }) => {
           <InputOTPGroup className="">
             <InputOTPSlot
               index={0}
-              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
             />
             <InputOTPSlot
               index={1}
-              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
             />
           </InputOTPGroup>
           <p className="text-xl font-semibold">Minutes</p>
@@ -77,11 +80,11 @@ const Timer = ({ onRemove }) => {
           <InputOTPGroup className="">
             <InputOTPSlot
               index={2}
-              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
             />
             <InputOTPSlot
               index={3}
-              className="mx-1 my-5 h-28 w-20 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
             />
           </InputOTPGroup>
           <p className="text-xl font-semibold">Seconds</p>
@@ -91,13 +94,13 @@ const Timer = ({ onRemove }) => {
       <div className="mt-4">
         {play && (
           <Pause
-            onClick={() => !edit && setPlay(false)}
+            onClick={() => setPlay(false)}
             className="hover:cursor-pointer"
           />
         )}
         {!play && (
           <Play
-            onClick={() => !edit && setPlay(true)}
+            onClick={() => setPlay(true)}
             className="hover:cursor-pointer"
           />
         )}
