@@ -157,7 +157,7 @@ const Details = ({ team }) => {
           />
         </div>
 
-        <div className="space-y-1.3">
+        <div className="space-y-1.5">
           <Label htmlFor="team">Team Members</Label>
 
           {details.members.length === 0 &&
