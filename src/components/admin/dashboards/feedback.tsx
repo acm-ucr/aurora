@@ -1,5 +1,5 @@
 "use client";
-import { STATUSES, TAGS, COLUMNS, DROPDOWN } from "@/data/admin/feedback";
+import { STATUSES, TAGS, COLUMNS } from "@/data/admin/feedback";
 import Table from "./dashboard/dashboard";
 import { SearchParams } from "@/types/dashboard";
 
@@ -14,9 +14,9 @@ const Feedback = ({ searchParams }: props) => {
         searchParams={searchParams}
         title="Feedback"
         columns={COLUMNS}
+        subcolumns={[]}
         tags={TAGS}
         statuses={STATUSES}
-        Dropdown={DROPDOWN}
       />
     </div>
   );

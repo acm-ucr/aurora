@@ -22,6 +22,8 @@ import {
   Globe,
   FileSearch,
   FolderSearch2,
+  HandCoins,
+  Cat,
 } from "lucide-react";
 import data from "./config";
 import { SiInstagram } from "@icons-pack/react-simple-icons";
@@ -47,32 +49,7 @@ export const TABS: Tabs = {
       expand: true,
       tabs: [
         {
-          name: "Participants",
-          link: "/admin/participants",
-          icon: <User className={iconStyle} />,
-        },
-        {
-          name: "Teams",
-          link: "/admin/teams",
-          icon: <Users className={iconStyle} />,
-        },
-        {
-          name: "Judges",
-          link: "/admin/judges",
-          icon: <Gavel className={iconStyle} />,
-        },
-        {
-          name: "Volunteers",
-          link: "/admin/volunteers",
-          icon: <Heart className={iconStyle} />,
-        },
-        {
-          name: "Mentors",
-          link: "/admin/mentors",
-          icon: <HandHeart className={iconStyle} />,
-        },
-        {
-          name: "Admin",
+          name: "Admins",
           link: "/admin/admins",
           icon: <Lock className={iconStyle} />,
         },
@@ -82,14 +59,9 @@ export const TABS: Tabs = {
           icon: <Handshake className={iconStyle} />,
         },
         {
-          name: "Sponsors",
-          link: "/admin/sponsors",
-          icon: <Users className={iconStyle} />,
-        },
-        {
-          name: "Panelists",
-          link: "/admin/panelists",
-          icon: <Users className={iconStyle} />,
+          name: "Feedback",
+          link: "/admin/feedback",
+          icon: <MessagesSquare className={iconStyle} />,
         },
         {
           name: "Interests",
@@ -97,14 +69,44 @@ export const TABS: Tabs = {
           icon: <AlertCircle className={iconStyle} />,
         },
         {
-          name: "Feedback",
-          link: "/admin/feedback",
-          icon: <MessagesSquare className={iconStyle} />,
+          name: "Judges",
+          link: "/admin/judges",
+          icon: <Gavel className={iconStyle} />,
         },
         {
           name: "Leads",
           link: "/admin/leads",
           icon: <Hand className={iconStyle} />,
+        },
+        {
+          name: "Mentors",
+          link: "/admin/mentors",
+          icon: <HandHeart className={iconStyle} />,
+        },
+        {
+          name: "Panelists",
+          link: "/admin/panelists",
+          icon: <Cat className={iconStyle} />,
+        },
+        {
+          name: "Participants",
+          link: "/admin/participants",
+          icon: <User className={iconStyle} />,
+        },
+        {
+          name: "Sponsors",
+          link: "/admin/sponsors",
+          icon: <HandCoins className={iconStyle} />,
+        },
+        {
+          name: "Teams",
+          link: "/admin/teams",
+          icon: <Users className={iconStyle} />,
+        },
+        {
+          name: "Volunteers",
+          link: "/admin/volunteers",
+          icon: <Heart className={iconStyle} />,
         },
       ],
     },

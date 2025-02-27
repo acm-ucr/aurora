@@ -273,6 +273,7 @@ export const SCHOOLS: schools = [
   "Cerritos College",
   "Chaitanya Bharathi Institute of Technology",
   "Chalmers University of Technology",
+  "Chapman University",
   "Champlain College",
   "Chandigarh College Of Engineering & Technology (CCET)",
   "Chandigarh University",

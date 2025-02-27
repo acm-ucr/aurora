@@ -14,10 +14,13 @@ const getBlogPost = async () => {
     return markdown.data;
   });
 };
+
 const Blog = async () => {
   const data = await getBlogPost();
 
-  const blogs = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const blogs = data.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
 
   return (
     <>
@@ -37,7 +40,7 @@ const Blog = async () => {
             <Link
               href={`/engineering/blog/${link}`}
               key={index}
-              className="rounded-lg bg-hackathon-blue-200 px-3 py-2 text-white hover:cursor-pointer hover:opacity-80"
+              className="rounded bg-hackathon-blue-200 px-3 py-2 text-white hover:cursor-pointer hover:opacity-80"
             >
               <p className="text-lg font-semibold">{title}</p>
               <p className="text-sm text-gray-300">{author}</p>

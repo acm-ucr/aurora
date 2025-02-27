@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-// import { COLORS } from "@/data/Tags";
 import { Download } from "lucide-react";
 import { download } from "@/utils/download";
 import { Badge } from "@/components/ui/badge";

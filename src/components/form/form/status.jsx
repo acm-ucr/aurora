@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
-// import { COLORS } from "@/data/Tags";
 import { Badge } from "@/components/ui/badge";
 
 const Status = ({ object, statuses, setState }) => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center text-center">
       <p>
         Hello <b>{object.name}</b>, your status is currently
       </p>
-      <Badge>{statuses[object.roles[object.form]]}</Badge>
+      <Badge className="m-2">{statuses[object.roles[object.form]]}</Badge>
 
       <p data-cy="status-confirmation" className="text-center">
         You have already filled out the form. If you wish to change any

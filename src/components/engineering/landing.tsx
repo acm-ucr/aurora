@@ -19,7 +19,7 @@ const Landing = () => {
         </div>
         <Link
           href="https://github.com/acm-ucr/hackathon-website"
-          className="my-4 flex items-center gap-3 rounded-xl pb-4 text-2xl text-black hover:cursor-pointer hover:opacity-50"
+          className="my-4 flex items-center gap-3 rounded pb-4 text-2xl text-black hover:cursor-pointer hover:opacity-50"
         >
           <Github className="text-3xl" />
           GitHub

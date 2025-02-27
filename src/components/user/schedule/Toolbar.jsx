@@ -5,7 +5,7 @@ const Toolbar = ({ onFilterChange }) => {
 
   return (
     <div className="flex items-center justify-end">
-      <div className="flex rounded-md border-2 bg-white">
+      <div className="flex rounded border-2 bg-white">
         <button
           onClick={() => {
             setSelected("all");

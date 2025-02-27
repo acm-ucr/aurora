@@ -8,17 +8,17 @@ import Interests from "@/components/admin/dashboards/interests";
 import Judges from "@/components/admin/dashboards/judges";
 import Judging from "@/components/admin/services/judging/judging";
 import Mentors from "@/components/admin/dashboards/mentors";
-import Contacts from "@/components/admin/services/contacts/contacts";
+import Contacts from "@/components/admin/services/contacts";
 import Participants from "@/components/admin/dashboards/participants";
 import Sponsors from "@/components/admin/dashboards/sponsors";
 import Panelists from "@/components/admin/dashboards/panelists";
-import Statistics from "@/components/admin/services/statistics/statistics";
+import Statistics from "@/components/admin/services/statistics";
 import Teams from "@/components/admin/dashboards/teams";
 import Volunteers from "@/components/admin/dashboards/volunteers";
 import Leads from "@/components/admin/dashboards/leads";
-import Fault from "@/utils/error";
 import Settings from "@/components/admin/services/settings";
 import Timer from "@/components/admin/services/timer";
+import { notFound } from "next/navigation";
 
 const Page = ({ params, searchParams }) => {
   const components = {
@@ -57,11 +57,7 @@ const Page = ({ params, searchParams }) => {
       </ProtectedPage>
     );
   } else {
-    throw new Fault(
-      404,
-      "Page Not Found",
-      "The page you are looking for does not seem to exist",
-    );
+    notFound();
   }
 };
 

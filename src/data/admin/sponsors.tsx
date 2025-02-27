@@ -13,12 +13,6 @@ type Sponsor = {
   comments: string;
 };
 
-type dropdownProps = {
-  object: {
-    response: string;
-  };
-};
-
 export const TAGS: Tags[] = [
   {
     text: "accept",
@@ -41,7 +35,12 @@ export const COLUMNS: (ColumnDef<Sponsor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Sponsor, Sponsor["name"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -51,7 +50,12 @@ export const COLUMNS: (ColumnDef<Sponsor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Sponsor, Sponsor["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -61,7 +65,12 @@ export const COLUMNS: (ColumnDef<Sponsor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Sponsor, Sponsor["company"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -71,17 +80,14 @@ export const COLUMNS: (ColumnDef<Sponsor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Sponsor, Sponsor["position"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateTiers(TIERS),
   generateStatus(STATUSES),
 ];
-
-export const DROPDOWN: React.FC<dropdownProps> = ({ object }) => {
-  return (
-    <>
-      <p className="ml-5 mt-3">{object.response}</p>
-    </>
-  );
-};

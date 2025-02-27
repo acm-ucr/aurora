@@ -1,4 +1,3 @@
-// import { COLORS } from "@/data/Tags";
 import Link from "next/link";
 import { ICONS } from "@/data/admin/icons";
 import Loading from "@/components/loading";
@@ -43,7 +42,7 @@ const Table = ({ data }) => {
                 ref={measureElement}
                 data-index={virtualItem.index + index}
               >
-                <div className="w-full rounded-xl bg-white p-3">
+                <div className="w-full rounded bg-white p-3">
                   <div className="flex items-center justify-between">
                     <Badge> {group.name}</Badge>
                     <div className="ml-2 flex w-full justify-start">

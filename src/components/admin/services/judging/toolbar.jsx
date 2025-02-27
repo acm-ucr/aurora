@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-// import { COLORS } from "@/data/Tags";
 import toaster from "@/utils/toaster";
 import { useRouter } from "next/navigation";
 import { api } from "@/utils/api";

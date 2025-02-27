@@ -17,7 +17,7 @@ const Dashboard = ({
   columns,
   tags,
   statuses,
-  Dropdown,
+  subcolumns,
   searchParams,
 }) => {
   const [data, setData] = useState([]);
@@ -91,7 +91,7 @@ const Dashboard = ({
         meta={meta}
         getHeaderGroups={getHeaderGroups}
         getRowModel={getRowModel}
-        Dropdown={Dropdown}
+        subcolumns={subcolumns}
         empty={empty}
         loading={loading}
       />

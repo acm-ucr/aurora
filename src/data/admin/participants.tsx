@@ -1,4 +1,3 @@
-import { ICONS } from "./icons";
 import { generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
 import { Tags } from "@/types/dashboard";
@@ -20,10 +19,6 @@ type Participant = {
   roles: string;
   discord: string;
   team: string;
-};
-
-type dropdownProps = {
-  object: Record<string, string[]>;
 };
 
 export const TAGS: Tags[] = [
@@ -63,7 +58,12 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Participant, Participant["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -73,7 +73,12 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Participant, Participant["discord"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -83,7 +88,12 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Participant, Participant["team"]>) => (
-      <div>{props.getValue() ?? "N/A"}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue() ?? "N/A"}
+      </div>
     ),
   },
   {
@@ -93,39 +103,83 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Participant, Participant["shirt"]>) => (
-      <div>{props.getValue() ?? "N/A"}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue() ?? "N/A"}
+      </div>
     ),
   },
   generateStatus(STATUSES),
 ];
 
-const attributes: string[] = [
-  "email",
-  "phone",
-  "age",
-  "gender",
-  "country",
-  "school",
-  "major",
-  "grade",
-  "shirt",
-  "diet",
-  "restriction",
-];
-
-export const DROPDOWN: React.FC<dropdownProps> = ({ object }) => {
-  return (
-    <div className="grid grid-cols-3 gap-4 p-4 text-sm">
-      {attributes.map((attribute, index) => (
-        <div key={index} className="flex items-center">
-          {ICONS[attribute] && <span className="mr-2">{ICONS[attribute]}</span>}
-          {Array.isArray(object[attribute])
-            ? object[attribute].length !== 0
-              ? object[attribute].join(",")
-              : "N/A"
-            : object[attribute]}
-        </div>
-      ))}
-    </div>
-  );
+export const ATTRIBUTES = {
+  country: "",
+  diet: "",
+  resume: "",
 };
+
+export const SUBCOLUMNS = [
+  generateSelect(),
+  {
+    accessorKey: "school",
+    header: "School",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Participant, Participant["school"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "grade",
+    header: "Grade",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Participant, Participant["grade"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "major",
+    header: "Major",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Participant, Participant["major"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "diet",
+    header: "Diet",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Participant, Participant["diet"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "age",
+    header: "Age",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Participant, Participant["age"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "gender",
+    header: "Gender",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Participant, Participant["gender"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+];

@@ -1,5 +1,3 @@
-import Checkbox from "@/components/checkbox";
-import { AVAILABILITY } from "../form/information";
 import { generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
 import { ColumnDef, CellContext } from "@tanstack/react-table";
@@ -14,13 +12,6 @@ type Mentor = {
   shirt: string;
   gender: string;
   grade: string;
-};
-
-type dropdownProps = {
-  object: {
-    availability: string[];
-    response: string;
-  };
 };
 
 export const TAGS: Tags[] = [
@@ -45,7 +36,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["name"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -55,7 +51,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -65,7 +66,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["discord"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -75,7 +81,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["gender"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -85,7 +96,12 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["shirt"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -95,29 +111,13 @@ export const COLUMNS: (ColumnDef<Mentor, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Mentor, Mentor["grade"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateStatus(STATUSES),
 ];
-
-export const DROPDOWN: React.FC<dropdownProps> = ({ object }) => {
-  return (
-    <>
-      <div className="flex justify-center">
-        <div className="grid w-11/12 grid-flow-col grid-rows-4">
-          {AVAILABILITY.map((text, index) => (
-            <Checkbox
-              id="availability"
-              checked={object.availability.includes(text)}
-              key={index}
-            >
-              {text}
-            </Checkbox>
-          ))}
-        </div>
-      </div>
-      <p className="ml-5 mt-3">{object.response}</p>
-    </>
-  );
-};

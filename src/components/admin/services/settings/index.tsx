@@ -2,17 +2,21 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { api } from "@/utils/api";
-import toaster from "@/utils/toaster";
+import toast from "react-hot-toast";
 
 const Settings = () => {
   const syncStatsWithDatabase = () => {
-    toaster("Syncing Stats...", "loading");
-    api({
-      method: "GET",
-      url: "/api/settings",
-    })
-      .then(() => toaster("Stats Synced!", "success"))
-      .catch(() => toaster("Failed to sync stats.", "error"));
+    toast.promise(
+      api({
+        method: "GET",
+        url: "/api/settings",
+      }),
+      {
+        loading: "Loading",
+        success: "Statistics Synced",
+        error: "Failed to Sync",
+      },
+    );
   };
 
   return (

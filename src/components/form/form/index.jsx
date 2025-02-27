@@ -38,10 +38,10 @@ const Form = ({
       </div>
       <div className="flex w-10/12 flex-col items-center pb-12 pt-5 md:w-1/2 xl:w-1/3">
         <Image src={LOGO} className="m-4 w-1/4" alt="Logo" />
-        <p className="m-0 w-full rounded-t-xl bg-hackathon-green-300 px-4 py-4 text-xl font-semibold">
+        <p className="m-0 w-full rounded-t bg-hackathon-green-300 px-4 py-4 text-xl font-semibold">
           {header}
         </p>
-        <div className="rounded-b-xl bg-white p-8">
+        <div className="rounded-b bg-white p-8">
           <div className="grid grid-cols-1 gap-3">
             {state === 0 ? (
               <Status object={object} statuses={statuses} setState={setState} />

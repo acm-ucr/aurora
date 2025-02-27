@@ -25,13 +25,6 @@ type Feedback = {
   helpful: string;
 };
 
-type dropdownProps = {
-  object: {
-    additionalComments: string;
-    notBeneficial: string;
-  };
-};
-
 export const COLUMNS: (ColumnDef<Feedback, string> & {
   searchable?: boolean;
 })[] = [
@@ -41,7 +34,12 @@ export const COLUMNS: (ColumnDef<Feedback, string> & {
     header: "Rating",
     searchable: true,
     cell: (props: CellContext<Feedback, Feedback["rating"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -49,7 +47,12 @@ export const COLUMNS: (ColumnDef<Feedback, string> & {
     header: "Event Source",
     searchable: true,
     cell: (props: CellContext<Feedback, Feedback["eventSource"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -57,7 +60,12 @@ export const COLUMNS: (ColumnDef<Feedback, string> & {
     header: "Improvements",
     searchable: true,
     cell: (props: CellContext<Feedback, Feedback["improvements"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -65,25 +73,13 @@ export const COLUMNS: (ColumnDef<Feedback, string> & {
     header: "Helpful",
     searchable: true,
     cell: (props: CellContext<Feedback, Feedback["helpful"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateStatus(STATUSES),
 ];
-
-export const DROPDOWN: React.FC<dropdownProps> = ({ object }) => {
-  return (
-    <div className="flex justify-center">
-      <div className="grid w-11/12 grid-cols-2">
-        <div>
-          <span className="font-bold">Additional Comments: </span>
-          {object.additionalComments}
-        </div>
-        <div>
-          <span className="font-bold">Not Beneficial: </span>
-          {object.notBeneficial}
-        </div>
-      </div>
-    </div>
-  );
-};

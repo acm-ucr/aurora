@@ -43,6 +43,7 @@ const Filters = ({ statuses, filters, setFilters }) => {
               COLORS["gray"]?.background,
               COLORS["gray"]?.text,
               COLORS["gray"]?.hover,
+              "capitalize",
             )}
           >
             {value}

@@ -55,27 +55,36 @@ export const POST = async (req, { params }) => {
         element[attribute] = body[attribute];
       });
 
-      await Promise.all([
-        updateDoc(doc(db, "users", user.id), {
-          ...element,
-          timestamp: Timestamp.now(),
-          [`roles.${params.type}`]: 0,
-        }),
-        updateDoc(doc(db, "statistics", "statistics"), {
-          [`${params.type}.status.0`]: increment(1),
-          [`${params.type}.shirt.0.${element.size}`]: increment(1),
-          [`${params.type}.diet.0.${element.diet}`]: increment(1),
-          [`${params}.participants.school.0.${element.school}`]: increment(1),
-        }),
-        send({
-          email: user.email,
-          id: "confirmation",
-          name: user.name,
-          position: params.type.slice(0, -1),
-          subject: `[${data.name}] Thank you for applying!`,
-          preview: `Thank you for applying to ${data.name}`,
-        }),
-      ]);
+      updateDoc(doc(db, "users", user.id), {
+        ...element,
+        timestamp: Timestamp.now(),
+        [`roles.${params.type}`]: 0,
+      });
+
+      updateDoc(doc(db, "statistics", "shirt"), {
+        [`${params.type}.0.${element.shirt}`]: increment(1),
+      });
+
+      updateDoc(doc(db, "statistics", "diet"), {
+        [`${params.type}.0.${element.diet}`]: increment(1),
+      });
+
+      updateDoc(doc(db, "statistics", "gender"), {
+        [`${params.type}.0.${element.gender}`]: increment(1),
+      });
+
+      updateDoc(doc(db, "statistics", "age"), {
+        [`${params.type}.0.${element.age}`]: increment(1),
+      });
+
+      send({
+        email: user.email,
+        id: "confirmation",
+        name: user.name,
+        position: params.type.slice(0, -1),
+        subject: `[${data.name}] Thank you for applying!`,
+        preview: `Thank you for applying to ${data.name}`,
+      });
     }
 
     return res.json({ message: "OK" }, { status: 200 });
@@ -202,64 +211,56 @@ export const PUT = async (req, { params }) => {
   }
   try {
     if (types.has(params.type)) {
-      await Promise.all(
-        objects.map(async (object) => {
-          await updateDoc(doc(db, "users", object.uid), {
-            [`roles.${params.type}`]: status,
+      objects.map(async (object) => {
+        await updateDoc(doc(db, "users", object.uid), {
+          [`roles.${params.type}`]: status,
+        });
+
+        const id = status === 1 ? "acceptance" : "rejection";
+
+        const preview =
+          id === "acceptance"
+            ? "You have been accepted!"
+            : "Thank you for applying!";
+
+        const subject =
+          id === "acceptance"
+            ? "🎉 Congratulations 🎉"
+            : "Application Status Update";
+
+        await send({
+          email: object.email,
+          id: id,
+          name: object.name,
+          position: params.type.slice(0, -1),
+          subject: `[${data.name}] ${subject}`,
+          preview: preview,
+        });
+
+        try {
+          updateDoc(doc(db, "statistics", "shirt"), {
+            [`${params.type}.${status}.${object.shirt}`]: increment(1),
+            [`${params.type}.0.${object.shirt}`]: increment(-1),
           });
 
-          const id = status === 1 ? "acceptance" : "rejection";
-
-          const preview =
-            id === "acceptance"
-              ? "You have been accepted!"
-              : "Thank you for applying!";
-
-          const subject =
-            id === "acceptance"
-              ? "🎉 Congratulations 🎉"
-              : "Application Status Update";
-
-          await send({
-            email: object.email,
-            id: id,
-            name: object.name,
-            position: params.type.slice(0, -1),
-            subject: `[${data.name}] ${subject}`,
-            preview: preview,
+          updateDoc(doc(db, "statistics", "diet"), {
+            [`${params.type}.${status}.${object.diet}`]: increment(1),
+            [`${params.type}.0.${object.diet}`]: increment(-1),
           });
 
-          const size = object.shirt;
-          const diet = object.diet;
-          const school = object.school;
+          updateDoc(doc(db, "statistics", "gender"), {
+            [`${params.type}.${status}.${object.gender}`]: increment(1),
+            [`${params.type}.0.${object.gender}`]: increment(-1),
+          });
 
-          if (status === 1) {
-            await updateDoc(doc(db, "statistics", "statistics"), {
-              [`${params.type}.status.1`]: increment(1),
-              [`${params.type}.status.0`]: increment(-1),
-              [`${params.type}.shirt.1.${size}`]: increment(1),
-              [`${params.type}.shirt.0${size}`]: increment(-1),
-              [`${params.type}.diet.1.${diet}`]: increment(1),
-              [`${params.type}.diet.0${diet}`]: increment(-1),
-              [`${params}.participants.school.1.${school}`]: increment(1),
-              [`${params}.participants.school.0.${school}`]: increment(-1),
-            });
-          }
-
-          if (status === -1) {
-            await updateDoc(doc(db, "statistics", "statistics"), {
-              [`${params.type}.status.-1`]: increment(1),
-              [`${params.type}.status.0`]: increment(-1),
-              [`${params.type}.shirt.-1.${size}`]: increment(1),
-              [`${params.type}.shirt.0.${size}`]: increment(-1),
-              [`${params.type}.diet.-1.${diet}`]: increment(1),
-              [`${params.type}.diet.0.${diet}`]: increment(-1),
-              [`${params}.participants.school.-1.${school}`]: increment(1),
-              [`${params}.participants.school.0.${school}`]: increment(-1),
-            });
-          }
-        }),
-      );
+          updateDoc(doc(db, "statistics", "age"), {
+            [`${params.type}.${status}.${object.age}`]: increment(1),
+            [`${params.type}.0.${object.age}`]: increment(-1),
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      });
     }
     return res.json({ message: "OK" }, { status: 200 });
   } catch (err) {

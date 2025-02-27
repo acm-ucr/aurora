@@ -5,13 +5,13 @@ import {
   Handshake,
   Lock,
   Heart,
+  Hand,
   HandHeart,
-  Gem,
-  MessageCircleHeart,
-  MessageSquareText,
-  Crown,
-  CircleHelp,
-  HeartHandshake,
+  Users,
+  CircleAlert,
+  MessagesSquare,
+  HandCoins,
+  Cat,
 } from "lucide-react";
 import Select from "@/components/select";
 import { useState } from "react";
@@ -19,8 +19,6 @@ import { api } from "@/utils/api";
 import toaster from "@/utils/toaster";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
-const STATUSES = ["confirmed", "pending", "not attending"];
 
 const MAPPINGS = {
   confirmed: 1,
@@ -35,12 +33,12 @@ const roleIcons = {
   mentors: <HandHeart className="mx-2" />,
   admins: <Lock className="mx-2" />,
   committees: <Handshake className="mx-2" />,
-  sponsors: <Gem className="mx-2" />,
-  interests: <MessageCircleHeart className="mx-2" />,
-  feedback: <MessageSquareText className="mx-2" />,
-  leads: <Crown className="mx-2" />,
-  panelists: <CircleHelp className="mx-2" />,
-  teams: <HeartHandshake className="mx-2" />,
+  sponsors: <HandCoins className="mx-2" />,
+  interests: <CircleAlert className="mx-2" />,
+  feedback: <MessagesSquare className="mx-2" />,
+  leads: <Hand className="mx-2" />,
+  panelists: <Cat className="mx-2" />,
+  teams: <Users className="mx-2" />,
 };
 
 const Contact = ({ role, disabled, setDisabled }) => {
@@ -72,14 +70,14 @@ const Contact = ({ role, disabled, setDisabled }) => {
   return (
     <Card key={role} className="flex w-full flex-col">
       <CardHeader>
-        <CardTitle className="flex items-center">
+        <CardTitle className="flex items-center capitalize">
           {roleIcons[role]} {role}
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
         <Select
-          items={STATUSES}
-          placeholder="Select a status..."
+          items={Object.keys(MAPPINGS)}
+          placeholder="Select a Status..."
           field="status"
           user={status}
           setUser={setStatus}
@@ -88,7 +86,7 @@ const Contact = ({ role, disabled, setDisabled }) => {
         />
 
         <Button onClick={onClick} disabled={status.status === "" || disabled}>
-          copy
+          Copy
         </Button>
       </CardContent>
     </Card>

@@ -94,7 +94,7 @@ export const FIELDS: Fields = {
     type: "text",
     title: "Discord Username",
     placeholder: "ie. john123",
-    maxLength: 30,
+    maxLength: 32,
     width: 12,
     editable: true,
     required: true,
@@ -165,7 +165,7 @@ export const FIELDS: Fields = {
     width: 12,
     field: "diet",
     options: DIETS,
-    required: false,
+    required: true,
     editable: true,
   },
   requirements: {

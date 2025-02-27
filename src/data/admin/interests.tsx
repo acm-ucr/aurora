@@ -31,7 +31,12 @@ export const COLUMNS: (ColumnDef<Interest, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Interest, Interest["name"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -41,7 +46,12 @@ export const COLUMNS: (ColumnDef<Interest, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Interest, Interest["email"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -51,7 +61,12 @@ export const COLUMNS: (ColumnDef<Interest, string> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Interest, Interest["eventSource"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   generateStatus(STATUSES),

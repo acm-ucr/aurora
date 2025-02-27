@@ -12,7 +12,7 @@ type Team = {
   discords: string[];
   links: {
     name: string;
-    url: string;
+    link: string;
   }[];
 };
 
@@ -38,7 +38,12 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Team, Team["name"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -48,7 +53,12 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Team, Team["teamid"]>) => (
-      <div>{props.getValue()}</div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue()}
+      </div>
     ),
   },
   {
@@ -59,7 +69,10 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     enableColumnFilter: true,
     searchable: true,
     cell: (props: CellContext<Team, Team["members"]>) => (
-      <div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
         {props.getValue().map((data, index) => (
           <p key={index}>{data}</p>
         ))}
@@ -74,7 +87,10 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     filterFn: "includesString",
     searchable: true,
     cell: (props: CellContext<Team, Team["discords"]>) => (
-      <div>
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
         {props.getValue().map((data, index) => (
           <p key={index}>{data}</p>
         ))}
@@ -86,9 +102,12 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     header: "Links",
     enableSorting: false,
     cell: (props: CellContext<Team, Team["links"]>) => (
-      <div>
-        {props.getValue().map(({ name, url }, index) => (
-          <Link key={index} href={url} className="mx-2 inline-flex">
+      <div
+        onClick={props.row.getToggleSelectedHandler()}
+        className="hover:cursor-pointer"
+      >
+        {props.getValue().map(({ name, link }, index) => (
+          <Link key={index} href={link} className="mx-2 inline-flex">
             {ICONS[name]}
           </Link>
         ))}

@@ -3,7 +3,6 @@ import { api } from "@/utils/api";
 import { useState, useEffect } from "react";
 import { Trash2, RotateCcw } from "lucide-react";
 import toaster from "@/utils/toaster";
-// import { COLORS } from "@/data/Tags";
 import Select from "@/components/select";
 import { InputWithClear } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -167,7 +166,7 @@ const Toolbar = ({
               COLORS[tag.text]?.background,
               COLORS[tag.text]?.text,
               COLORS[tag.text]?.hover,
-              "text-nowrap",
+              "text-nowrap capitalize",
             )}
           >
             {tag.text}
