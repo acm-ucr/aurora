@@ -7,7 +7,7 @@ const Countdown = () => {
       <Clock
         classNames={{
           digit: "text-white",
-          background: "bg-black",
+          background: "bg-white",
           unit: "text-white",
         }}
       />

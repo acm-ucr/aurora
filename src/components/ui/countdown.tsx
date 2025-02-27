@@ -2,18 +2,18 @@
 import { useState, useEffect } from "react";
 import data from "@/data/config";
 
-type CountdownClassNames = {
-  unit: string;
-  digit: string;
-  background: string;
-};
 interface digitProps {
   value: number;
   unit: string;
-  classNames: CountdownClassNames;
+  classNames: {
+    unit: string;
+    digit: string;
+    background: string;
+  };
 }
 
 const Digits = ({ value, unit, classNames }: digitProps) => {
+  console.log(classNames);
   return (
     <div className="flex flex-col items-center gap-4 last:hidden sm:last:flex">
       <div className="m-3 mb-0 flex gap-1 lg:!gap-1">
@@ -35,11 +35,15 @@ const Digits = ({ value, unit, classNames }: digitProps) => {
   );
 };
 
-interface clockProps {
-  classNames: CountdownClassNames;
+interface countdownProps {
+  classNames: {
+    unit: string;
+    digit: string;
+    background: string;
+  };
 }
 
-const Clock = ({ classNames }: clockProps) => {
+const Countdown = ({ classNames }: countdownProps) => {
   const [countdown, setCountdown] = useState({
     days: 0,
     hours: 0,
@@ -67,7 +71,7 @@ const Clock = ({ classNames }: clockProps) => {
   }, []);
 
   return (
-    <div className="inline-flex font-bold">
+    <div className="flex items-center justify-center font-bold">
       {Object.entries(countdown).map(([unit, value], index) => (
         <Digits key={index} unit={unit} value={value} classNames={classNames} />
       ))}
@@ -75,4 +79,4 @@ const Clock = ({ classNames }: clockProps) => {
   );
 };
 
-export default Clock;
+export default Countdown;

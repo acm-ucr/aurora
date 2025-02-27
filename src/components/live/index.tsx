@@ -8,7 +8,7 @@ import Committees from "./committees";
 import Judges from "./judges";
 import FAQ from "./faq";
 import Footer from "./footer";
-import Countdown from "./countdown";
+import Countdown from "../ui/countdown";
 
 const Live = () => {
   return (
@@ -21,7 +21,13 @@ const Live = () => {
       <Team />
       <Committees />
       <Judges />
-      <Countdown />
+      <Countdown
+        classNames={{
+          unit: "text-black",
+          background: "bg-hackathon-blue-100",
+          digit: "text-white",
+        }}
+      />
       <FAQ />
       <Footer />
     </>
