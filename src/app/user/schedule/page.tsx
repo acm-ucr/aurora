@@ -1,6 +1,5 @@
 import ProtectedPage from "@/components/protected";
 import ScheduleWrapper from "@/components/user/schedule/Wrapper";
-import { Label } from "@/components/ui/label";
 
 const Page = () => {
   return (
@@ -10,9 +9,6 @@ const Page = () => {
         participants: [1, 0, -1],
       }}
     >
-      <Label className="flex gap-3 py-4 pr-5 text-2xl font-bold">
-        Schedule
-      </Label>
       <ScheduleWrapper />
     </ProtectedPage>
   );

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Toolbar from "./Toolbar";
 import Event from "./Event";
+import { Label } from "@/components/ui/label";
 import data from "@/data/config";
 
 const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
@@ -27,7 +28,10 @@ const Schedule = ({ eventList }) => {
 
   return (
     <>
-      <div className="sticky top-0 z-10 flex w-full flex-col bg-gray-100 pt-4 text-white">
+      <div className="sticky top-0 z-10 flex w-full flex-col bg-gray-100 pt-4">
+        <Label className="flex gap-3 py-4 pr-5 text-2xl font-bold">
+          Schedule
+        </Label>
         <Toolbar onFilterChange={filterChange} />
         <div className="flex">
           {days.map((day, index) => {

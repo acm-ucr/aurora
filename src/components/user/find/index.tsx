@@ -49,37 +49,32 @@ const Find = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <div className="flex h-[calc(100vh-48px)] w-full flex-col">
-      <div className="pb-3 pt-4">
+    <div className="flex h-full w-full flex-col">
+      <div className="sticky top-0 z-20 bg-gray-100 pb-6 pt-4">
         <Label className="pr-5 text-2xl font-bold">Find a Team</Label>
+        <Toolbar data={data ?? []} setSearch={setSearch} />
       </div>
-      <Toolbar data={data ?? []} setSearch={setSearch} />
-      <div ref={ref} className="relative h-full overflow-y-scroll">
+      <div ref={ref} className="h-full">
         {search.length === 0 ? (
           <div className="flex h-full items-center justify-center">
             No Teams Available
           </div>
         ) : (
           <div>
-            {getVirtualItems().map(({ index, size, start }) => {
+            {getVirtualItems().map(({ index }) => {
               if (index % 4) return null;
               const row = search.slice(index, index + 4);
 
               return (
                 <div
                   key={`row: ${Math.floor(index / 4)}`}
-                  className="grid w-full grid-cols-4 gap-4"
-                  style={{
-                    height: `${size}px`,
-                    transform: `translateY(${start}px)`,
-                  }}
+                  className="mt-4 grid w-full grid-cols-4 gap-4"
                 >
                   {row.map(({ title, languages, details, contact }, i) => (
                     <div
                       key={`column: ${i}`}
                       ref={measureElement}
                       data-index={index + i}
-                      className="py-4"
                     >
                       <Idea
                         title={title}
