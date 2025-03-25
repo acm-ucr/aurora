@@ -18,25 +18,25 @@ export const schema = z.object({
   }),
   discord: z.string().min(1, { message: "Discord username is invalid" }),
   major: z.enum(MAJORS as [string, ...string[]], {
-    required_error: "Please select your major",
+    message: "Please select your major",
   }),
   age: z.enum(AGES as [string, ...string[]], {
-    required_error: "Please select your age",
+    message: "Please select your age",
   }),
   school: z.enum(SCHOOLS as [string, ...string[]], {
-    required_error: "Please select your school",
+    message: "Please select your school",
   }),
   grade: z.enum(GRADES as [string, ...string[]], {
-    required_error: "Please select your grade",
+    message: "Please select your grade",
   }),
   gender: z.enum(GENDERS as [string, ...string[]], {
-    required_error: "Please select your gender",
+    message: "Please select your gender",
   }),
   shirt: z.enum(SHIRTS as [string, ...string[]], {
-    required_error: "Please select your shirt size",
+    message: "Please select your shirt size",
   }),
   eventSource: z.enum(SOURCES as [string, ...string[]], {
-    required_error: "Please select where you found the event",
+    message: "Please select where you found the event",
   }),
   priorHackathons: z
     .array(z.string())
