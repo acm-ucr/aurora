@@ -72,7 +72,7 @@ const Navigation = () => {
                               {tab.icon}
                             </span>
                             {open && (
-                              <span className="ml-2 mr-1 flex">
+                              <span className="ml-2 mr-1 flex items-center">
                                 {tab.name}{" "}
                                 {tab.newTab ? (
                                   <SquareArrowOutUpRight className="ml-1 mt-1 h-4 w-4" />
