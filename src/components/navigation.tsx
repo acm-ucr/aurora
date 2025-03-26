@@ -6,7 +6,7 @@ import Link from "next/link";
 import { TABS } from "@/data/navigation";
 import { usePathname } from "next/navigation";
 import data from "@/data/config";
-import { LogIn, ChevronDown } from "lucide-react";
+import { LogIn, ChevronDown, SquareArrowOutUpRight } from "lucide-react";
 import { signOut } from "next-auth/react";
 import {
   Sidebar,
@@ -71,7 +71,16 @@ const Navigation = () => {
                             <span className={`${!open && "mx-auto"}`}>
                               {tab.icon}
                             </span>
-                            {open && <span className="ml-2">{tab.name}</span>}
+                            {open && (
+                              <span className="ml-2 mr-1 flex">
+                                {tab.name}{" "}
+                                {tab.newTab ? (
+                                  <SquareArrowOutUpRight className="ml-1 mt-1 h-4 w-4" />
+                                ) : (
+                                  <></>
+                                )}
+                              </span>
+                            )}
                           </SidebarMenuItem>
                         </Link>
                       ))}
