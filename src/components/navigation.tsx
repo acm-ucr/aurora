@@ -63,7 +63,7 @@ const Navigation = () => {
                   <SidebarMenu>
                     {subTabs.tabs &&
                       subTabs.tabs.map((tab, index) => (
-                        <Link key={index} href={tab.link}>
+                        <Link key={index} href={tab.link} target={tab.target}>
                           <SidebarMenuItem
                             key={index}
                             className={`${open ? "h-7" : "h-6"} flex items-center pl-3 text-lg ${tab.link === pathname && "bg-hackathon-blue-100"} rounded`}
@@ -73,8 +73,8 @@ const Navigation = () => {
                             </span>
                             {open && (
                               <span className="ml-2 mr-1 flex items-center">
-                                {tab.name}{" "}
-                                {tab.newTab ? (
+                                {tab.name}
+                                {tab.target === "_blank" ? (
                                   <SquareArrowOutUpRight className="ml-1 mt-1 h-4 w-4" />
                                 ) : (
                                   <></>

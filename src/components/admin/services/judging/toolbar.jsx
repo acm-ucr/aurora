@@ -215,7 +215,6 @@ const Toolbar = ({
           <AlertDialogFooter>
             <AlertDialogCancel
               onClick={() => setPopup({ ...popup, visible: false })}
-              className="sm:mt-2"
             >
               Cancel
             </AlertDialogCancel>
