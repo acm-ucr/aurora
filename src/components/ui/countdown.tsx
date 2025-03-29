@@ -22,7 +22,7 @@ const Digits = ({ value, unit, classNames }: digitProps) => {
           .split("")
           .map((digit, index) => (
             <div
-              className={`flex items-center justify-center rounded-lg ${classNames.background} bg-opacity-40 p-3 text-lg font-bold ${classNames.digit} lg:min-w-11 lg:p-3 lg:text-3xl`}
+              className={`flex items-center justify-center rounded ${classNames.background} bg-opacity-40 p-3 text-lg font-bold ${classNames.digit} lg:min-w-11 lg:p-3 lg:text-3xl`}
               key={index}
             >
               {digit}

@@ -8,16 +8,16 @@ export const schema = z.object({
     message: "Invalid phone number. Expected format: 123 456 7890",
   }),
   gender: z.enum(GENDERS as [string, ...string[]], {
-    required_error: "Please select your gender",
+    message: "Please select your gender",
   }),
   age: z.enum(AGES as [string, ...string[]], {
-    required_error: "Please select your age",
+    message: "Please select your age",
   }),
   shirt: z.enum(SHIRTS as [string, ...string[]], {
-    required_error: "Please select your shirt size",
+    message: "Please select your shirt size",
   }),
   affiliation: z.enum(["Professor", "Student", "Industry"], {
-    required_error: "Please select your affiliation",
+    message: "Please select your affiliation",
   }),
   title: z.string().min(1, { message: "Title is required" }),
   photo: z.string().optional(),

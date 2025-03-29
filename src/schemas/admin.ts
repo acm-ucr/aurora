@@ -14,25 +14,25 @@ export const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   discord: z.string().min(1, { message: "Discord username is invalid" }),
   major: z.enum(MAJORS as [string, ...string[]], {
-    required_error: "Please select your major",
+    message: "Please select your major",
   }),
   age: z.enum(AGES as [string, ...string[]], {
-    required_error: "Please select your age",
+    message: "Please select your age",
   }),
   grade: z.enum(GRADES as [string, ...string[]], {
-    required_error: "Please select your grade",
+    message: "Please select your grade",
   }),
   gender: z.enum(GENDERS as [string, ...string[]], {
-    required_error: "Please select your gender",
+    message: "Please select your gender",
   }),
   shirt: z.enum(SHIRTS as [string, ...string[]], {
-    required_error: "Please select your shirt size",
+    message: "Please select your shirt size",
   }),
   diet: z.enum(DIETS as [string, ...string[]], {
     message: "Please select your dietary restrictions",
   }),
   affiliation: z.enum(Object.values(AFFILIATIONS) as [string, ...string[]], {
-    required_error: "Please select your affiliation",
+    message: "Please select your affiliation",
   }),
   requirements: z
     .array(z.string())

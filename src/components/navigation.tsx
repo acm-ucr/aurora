@@ -6,7 +6,7 @@ import Link from "next/link";
 import { TABS } from "@/data/navigation";
 import { usePathname } from "next/navigation";
 import data from "@/data/config";
-import { LogIn, ChevronDown } from "lucide-react";
+import { LogIn, ChevronDown, SquareArrowOutUpRight } from "lucide-react";
 import { signOut } from "next-auth/react";
 import {
   Sidebar,
@@ -62,19 +62,28 @@ const Navigation = () => {
                 <SidebarGroupContent>
                   <SidebarMenu>
                     {subTabs.tabs &&
-                      subTabs.tabs.map((tab, index) => (
-                        <Link key={index} href={tab.link}>
-                          <SidebarMenuItem
-                            key={index}
-                            className={`${open ? "h-7" : "h-6"} flex items-center pl-3 text-lg ${tab.link === pathname && "bg-sidebar-selected"} rounded`}
-                          >
-                            <span className={`${!open && "mx-auto"}`}>
-                              {tab.icon}
-                            </span>
-                            {open && <span className="ml-2">{tab.name}</span>}
-                          </SidebarMenuItem>
-                        </Link>
-                      ))}
+                      subTabs.tabs.map(
+                        ({ name, icon, link, target }, index) => (
+                          <Link key={index} href={link} target={target}>
+                            <SidebarMenuItem
+                              key={index}
+                              className={`flex h-6 items-center pl-3 text-lg ${link === pathname && "bg-hackathon-blue-100"} rounded`}
+                            >
+                              <span className={`${!open && "mx-auto"}`}>
+                                {icon}
+                              </span>
+                              {open && (
+                                <span className="ml-2 mr-1 flex items-center">
+                                  {name}
+                                  {target === "_blank" && (
+                                    <SquareArrowOutUpRight className="ml-1 mt-1 h-4 w-4" />
+                                  )}
+                                </span>
+                              )}
+                            </SidebarMenuItem>
+                          </Link>
+                        ),
+                      )}
                   </SidebarMenu>
                 </SidebarGroupContent>
               </CollapsibleContent>

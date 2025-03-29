@@ -5,13 +5,13 @@ export const schema = z.object({
   name: z.string().min(1, { message: "Name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
   age: z.enum(AGES as [string, ...string[]], {
-    required_error: "Please select your age",
+    message: "Please select your age",
   }),
   gender: z.enum(GENDERS as [string, ...string[]], {
-    required_error: "Please select your gender",
+    message: "Please select your gender",
   }),
   shirt: z.enum(SHIRTS as [string, ...string[]], {
-    required_error: "Please select your shirt size",
+    message: "Please select your shirt size",
   }),
   eventSource: z
     .string()
