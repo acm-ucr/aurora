@@ -1,7 +1,7 @@
 import {
   Apple,
   Phone,
-  Crown,
+  // Crown,
   School,
   User,
   Cake,

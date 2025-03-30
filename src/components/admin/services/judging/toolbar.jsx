@@ -22,6 +22,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { useCallback } from "react";
 
 const tags = ["professor", "industry", "student"];
 
@@ -180,7 +181,7 @@ const Toolbar = ({
     setSearch(e.target.value);
   };
 
-  const load = () => {
+  const load = useCallback(() => {
     api({
       method: "GET",
       url: "/api/judging",
@@ -192,17 +193,17 @@ const Toolbar = ({
       if (items.judges.length === 0) {
         setPopup({
           title: "Insufficient Judges",
-          text: "There are not enough judges to go around to each team. Please consider adding more judges via the judge dashboard. ",
+          text: "There are not enough judges to go around to each team. Please consider adding more judges via the judge dashboard.",
           color: "green",
           visible: true,
         });
       }
     });
-  };
+  }, [setData, setFilters, setJudges]);
 
   useEffect(() => {
     load();
-  }, []);
+  }, [load]);
 
   return (
     <>

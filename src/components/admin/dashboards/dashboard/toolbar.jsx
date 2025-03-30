@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { COLORS } from "@/data/tags";
 import { cn } from "@/utils/tailwind";
+import { useCallback } from "react";
 
 const Toolbar = ({
   page,
@@ -50,7 +51,7 @@ const Toolbar = ({
     button: "",
   });
 
-  const handleReload = async () => {
+  const handleReload = useCallback(async () => {
     const { index, size, first, last, direction } = searchParams;
 
     setLoading(true);
@@ -69,7 +70,7 @@ const Toolbar = ({
         "success",
       );
     });
-  };
+  }, [searchParams, page, setData, setLoading, setMeta]);
 
   const handleDelete = () => {
     const ids = rows.map(({ uid }) => uid);
@@ -143,7 +144,7 @@ const Toolbar = ({
 
   useEffect(() => {
     handleReload();
-  }, [searchParams]);
+  }, [searchParams, handleReload]);
 
   const value = filters.find(({ id }) => id === search.search)?.value || "";
 
