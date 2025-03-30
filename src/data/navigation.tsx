@@ -232,7 +232,7 @@ export const TABS: Tabs = {
           name: "Resources",
           link: "/resources",
           icon: <Newspaper className={iconStyle} />,
-          target: "_self",
+          target: "_blank",
         },
         {
           name: "Find a Team",
