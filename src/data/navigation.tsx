@@ -230,7 +230,7 @@ export const TABS: Tabs = {
         },
         {
           name: "Resources",
-          link: "/user/resources",
+          link: "/resources",
           icon: <Newspaper className={iconStyle} />,
           target: "_self",
         },
