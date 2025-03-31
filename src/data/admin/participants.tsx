@@ -13,7 +13,6 @@ type Participant = {
   gender: string;
   shirt: string;
   diet: string;
-  resume: string;
   name: string;
   email: string;
   roles: string;
@@ -117,7 +116,6 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
 export const ATTRIBUTES = {
   country: "",
   diet: "",
-  resume: "",
 };
 
 export const SUBCOLUMNS = [

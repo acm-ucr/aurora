@@ -65,7 +65,7 @@ export const POST = async (req, { params }) => {
       if (params.type === "participants") {
         setDoc(doc(db, "resumes", user.id), {
           name: body["name"],
-          phone: body["phone"],
+          email: body["email"],
           school: body["school"],
           grade: body["grade"],
           resume: body["resume"],

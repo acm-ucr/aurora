@@ -1,6 +1,7 @@
 import {
   User,
   Users,
+  FileUser,
   BarChart,
   Hand,
   Heart,
@@ -101,6 +102,12 @@ export const TABS: Tabs = {
           name: "Participants",
           link: "/admin/participants",
           icon: <User className={iconStyle} />,
+          target: "_self",
+        },
+        {
+          name: "Resumes",
+          link: "/admin/resumes",
+          icon: <FileUser className={iconStyle} />,
           target: "_self",
         },
         {

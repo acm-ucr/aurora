@@ -1,37 +1,32 @@
 import View from "@/components/admin/dashboards/dashboard/view";
-import { AFFILIATIONS } from "../form/information";
-import { generateAffiliation, generateSelect, generateStatus } from "./columns";
-import { STATUSES } from "@/data/statuses";
+import { generateSelect } from "./columns";
+import { ColumnDef, CellContext } from "@tanstack/react-table";
 import JSZip from "jszip";
 import { save } from "@/utils/download";
 import { Download } from "lucide-react";
 import data from "../config";
 import { Tags } from "@/types/dashboard";
-import { ColumnDef, CellContext } from "@tanstack/react-table";
 
-type Judge = {
+type Resume = {
   name: string;
   email: string;
-  phone: string;
-  gender: string;
-  title: string;
-  affiliation: string;
-  shirt: string;
-  photo: string;
+  school: string;
+  grade: string;
+  resume: string;
 };
 
 export const TAGS: Tags[] = [
   {
-    text: "accept",
+    text: "confirm",
     value: 1,
   },
   {
-    text: "reject",
+    text: "not attending",
     value: -1,
   },
 ];
 
-export const COLUMNS: (ColumnDef<Judge, string> & {
+export const COLUMNS: (ColumnDef<Resume, string> & {
   searchable?: boolean;
 })[] = [
   generateSelect(),
@@ -41,7 +36,7 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Judge, Judge["name"]>) => (
+    cell: (props: CellContext<Resume, Resume["name"]>) => (
       <div
         onClick={props.row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
@@ -56,7 +51,7 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Judge, Judge["email"]>) => (
+    cell: (props: CellContext<Resume, Resume["email"]>) => (
       <div
         onClick={props.row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
@@ -66,45 +61,12 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     ),
   },
   {
-    accessorKey: "shirt",
-    header: "Shirt",
-    enableColumnFilter: true,
-    filterFn: "includesString",
-    searchable: true,
-    cell: (props: CellContext<Judge, Judge["shirt"]>) => (
-      <div
-        onClick={props.row.getToggleSelectedHandler()}
-        className="hover:cursor-pointer"
-      >
-        {props.getValue()}
-      </div>
-    ),
-  },
-
-  {
-    accessorKey: "title",
-    header: "Title",
-    enableColumnFilter: true,
-    filterFn: "includesString",
-    searchable: true,
-    cell: (props: CellContext<Judge, Judge["title"]>) => (
-      <div
-        onClick={props.row.getToggleSelectedHandler()}
-        className="hover:cursor-pointer"
-      >
-        {props.getValue()}
-      </div>
-    ),
-  },
-  generateAffiliation(AFFILIATIONS),
-  generateStatus(STATUSES),
-  {
-    accessorKey: "photo",
+    accessorKey: "resume",
     header: ({ table }) => {
       const downloadZip = () => {
         const { rows } = table.getRowModel();
-        const photos = rows.map(({ original: { name, photo } }) => ({
-          photo,
+        const resumes = rows.map(({ original: { name, resume } }) => ({
+          resume,
           name,
         }));
 
@@ -112,16 +74,18 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
         const folder = zip.folder("photos");
 
         if (folder) {
-          photos.forEach(({ photo, name }) => {
-            const src = photo.split(",")[1];
-            folder.file(`${name.replace(" ", "_")}.png`, src, { base64: true });
+          resumes.forEach(({ resume, name }) => {
+            //   const src = photo.split(",")[1];
+            folder.file(`${name.replace(" ", "_")}.pdf`, resume, {
+              base64: true,
+            });
           });
         }
 
         zip.generateAsync({ type: "blob" }).then((blob) => {
           const url = URL.createObjectURL(blob);
           save(
-            `${data.name.replace(" ", "_")}_${data.date.getFullYear()}_judges_images.zip`,
+            `${data.name.replace(" ", "_")}_${data.date.getFullYear()}resumes.zip`,
             url,
           );
           URL.revokeObjectURL(url);
@@ -130,7 +94,7 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
 
       return (
         <div className="flex">
-          Photo
+          Resume
           <div className="text-hackathon-gray-200 hover:cursor-pointer hover:opacity-50">
             <Download onClick={downloadZip} />
           </div>
@@ -138,12 +102,46 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
       );
     },
     enableSorting: false,
-    cell: (props: CellContext<Judge, Judge["photo"]>) => (
+    cell: (props: CellContext<Resume, Resume["resume"]>) => (
       <View
         src={props.getValue()}
         title={props.row.getValue("name")}
-        type="photo"
+        type="resume"
       />
+    ),
+  },
+];
+
+export const SUBCOLUMNS = [
+  generateSelect(),
+  {
+    accessorKey: "school",
+    header: "School",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Resume, Resume["school"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "grade",
+    header: "Grade",
+    enableColumnFilter: true,
+    filterFn: "includesString",
+    searchable: true,
+    cell: (props: CellContext<Resume, Resume["grade"]>) => (
+      <div>{props.getValue()}</div>
+    ),
+  },
+  {
+    accessorKey: "resume",
+    header: "Resume",
+    enableColumnFilter: false,
+    filterFn: "includesString",
+    searchable: false,
+    cell: (props: CellContext<Resume, Resume["resume"]>) => (
+      <div>{props.getValue()}</div>
     ),
   },
 ];

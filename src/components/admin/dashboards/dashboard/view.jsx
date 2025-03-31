@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-const View = ({ title, src }) => {
+const View = ({ title, src, type }) => {
   const [modal, setModal] = useState({
     title: "",
     src: "",
@@ -31,8 +31,9 @@ const View = ({ title, src }) => {
             fill={true}
             className="h-full w-full object-cover"
             src={modal.src}
-            alt="Photo of the Judge"
-            data-cy="modal-image"
+            alt={
+              type === "photo" ? "Photo of the Judge" : "Resume of Participant"
+            }
           />
         </DialogContent>
       </Dialog>
@@ -46,7 +47,12 @@ const View = ({ title, src }) => {
 
       <Download
         className={`h-full hover:cursor-pointer hover:opacity-70`}
-        onClick={() => download(src, `${title.replace(" ", "_")}.png`)}
+        onClick={() =>
+          download(
+            src,
+            `${title.replace(" ", "_")}.${type === "photo" ? png : "pdf"}`,
+          )
+        }
       />
     </div>
   );
