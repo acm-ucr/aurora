@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/utils/firebase";
 import {
-  addDoc,
   collection,
   getDocs,
   doc,
@@ -19,45 +18,6 @@ import {
 import { authenticate } from "@/utils/auth";
 import { AUTH } from "@/data/admin/dashboard";
 
-export const POST = async (req) => {
-  const res = NextResponse;
-  const { auth } = await "authenticate"(AUTH.POST);
-
-  if (auth !== 200) {
-    return res.json(
-      { message: `Authentication Error: ${message}` },
-      { status: auth },
-    );
-  }
-
-  const {
-    rating,
-    additionalComments,
-    eventSource,
-    improvements,
-    notBeneficial,
-    helpful,
-  } = await req.json();
-
-  try {
-    await addDoc(collection(db, "feedback"), {
-      rating: parseInt(rating),
-      additionalComments,
-      eventSource,
-      improvements,
-      notBeneficial,
-      helpful,
-      status: 0,
-    });
-    return res.json({ message: "OK" }, { status: 200 });
-  } catch (err) {
-    return res.json(
-      { message: `Internal Server Error: ${err}` },
-      { status: 500 },
-    );
-  }
-};
-
 export const GET = async (req) => {
   const direction = req.nextUrl.searchParams.get("direction");
   const index = req.nextUrl.searchParams.get("index");
@@ -74,17 +34,16 @@ export const GET = async (req) => {
       { status: auth },
     );
   }
-
   const output = [];
   try {
     let snapshot;
 
     if (direction === "next" && last !== "undefined") {
-      const lastDocument = await getDoc(doc(db, "feedback", last));
+      const lastDocument = await getDoc(doc(db, "resumes", last));
 
       snapshot = await getDocs(
         query(
-          collection(db, "feedback"),
+          collection(db, "resumes"),
           orderBy(`status`),
           where(`status`, "in", [-1, 0, 1]),
           startAfter(lastDocument),
@@ -92,11 +51,11 @@ export const GET = async (req) => {
         ),
       );
     } else if (direction === "prev" && first !== "undefined") {
-      const firstDocument = await getDoc(doc(db, "feedback", first));
+      const firstDocument = await getDoc(doc(db, "resumes", first));
 
       snapshot = await getDocs(
         query(
-          collection(db, "feedback"),
+          collection(db, "resumes"),
           orderBy(`status`),
           where(`status`, "in", [-1, 0, 1]),
           endBefore(firstDocument),
@@ -106,38 +65,28 @@ export const GET = async (req) => {
     } else {
       snapshot = await getDocs(
         query(
-          collection(db, "feedback"),
+          collection(db, "resumes"),
           orderBy(`status`),
           where(`status`, "in", [-1, 0, 1]),
           limit(size),
         ),
       );
     }
-
     snapshot.forEach((doc) => {
-      const {
-        rating,
-        additionalComments,
-        eventSource,
-        improvements,
-        notBeneficial,
-        helpful,
-        status,
-      } = doc.data();
+      const { name, email, school, grade, resume, status } = doc.data();
       output.push({
         uid: doc.id,
-        rating,
-        additionalComments,
-        eventSource,
-        improvements,
-        notBeneficial,
-        helpful,
+        name,
+        email,
+        school,
+        grade,
+        resume,
         status,
       });
     });
 
     const countFromServer = await getCountFromServer(
-      query(collection(db, "feedback"), where(`status`, "in", [-1, 0, 1])),
+      query(collection(db, "resumes"), where(`status`, "in", [-1, 0, 1])),
     );
 
     const total = countFromServer.data().count;
@@ -179,7 +128,7 @@ export const PUT = async (req) => {
   try {
     await Promise.all(
       objects.map(async (object) => {
-        await updateDoc(doc(db, "feedback", object.uid), {
+        await updateDoc(doc(db, "resumes", object.uid), {
           status: status,
         });
       }),
@@ -208,7 +157,7 @@ export const DELETE = async (req) => {
   try {
     await Promise.all(
       objects.map(async (object) => {
-        await deleteDoc(doc(db, "feedback", object));
+        await deleteDoc(doc(db, "resumes", object));
       }),
     );
     return res.json({ message: "OK" }, { status: 200 });

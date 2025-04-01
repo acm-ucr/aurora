@@ -69,6 +69,7 @@ export const POST = async (req, { params }) => {
           school: body["school"],
           grade: body["grade"],
           resume: body["resume"],
+          status: 0,
         });
       }
 

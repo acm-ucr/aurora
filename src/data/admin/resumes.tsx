@@ -1,5 +1,6 @@
 import View from "@/components/admin/dashboards/dashboard/view";
-import { generateSelect } from "./columns";
+import { generateSelect, generateStatus } from "./columns";
+import { STATUSES } from "@/data/statuses";
 import { ColumnDef, CellContext } from "@tanstack/react-table";
 import JSZip from "jszip";
 import { save } from "@/utils/download";
@@ -60,6 +61,7 @@ export const COLUMNS: (ColumnDef<Resume, string> & {
       </div>
     ),
   },
+  generateStatus(STATUSES),
   {
     accessorKey: "resume",
     header: ({ table }) => {
