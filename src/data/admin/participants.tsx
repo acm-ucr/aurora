@@ -44,7 +44,10 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     searchable: true,
     cell: (props: CellContext<Participant, Participant["name"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -59,7 +62,10 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     searchable: true,
     cell: (props: CellContext<Participant, Participant["email"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -74,7 +80,10 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     searchable: true,
     cell: (props: CellContext<Participant, Participant["discord"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -89,7 +98,10 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     searchable: true,
     cell: (props: CellContext<Participant, Participant["team"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue() ?? "N/A"}
@@ -104,7 +116,10 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     searchable: true,
     cell: (props: CellContext<Participant, Participant["shirt"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue() ?? "N/A"}

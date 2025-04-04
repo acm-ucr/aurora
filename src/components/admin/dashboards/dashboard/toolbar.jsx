@@ -1,6 +1,6 @@
 "use client";
 import { api } from "@/utils/api";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Trash2, RotateCcw } from "lucide-react";
 import toaster from "@/utils/toaster";
 import Select from "@/components/select";
@@ -19,21 +19,25 @@ import {
 import { COLORS } from "@/data/tags";
 import { cn } from "@/utils/tailwind";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 const Toolbar = ({
   page,
   filters,
   setFilters,
   data,
   setData,
+  setExpanded,
   tags,
   getFilteredSelectedRowModel,
   toggleAllRowsSelected,
-  setLoading,
   searchableItems,
   searchParams,
-  setMeta,
+  refetch,
   meta,
 }) => {
+  const queryClient = useQueryClient();
+
   const selectedRows = getFilteredSelectedRowModel();
   const [search, setSearch] = useState({
     search: searchableItems[0],
@@ -50,39 +54,39 @@ const Toolbar = ({
     button: "",
   });
 
-  const handleReload = async () => {
-    const { index, size, first, last, direction } = searchParams;
-
-    setLoading(true);
-    setData([]);
-    api({
-      method: "GET",
-      url: `/api/dashboard/${page}?direction=${direction}&index=${
-        index ?? 1
-      }&size=${size ?? 10}&first=${first}&last=${last}`,
-    }).then(({ items, total, first, last }) => {
-      setMeta({ total, first, last });
-      setData(items);
-      setLoading(false);
-      toaster(
-        `Fetched ${page.charAt(0).toUpperCase() + page.slice(1)} Successfully`,
-        "success",
-      );
-    });
+  const handleReload = () => {
+    queryClient.resetQueries({ queryKey: [page, searchParams] });
+    setExpanded({});
+    toggleAllRowsSelected(false);
+    refetch();
+    toaster(
+      `Fetched ${page.charAt(0).toUpperCase() + page.slice(1)} Successfully`,
+      "success",
+    );
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     const ids = rows.map(({ uid }) => uid);
-    const keep = data.filter(({ uid }) => !ids.includes(uid));
 
+    const previousData = data;
+    const keep = data.filter(({ uid }) => !ids.includes(uid));
     setData(keep);
-    api({
-      method: "DELETE",
-      url: `/api/dashboard/${page}?remove=${ids.join(",")}`,
-    }).then(() => {
+
+    setExpanded({});
+
+    try {
+      await api({
+        method: "DELETE",
+        url: `/api/dashboard/${page}?remove=${ids.join(",")}`,
+      });
+
+      queryClient.invalidateQueries({ queryKey: [page, searchParams] });
       toaster("Successfully Deleted", "success");
       toggleAllRowsSelected(false);
-    });
+    } catch {
+      setData(previousData);
+      toaster("Deletion Failed. Please try again", "error");
+    }
   };
 
   const confirmDelete = () => {
@@ -101,7 +105,7 @@ const Toolbar = ({
     });
   };
 
-  const onClick = (value) => {
+  const onClick = async (value) => {
     if (rows.length === 0) {
       toaster("No items selected.", "error");
       return;
@@ -115,35 +119,35 @@ const Toolbar = ({
       return;
     }
 
-    api({
-      method: "PUT",
-      url: `/api/dashboard/${page}`,
-      body: {
-        objects: rows,
-        status: value,
-        attribute: "status",
-      },
-    })
-      .then(() => {
-        const ids = rows.map(({ uid }) => uid);
+    const ids = rows.map(({ uid }) => uid);
+    const previousData = data;
+    const keep = data.map((item) => {
+      if (ids.includes(item.uid)) {
+        return { ...item, status: value };
+      }
+      return item;
+    });
+    setData(keep);
 
-        setData(
-          data.map((a) => {
-            if (ids.includes(a.uid)) a.status = value;
-            return a;
-          }),
-        );
+    try {
+      await api({
+        method: "PUT",
+        url: `/api/dashboard/${page}`,
+        body: {
+          objects: rows,
+          status: value,
+          attribute: "status",
+        },
+      });
 
-        toggleAllRowsSelected(false);
-
-        toaster("Operation Completed", "success");
-      })
-      .catch(() => toaster("Operation Failed", "error"));
+      queryClient.invalidateQueries({ queryKey: [page, searchParams] });
+      toggleAllRowsSelected(false);
+      toaster("Operation Completed", "success");
+    } catch {
+      setData(previousData);
+      toaster("Operation Failed", "error");
+    }
   };
-
-  useEffect(() => {
-    handleReload();
-  }, [searchParams]);
 
   const value = filters.find(({ id }) => id === search.search)?.value || "";
 

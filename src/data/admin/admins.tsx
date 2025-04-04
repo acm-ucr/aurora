@@ -40,7 +40,10 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     searchable: true,
     cell: (props: CellContext<Admin, Admin["name"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -55,7 +58,10 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     searchable: true,
     cell: (props: CellContext<Admin, Admin["email"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -70,7 +76,10 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     searchable: true,
     cell: (props: CellContext<Admin, Admin["discord"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -85,7 +94,10 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     searchable: true,
     cell: (props: CellContext<Admin, Admin["shirt"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -100,7 +112,10 @@ export const COLUMNS: (ColumnDef<Admin, string> & {
     searchable: true,
     cell: (props: CellContext<Admin, Admin["gender"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -121,7 +136,10 @@ export const SUBCOLUMNS = [
     searchable: true,
     cell: (props: CellContext<Admin, Admin["grade"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -136,7 +154,10 @@ export const SUBCOLUMNS = [
     searchable: true,
     cell: (props: CellContext<Admin, Admin["major"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -151,7 +172,10 @@ export const SUBCOLUMNS = [
     searchable: true,
     cell: (props: CellContext<Admin, Admin["diet"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
@@ -166,7 +190,10 @@ export const SUBCOLUMNS = [
     searchable: true,
     cell: (props: CellContext<Admin, Admin["age"]>) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          props.row.getToggleSelectedHandler()(e);
+          props.row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
         {props.getValue()}
