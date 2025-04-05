@@ -5,18 +5,25 @@ import { Badge } from "@/components/ui/badge";
 
 export const generateSelect = <TData extends object>() => ({
   id: "select",
+  size: 50,
   header: ({ table }: { table: Table<TData> }) => (
     <Checkbox
       id="select-all"
       checked={table.getIsAllRowsSelected()}
-      onClick={table.getToggleAllRowsSelectedHandler()}
+      onClick={(e) => {
+        table.getToggleAllRowsSelectedHandler()(e);
+        table.getToggleAllRowsExpandedHandler()(e);
+      }}
     />
   ),
   cell: ({ row }: { row: Row<TData> }) => (
     <Checkbox
       id="select-one"
       checked={row.getIsSelected()}
-      onClick={row.getToggleSelectedHandler()}
+      onClick={(e) => {
+        row.getToggleSelectedHandler()(e);
+        row.getToggleExpandedHandler()();
+      }}
     />
   ),
 });
@@ -27,6 +34,10 @@ export const generateAffiliation = <TData extends Record<string, string>>(
   accessorKey: "affiliation",
   header: "Affiliation",
   cell: ({ getValue }: CellContext<TData, string>) => {
+    if (!getValue()) {
+      return <Badge>None</Badge>;
+    }
+
     return (
       <Badge type={getValue().toLowerCase() as keyof typeof COLORS}>
         {affiliations[getValue().toLowerCase()]}

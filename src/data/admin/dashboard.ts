@@ -6,6 +6,7 @@ interface attributes {
   volunteers: string[];
   interests: string[];
   participants: string[];
+  resumes: string[];
   sponsors: string[];
   panels: string[];
   feedback: string[];
@@ -98,6 +99,7 @@ export const ATTRIBUTES: attributes = {
     "discord",
     "team",
   ],
+  resumes: ["name", "email", "school", "grade", "resume", "status"],
   sponsors: [
     "name",
     "email",

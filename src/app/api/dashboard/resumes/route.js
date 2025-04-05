@@ -8,10 +8,9 @@ import {
   deleteDoc,
   getDoc,
   orderBy,
-  endBefore,
-  limitToLast,
   limit,
   getCountFromServer,
+  startAfter,
   query,
   where,
 } from "firebase/firestore";
@@ -19,10 +18,7 @@ import { authenticate } from "@/utils/auth";
 import { AUTH } from "@/data/admin/dashboard";
 
 export const GET = async (req) => {
-  const direction = req.nextUrl.searchParams.get("direction");
-  const index = req.nextUrl.searchParams.get("index");
   const size = req.nextUrl.searchParams.get("size");
-  const first = req.nextUrl.searchParams.get("first");
   const last = req.nextUrl.searchParams.get("last");
 
   const res = NextResponse;
@@ -34,44 +30,34 @@ export const GET = async (req) => {
       { status: auth },
     );
   }
+
   const output = [];
+
   try {
     let snapshot;
-
-    if (direction === "next" && last !== "undefined") {
+    if (last !== "undefined") {
       const lastDocument = await getDoc(doc(db, "resumes", last));
 
       snapshot = await getDocs(
         query(
           collection(db, "resumes"),
-          orderBy(`status`),
-          where(`status`, "in", [-1, 0, 1]),
+          orderBy("status"),
+          where("status", "in", [-1, 0, 1]),
           startAfter(lastDocument),
           limit(size),
-        ),
-      );
-    } else if (direction === "prev" && first !== "undefined") {
-      const firstDocument = await getDoc(doc(db, "resumes", first));
-
-      snapshot = await getDocs(
-        query(
-          collection(db, "resumes"),
-          orderBy(`status`),
-          where(`status`, "in", [-1, 0, 1]),
-          endBefore(firstDocument),
-          limitToLast(size),
         ),
       );
     } else {
       snapshot = await getDocs(
         query(
           collection(db, "resumes"),
-          orderBy(`status`),
-          where(`status`, "in", [-1, 0, 1]),
+          orderBy("status"),
+          where("status", "in", [-1, 0, 1]),
           limit(size),
         ),
       );
     }
+
     snapshot.forEach((doc) => {
       const { name, email, school, grade, resume, status } = doc.data();
       output.push({
@@ -86,21 +72,18 @@ export const GET = async (req) => {
     });
 
     const countFromServer = await getCountFromServer(
-      query(collection(db, "resumes"), where(`status`, "in", [-1, 0, 1])),
+      query(collection(db, "resumes"), where("status", "in", [-1, 0, 1])),
     );
 
     const total = countFromServer.data().count;
     const lastDoc = output.length > 0 ? output[output.length - 1].uid : "";
-    const firstDoc = output.length > 0 ? output[0].uid : "";
 
     return res.json(
       {
         message: "OK",
         items: output,
         total: total,
-        first: firstDoc,
         last: lastDoc,
-        page: parseInt(index) + 1,
       },
       { status: 200 },
     );
