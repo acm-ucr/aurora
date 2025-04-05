@@ -287,7 +287,7 @@ export const PUT = async (req, { params }) => {
 export const DELETE = async (req, { params }) => {
   const res = NextResponse;
   const { auth, message } = await authenticate(AUTH.DELETE);
-  const { objects } = await req.json();
+  const objects = await req.json();
 
   if (auth !== 200) {
     return res.json(
@@ -298,29 +298,29 @@ export const DELETE = async (req, { params }) => {
   try {
     if (types.has(params.type)) {
       await Promise.all(
-        objects.map(async (object) => {
-          const snapshot = await getDoc(doc(db, "users", object.uid));
+        objects.map(async ({ uid, shirt, diet, gender, age }) => {
+          const snapshot = await getDoc(doc(db, "users", uid));
           const status = snapshot.data().roles[params.type];
           await updateDoc(doc(db, "users", object.uid), {
             [`roles.${params.type}`]: deleteField(),
           });
           if (params.type === "participants") {
-            await deleteDoc(doc(db, "resumes", object.uid));
+            await deleteDoc(doc(db, "resumes", uid));
           }
           updateDoc(doc(db, "statistics", "shirt"), {
-            [`${params.type}.${status}.${object.shirt}`]: increment(-1),
+            [`${params.type}.${status}.${shirt}`]: increment(-1),
           });
 
           updateDoc(doc(db, "statistics", "diet"), {
-            [`${params.type}.${status}.${object.diet}`]: increment(-1),
+            [`${params.type}.${status}.${diet}`]: increment(-1),
           });
 
           updateDoc(doc(db, "statistics", "gender"), {
-            [`${params.type}.${status}.${object.gender}`]: increment(-1),
+            [`${params.type}.${status}.${gender}`]: increment(-1),
           });
 
           updateDoc(doc(db, "statistics", "age"), {
-            [`${params.type}.${status}.${object.age}`]: increment(-1),
+            [`${params.type}.${status}.${age}`]: increment(-1),
           });
         }),
       );

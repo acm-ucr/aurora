@@ -74,14 +74,17 @@ const Toolbar = ({
   const handleDelete = () => {
     const ids = rows.map(({ uid }) => uid);
     const keep = data.filter(({ uid }) => !ids.includes(uid));
-
     setData(keep);
     api({
       method: "DELETE",
       url: `/api/dashboard/${page}`,
-      body: {
-        objects: rows,
-      },
+      body: rows.map(({ uid, shirt, diet, gender, age }) => ({
+        uid,
+        shirt,
+        diet,
+        gender,
+        age,
+      })),
     }).then(() => {
       toaster("Successfully Deleted", "success");
       toggleAllRowsSelected(false);
