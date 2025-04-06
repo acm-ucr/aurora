@@ -2,10 +2,19 @@ import { LABELS } from "@/data/admin/calendar";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCallback, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
+import { NavigateAction, View } from "react-big-calendar";
+import { COLORS } from "@/data/tags";
 
-const CustomToolbar = ({ onView, onNavigate, date, setTag }) => {
+interface props {
+  onView: (view: View) => void;
+  onNavigate: (navigate: NavigateAction) => void;
+  date: Date;
+  setTag: (tag: keyof typeof COLORS) => void;
+}
+
+const Toolbar = ({ onView, onNavigate, date, setTag }: props) => {
   const handleShortcuts = useCallback(
-    (e) => {
+    (e: KeyboardEvent) => {
       switch (e.key) {
         case "ArrowRight":
           onNavigate("NEXT");
@@ -59,8 +68,8 @@ const CustomToolbar = ({ onView, onNavigate, date, setTag }) => {
             .map(([key], index) => (
               <Badge
                 key={index}
-                type={key}
-                onClick={() => setTag(key)}
+                type={key as keyof typeof COLORS}
+                onClick={() => setTag(key as keyof typeof COLORS)}
                 className="capitalize"
               >
                 {key}
@@ -74,8 +83,8 @@ const CustomToolbar = ({ onView, onNavigate, date, setTag }) => {
             .map(([key], index) => (
               <Badge
                 key={index}
-                type={key}
-                onClick={() => setTag(key)}
+                type={key as keyof typeof COLORS}
+                onClick={() => setTag(key as keyof typeof COLORS)}
                 className="capitalize"
               >
                 {key}
@@ -87,4 +96,4 @@ const CustomToolbar = ({ onView, onNavigate, date, setTag }) => {
   );
 };
 
-export default CustomToolbar;
+export default Toolbar;

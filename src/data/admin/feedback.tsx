@@ -1,6 +1,6 @@
 import { CellContext, ColumnDef } from "@tanstack/react-table";
 import { generateSelect, generateStatus } from "./columns";
-import { Tags } from "@/types/dashboard";
+import { Column, Tags } from "@/types/dashboard";
 
 export const STATUSES = {
   1: "read",
@@ -25,9 +25,7 @@ type Feedback = {
   helpful: string;
 };
 
-export const COLUMNS: (ColumnDef<Feedback, string> & {
-  searchable?: boolean;
-})[] = [
+export const COLUMNS: (ColumnDef<Feedback> & Column)[] = [
   generateSelect(),
   {
     accessorKey: "rating",

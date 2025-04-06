@@ -2,7 +2,14 @@ import Acceptance from "./acceptance";
 import Confirmation from "./confirmation";
 import Rejection from "./rejection";
 
-const Email = ({ id, name, position, preview }) => {
+interface props {
+  id: "confirmation" | "acceptance" | "rejection";
+  name: string;
+  position: string;
+  preview: string;
+}
+
+const Email = ({ id, name, position, preview }: props) => {
   if (id === "confirmation")
     return <Confirmation name={name} position={position} preview={preview} />;
   if (id === "acceptance")

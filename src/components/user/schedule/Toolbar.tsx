@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-const Toolbar = ({ onFilterChange }) => {
+interface props {
+  onFilterChange: (value: "all" | "hackweek" | "hackathon") => void;
+}
+
+const Toolbar = ({ onFilterChange }: props) => {
   const [selected, setSelected] = useState("all");
 
   return (

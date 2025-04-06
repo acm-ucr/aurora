@@ -6,8 +6,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { GoogleEvent } from "@/types/calendar";
 
-const Event = ({ event }) => {
+interface props {
+  event: GoogleEvent;
+}
+
+const Event = ({ event }: props) => {
+  console.log(event);
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -20,18 +27,20 @@ const Event = ({ event }) => {
           </div>
           <div
             className={`${
-              event.start < new Date()
-                ? event.end > new Date()
+              new Date(event.start.dateTime) < new Date()
+                ? new Date(event.end.dateTime) > new Date()
                   ? "animate-bounce bg-white/30"
                   : "opacity-70"
                 : "bg-white/20"
             } flex w-full py-0`}
           >
             <div className={`text-center text-xs md:text-sm`}>
-              {event.start.getHours() === 12 ? 12 : event.start.getHours() % 12}
-              :{event.start.getMinutes() < 10 && "0"}
-              {event.start.getMinutes()}{" "}
-              {event.start.getHours() >= 12 ? "PM " : "AM "}
+              {new Date(event.start.dateTime).getHours() === 12
+                ? 12
+                : new Date(event.start.dateTime).getHours() % 12}
+              :{new Date(event.start.dateTime).getMinutes() < 10 && "0"}
+              {new Date(event.start.dateTime).getMinutes()}{" "}
+              {new Date(event.start.dateTime).getHours() >= 12 ? "PM " : "AM "}
             </div>
           </div>
         </div>
@@ -42,12 +51,12 @@ const Event = ({ event }) => {
             {event.summary} <br />
             <p className="text-sm">
               {event.location} from{" "}
-              {new Date(event.start).toLocaleTimeString("en-US", {
+              {new Date(event.start.dateTime).toLocaleTimeString("en-US", {
                 hour: "2-digit",
                 minute: "2-digit",
               })}{" "}
               to{" "}
-              {new Date(event.end.dateTime).toLocaleTimeString("en-US", {
+              {new Date(event.start.dateTime).toLocaleTimeString("en-US", {
                 hour: "2-digit",
                 minute: "2-digit",
               })}

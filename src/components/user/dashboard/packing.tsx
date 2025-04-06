@@ -13,11 +13,9 @@ const list: string[] = [
 const Packing = (): React.ReactNode => {
   return (
     <div className="rounded-lg bg-white p-3 shadow-xl">
-      <div className="p-2 font-bold" data-cy="packing-title">
-        🎒Packing List
-      </div>
+      <div className="p-2 font-bold">🎒Packing List</div>
 
-      <ul className="mb-2 list-disc pl-9 font-light" data-cy="packing-items">
+      <ul className="mb-2 list-disc pl-9 font-light">
         {list.map((list, index) => (
           <li key={index}>{list}</li>
         ))}

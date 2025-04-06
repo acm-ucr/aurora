@@ -5,7 +5,13 @@ import { headers } from "next/headers";
 import { getSession } from "@/utils/auth";
 import SignIn from "@/utils/signin";
 
-const ProtectedPage = async ({ children, restrictions, title }) => {
+interface props {
+  children: React.ReactNode;
+  restrictions: Record<string, number[]>;
+  title: string;
+}
+
+const ProtectedPage = async ({ children, restrictions, title }: props) => {
   const session = await getSession();
   const header = headers();
   const pathName = header.get("x-url") || "";

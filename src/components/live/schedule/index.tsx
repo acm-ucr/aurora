@@ -8,15 +8,6 @@ const Schedule = async () => {
     method: "GET",
   });
 
-  items.forEach((event) => {
-    event.start = new Date(event.start.dateTime);
-    event.end = new Date(event.end.dateTime);
-    event.day = event.start.toLocaleString("en-US", {
-      timeZone: "America/Los_Angeles",
-      weekday: "long",
-    });
-  });
-
   const totalDays = [
     "Monday",
     "Tuesday",
@@ -28,10 +19,10 @@ const Schedule = async () => {
   ];
 
   return (
-    <div>
-      {" "}
-      <Title text="Schedule" /> <Events events={items} totalDays={totalDays} />
-    </div>
+    <>
+      <Title>Schedule</Title>
+      <Events events={items} totalDays={totalDays} />
+    </>
   );
 };
 

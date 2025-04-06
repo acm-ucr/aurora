@@ -52,12 +52,8 @@ const Upload = ({ text, setObjects, objects, size, types }) => {
             <div
               key={index}
               className="mb-1 mr-1 flex !max-w-fit items-center bg-hackathon-gray-100 p-0 px-2 py-1"
-              data-cy="upload-list"
             >
-              <p
-                className="m-0 whitespace-nowrap text-sm font-semibold text-gray-500"
-                data-cy={file.name}
-              >
+              <p className="m-0 whitespace-nowrap text-sm font-semibold text-gray-500">
                 {displayFile(file)}
               </p>
               <X
@@ -68,7 +64,6 @@ const Upload = ({ text, setObjects, objects, size, types }) => {
                     files: objects.files.filter((file, idx) => index !== idx),
                   });
                 }}
-                data-cy={`${file.name}-delete`}
               />
             </div>
           ))}
@@ -76,7 +71,6 @@ const Upload = ({ text, setObjects, objects, size, types }) => {
         <label
           htmlFor="dropzone-file"
           className="w-git m-0 flex cursor-pointer items-center justify-center rounded border-2 border-gray-300 bg-gray-50 px-2 py-1 hover:bg-gray-100"
-          data-cy="upload-input"
         >
           <Paperclip className="mr-1 text-xl text-gray-500" />
           <p className="m-0 text-sm font-semibold text-gray-500">attach</p>

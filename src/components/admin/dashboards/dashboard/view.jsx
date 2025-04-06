@@ -32,7 +32,6 @@ const View = ({ title, src }) => {
             className="h-full w-full object-cover"
             src={modal.src}
             alt="Photo of the Judge"
-            data-cy="modal-image"
           />
         </DialogContent>
       </Dialog>

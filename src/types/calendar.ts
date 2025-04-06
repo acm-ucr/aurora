@@ -1,19 +1,27 @@
-export type Event = {
-  assignee?: string;
-  category?: string;
-  color?: string;
+import { EventTypes } from "@/data/admin/calendar";
+
+export type GoogleEvent = {
   description: string;
   end: {
     dateTime: string;
     timeZone: string;
   };
-  hidden: boolean;
-  id: string;
   start: {
     dateTime: string;
     timeZone: string;
   };
-  startDate?: Date;
-  endDate?: Date;
   summary: string;
+  location: string;
+};
+
+export type AuroraEvent = {
+  summary: string;
+  location: string;
+  description: string;
+  category: EventTypes;
+  startDate: Date;
+  endDate: Date;
+  hidden: boolean;
+  assignee: string;
+  color: string;
 };

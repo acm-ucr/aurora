@@ -1,28 +1,40 @@
 "use client";
 import { useState } from "react";
-import Toolbar from "./Toolbar";
-import Event from "./Event";
+import Toolbar from "./Toolbar.jsx";
+import Event from "./Event.jsx";
 import { Label } from "@/components/ui/label";
 import data from "@/data/config";
+import { GoogleEvent } from "@/types/calendar.js";
 
 const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
 const date = new Date(data.date);
 
-const Schedule = ({ eventList }) => {
-  const [events, setEvents] = useState(eventList);
+interface props {
+  eventList: GoogleEvent[];
+}
+
+const Schedule = ({ eventList }: props) => {
   const [filteredEvents, setFilteredEvents] = useState(eventList);
 
-  const filterChange = (filterType) => {
+  const filterChange = (filterType: "all" | "hackweek" | "hackathon") => {
     if (filterType === "hackweek") {
       setFilteredEvents(
-        events.filter((event) => event.day >= 1 && event.day <= 5),
+        eventList.filter(
+          (event) =>
+            new Date(event.start.dateTime).getDay() >= 1 &&
+            new Date(event.start.dateTime).getDay() <= 5,
+        ),
       );
     } else if (filterType === "hackathon") {
       setFilteredEvents(
-        events.filter((event) => event.day == 6 || event.day == 0),
+        eventList.filter(
+          (event) =>
+            new Date(event.start.dateTime).getDay() == 6 ||
+            new Date(event.start.dateTime).getDay() == 0,
+        ),
       );
     } else {
-      setFilteredEvents(events);
+      setFilteredEvents(eventList);
     }
   };
 
@@ -60,12 +72,14 @@ const Schedule = ({ eventList }) => {
           >
             {filteredEvents
               .filter((event) => {
-                if (day === "SUN" && event.day === 0) return true;
-                if (day === "SAT" && event.day === 6) return true;
-                return event.day === dayIndex + 1;
+                const GoogleDay = new Date(event.start.dateTime).getDay();
+
+                if (day === "SUN" && GoogleDay === 0) return true;
+                if (day === "SAT" && GoogleDay === 6) return true;
+                return GoogleDay === dayIndex + 1;
               })
-              .map((events, eventIndex) => (
-                <Event event={events} setEvents={setEvents} key={eventIndex} />
+              .map((eventList, eventIndex) => (
+                <Event event={eventList} key={eventIndex} />
               ))}
           </div>
         ))}

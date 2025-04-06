@@ -13,7 +13,13 @@ import {
   Tailwind,
 } from "@react-email/components";
 
-const Template = ({ children, name, preview }) => {
+interface props {
+  children: React.ReactNode;
+  name: string;
+  preview: string;
+}
+
+const Template = ({ children, name, preview }: props) => {
   return (
     <Html>
       <Head />

@@ -9,16 +9,9 @@ const BulletList = ({ text, list }: props) => {
       <div className="flex items-center justify-between text-xl font-bold">
         {text}
       </div>
-      <ul
-        data-cy="bulletpoint-list-items"
-        className="mt-2 flex flex-col items-center justify-center"
-      >
+      <ul className="mt-2 flex flex-col items-center justify-center">
         {list.map((item, index) => (
-          <li
-            data-cy="bulletpoint-list-item"
-            key={index}
-            className="w-10/12 list-disc"
-          >
+          <li key={index} className="w-10/12 list-disc">
             {item}
           </li>
         ))}

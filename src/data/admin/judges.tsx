@@ -6,8 +6,8 @@ import JSZip from "jszip";
 import { save } from "@/utils/download";
 import { Download } from "lucide-react";
 import data from "../config";
-import { Tags } from "@/types/dashboard";
-import { ColumnDef, CellContext } from "@tanstack/react-table";
+import { Column, Tags } from "@/types/dashboard";
+import { ColumnDef } from "@tanstack/react-table";
 
 type Judge = {
   name: string;
@@ -31,9 +31,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-export const COLUMNS: (ColumnDef<Judge, string> & {
-  searchable?: boolean;
-})[] = [
+export const COLUMNS: (ColumnDef<Judge> & Column)[] = [
   generateSelect(),
   {
     accessorKey: "name",
@@ -41,12 +39,12 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Judge, Judge["name"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("name")}
       </div>
     ),
   },
@@ -56,12 +54,12 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Judge, Judge["email"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("email")}
       </div>
     ),
   },
@@ -71,12 +69,12 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Judge, Judge["shirt"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("shirt")}
       </div>
     ),
   },
@@ -87,12 +85,12 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Judge, Judge["title"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("title")}
       </div>
     ),
   },
@@ -100,6 +98,7 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
   generateStatus(STATUSES),
   {
     accessorKey: "photo",
+    searchable: false,
     header: ({ table }) => {
       const downloadZip = () => {
         const { rows } = table.getRowModel();
@@ -135,8 +134,8 @@ export const COLUMNS: (ColumnDef<Judge, string> & {
       );
     },
     enableSorting: false,
-    cell: (props: CellContext<Judge, Judge["photo"]>) => (
-      <View src={props.getValue()} title={props.row.getValue("name")} />
+    cell: ({ row }) => (
+      <View src={row.getValue("photo")} title={row.getValue("name")} />
     ),
   },
 ];

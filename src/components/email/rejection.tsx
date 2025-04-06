@@ -2,7 +2,13 @@ import data from "@/data/config";
 import Template from "./template";
 import { Text } from "@react-email/components";
 
-const Rejection = ({ name, position, preview }) => {
+interface props {
+  name: string;
+  position: string;
+  preview: string;
+}
+
+const Rejection = ({ name, position, preview }: props) => {
   return (
     <Template name={name} preview={preview}>
       <Text>

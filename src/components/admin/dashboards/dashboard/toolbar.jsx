@@ -153,10 +153,7 @@ const Toolbar = ({
     );
 
   return (
-    <div
-      className="my-2 flex w-full flex-col items-center gap-3 lg:flex-row"
-      data-cy="toolbar"
-    >
+    <div className="my-2 flex w-full flex-col items-center gap-3 lg:flex-row">
       <div className="flex gap-3">
         {tags.map((tag, index) => (
           <Button
@@ -202,7 +199,6 @@ const Toolbar = ({
           className="text-hackathon-gray-300 duration-150 hover:cursor-pointer hover:opacity-70"
         />
         <Trash2
-          data-cy="delete"
           onClick={confirmDelete}
           size={30}
           className="mx-2 text-hackathon-gray-300 duration-150 hover:cursor-pointer hover:opacity-70"

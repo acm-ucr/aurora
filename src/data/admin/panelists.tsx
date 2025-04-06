@@ -2,6 +2,8 @@ import View from "@/components/admin/dashboards/dashboard/view";
 import { generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
 import { Badge } from "@/components/ui/badge";
+import { ColumnDef } from "@tanstack/react-table";
+import { Column } from "@/types/dashboard";
 
 export const TAGS = [
   {
@@ -14,7 +16,18 @@ export const TAGS = [
   },
 ];
 
-export const COLUMNS = [
+type Panelist = {
+  name: string;
+  email: string;
+  discord: string;
+  availability: string[];
+  response: string;
+  shirt: string;
+  gender: string;
+  grade: string;
+};
+
+export const COLUMNS: (ColumnDef<Panelist> & Column)[] = [
   generateSelect(),
   {
     accessorKey: "name",
@@ -22,12 +35,12 @@ export const COLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: ({ getValue }) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {getValue()}
+        {row.getValue("name")}
       </div>
     ),
   },
@@ -37,12 +50,12 @@ export const COLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: ({ getValue }) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {getValue()}
+        <p>{row.getValue("email")}</p>
       </div>
     ),
   },
@@ -52,25 +65,27 @@ export const COLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: ({ getValue }) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {getValue()}
+        {row.getValue("title")}
       </div>
     ),
   },
   {
     accessorKey: "panelist",
     header: "Panelist",
-    cell: ({ getValue }) => <Badge>{getValue()}</Badge>,
+    cell: ({ row }) => <Badge>{row.getValue("panelist")}</Badge>,
+    searchable: false,
   },
   generateStatus(STATUSES),
   {
     accessorKey: "photo",
     header: "Photo",
     enableSorting: false,
-    cell: ({ getValue }) => <View src={getValue()} title="Photo" />,
+    searchable: false,
+    cell: ({ row }) => <View src={row.getValue("photo")} title="Photo" />,
   },
 ];

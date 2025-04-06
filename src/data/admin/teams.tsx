@@ -2,19 +2,9 @@ import Link from "next/link";
 import { generateSelect, generateStatus } from "./columns";
 import { ICONS } from "./icons";
 import { STATUSES } from "@/data/statuses";
-import { ColumnDef, CellContext } from "@tanstack/react-table";
-import { Tags } from "@/types/dashboard";
-
-type Team = {
-  name: string;
-  teamid: string;
-  members: string[];
-  discords: string[];
-  links: {
-    name: string;
-    link: string;
-  }[];
-};
+import { ColumnDef } from "@tanstack/react-table";
+import { Column, Tags } from "@/types/dashboard";
+import { Team } from "@/types/users";
 
 export const TAGS: Tags[] = [
   {
@@ -27,9 +17,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-export const COLUMNS: (ColumnDef<Team, string | string[]> & {
-  searchable?: boolean;
-})[] = [
+export const COLUMNS: (ColumnDef<Team> & Column)[] = [
   generateSelect(),
   {
     accessorKey: "name",
@@ -37,12 +25,12 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Team, Team["name"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("name")}
       </div>
     ),
   },
@@ -52,12 +40,12 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Team, Team["teamid"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("teamid")}
       </div>
     ),
   },
@@ -68,12 +56,12 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     filterFn: "includesString",
     enableColumnFilter: true,
     searchable: true,
-    cell: (props: CellContext<Team, Team["members"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue().map((data, index) => (
+        {(row.getValue("members") as string[]).map((data, index) => (
           <p key={index}>{data}</p>
         ))}
       </div>
@@ -86,12 +74,12 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Team, Team["discords"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue().map((data, index) => (
+        {(row.getValue("discords") as string[]).map((data, index) => (
           <p key={index}>{data}</p>
         ))}
       </div>
@@ -101,12 +89,18 @@ export const COLUMNS: (ColumnDef<Team, string | string[]> & {
     accessorKey: "links",
     header: "Links",
     enableSorting: false,
-    cell: (props: CellContext<Team, Team["links"]>) => (
+    searchable: false,
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue().map(({ name, link }, index) => (
+        {(
+          row.getValue("links") as {
+            name: string;
+            link: string;
+          }[]
+        ).map(({ name, link }, index) => (
           <Link key={index} href={link} className="mx-2 inline-flex">
             {ICONS[name]}
           </Link>

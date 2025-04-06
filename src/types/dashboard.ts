@@ -10,3 +10,7 @@ export type Tags = {
   text: string;
   value: -1 | 0 | 1;
 };
+
+export type Column = {
+  searchable: boolean;
+};

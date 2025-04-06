@@ -1,5 +1,4 @@
-type countries = string[];
-export const COUNTRIES: countries = [
+export const COUNTRIES: string[] = [
   "Afghanistan",
   "Albania",
   "Algeria",

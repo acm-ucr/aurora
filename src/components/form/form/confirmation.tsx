@@ -6,7 +6,7 @@ const Confirmation = () => {
   return (
     <>
       <Confetti height={height} width={width} />
-      <p data-cy="confirmation-message">
+      <p>
         Thank you for filling out the application form. Please watch out for an
         email with an application status update.
       </p>

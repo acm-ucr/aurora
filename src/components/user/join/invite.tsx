@@ -22,8 +22,14 @@ import {
 } from "@/components/ui/alert-dialog";
 import Link from "next/link";
 import { useState } from "react";
+import { Team } from "@/types/users";
 
-const Invite = ({ team, id }) => {
+interface props {
+  team: Team;
+  id: string;
+}
+
+const Invite = ({ team, id }: props) => {
   const [alert, setAlert] = useState(false);
 
   const handleJoin = async () => {

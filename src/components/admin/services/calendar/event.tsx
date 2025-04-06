@@ -11,7 +11,7 @@ interface EventProps {
 const Event: React.FC<EventProps> = ({ event, view }) => {
   return (
     <div className="p-0.5">
-      <p className="inline text-xs" data-cy="event">
+      <p className="inline text-xs">
         {view === "month" && (
           <>
             {new Date(event.startDate).toLocaleTimeString(navigator.language, {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { db } from "../../../utils/firebase";
+import { db } from "@/utils/firebase";
 import {
   doc,
   getDoc,

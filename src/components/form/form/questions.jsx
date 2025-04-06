@@ -155,7 +155,6 @@ const Questions = ({
                 </Label>
               </div>
               <Textarea
-                data-cy={`${field.title}-textarea`}
                 className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-none"
                 maxLength={500}
                 value={object[field.name]}

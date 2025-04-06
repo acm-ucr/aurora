@@ -79,6 +79,7 @@ export const COLORS = {
   food: mappings["purple"],
   social: mappings["teal"],
   activities: mappings["pink"],
+  all: mappings["gray"],
   bronze: mappings["grayblue"],
   silver: mappings["lightgreen"],
   gold: mappings["purple"],

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import {
   Calendar as ReactBigCalendar,
+  View,
   momentLocalizer,
 } from "react-big-calendar";
 import Toolbar from "./toolbar";
@@ -11,21 +12,23 @@ import Modal from "./modal";
 import { getEvents } from "./actions";
 import { useQuery } from "@tanstack/react-query";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { AuroraEvent } from "@/types/calendar";
+import { COLORS } from "@/data/tags";
 
 const Calendar = () => {
   const mLocalizer = momentLocalizer(moment);
 
-  const [event, setEvent] = useState(null);
-  const [view, setView] = useState("month");
+  const [event, setEvent] = useState<AuroraEvent | null>(null);
+  const [view, setView] = useState<View>("month");
   const [date, setDate] = useState(new Date());
-  const [tag, setTag] = useState("all");
+  const [tag, setTag] = useState<keyof typeof COLORS>("all");
 
   const { data: events } = useQuery({
     queryKey: ["/admin/calendar"],
     queryFn: async () => getEvents(),
   });
 
-  const handleShortcuts = (e) => {
+  const handleShortcuts = (e: KeyboardEvent) => {
     switch (e.key) {
       case "m":
         setView("month");
@@ -57,30 +60,31 @@ const Calendar = () => {
         events={
           tag === "all"
             ? events
-            : events.filter((event) => event.category === tag)
+            : events.filter((event: AuroraEvent) => event.category === tag)
         }
         localizer={mLocalizer}
         defaultView="month"
         views={["month", "week"]}
         formats={{
-          eventTimeRangeFormat: ({ start }) =>
+          eventTimeRangeFormat: ({ start }: { start: Date }) =>
             mLocalizer.format(start, "hh:mm A\n"),
         }}
-        onNavigate={(newDate) => setDate(newDate)}
-        onView={(newView) => setView(newView)}
+        onNavigate={(newDate: Date) => setDate(newDate)}
+        onView={(newView: View) => setView(newView)}
         components={{
-          event: ({ event }) => <Event event={event} view={view} />,
-          toolbar: ({ onView, onNavigate, date, view }) => (
+          event: ({ event }: { event: AuroraEvent }) => (
+            <Event event={event} view={view} />
+          ),
+          toolbar: ({ onView, onNavigate, date }) => (
             <Toolbar
               onView={onView}
               onNavigate={onNavigate}
               date={date}
-              view={view}
               setTag={setTag}
             />
           ),
         }}
-        eventPropGetter={(event) => {
+        eventPropGetter={(event: AuroraEvent) => {
           return {
             style: {
               border: "0px",
@@ -88,10 +92,9 @@ const Calendar = () => {
             className: event.color,
           };
         }}
-        dayPropGetter={(event) => {
+        dayPropGetter={(event: Date) => {
           const bg =
-            new Date(event).toLocaleDateString() ==
-            new Date().toLocaleDateString()
+            event.toLocaleDateString() == new Date().toLocaleDateString()
               ? "!bg-hackathon-green-100"
               : "!bg-white";
           return {
@@ -102,7 +105,7 @@ const Calendar = () => {
             },
           };
         }}
-        onSelectEvent={(event) => setEvent(event)}
+        onSelectEvent={(event: AuroraEvent) => setEvent(event)}
         onDrillDown={() => setView("week")}
       />
     </>

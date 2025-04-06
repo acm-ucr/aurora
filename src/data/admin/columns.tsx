@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 
 export const generateSelect = <TData extends object>() => ({
   id: "select",
+  searchable: false,
   header: ({ table }: { table: Table<TData> }) => (
     <Checkbox
       id="select-all"
@@ -26,6 +27,7 @@ export const generateAffiliation = <TData extends Record<string, string>>(
 ) => ({
   accessorKey: "affiliation",
   header: "Affiliation",
+  searchable: false,
   cell: ({ getValue }: CellContext<TData, string>) => {
     return (
       <Badge type={getValue().toLowerCase() as keyof typeof COLORS}>
@@ -42,14 +44,15 @@ export const generateStatus = <TData extends object>(
     accessorKey: "status",
     header: "Status",
     enableColumnFilter: true,
+    searchable: false,
     filterFn: (row: Row<TData>, col: string, filter: string[]) => {
       const status = row.getValue(col) as string;
       return filter.includes(status);
     },
 
-    cell: ({ getValue }: CellContext<TData, string>) => (
-      <Badge type={getValue() as keyof typeof COLORS}>
-        {statuses[getValue()]}
+    cell: ({ row }: CellContext<TData, string>) => (
+      <Badge type={row.getValue("status") as keyof typeof COLORS}>
+        {statuses[row.getValue("status") as keyof typeof statuses]}
       </Badge>
     ),
   };
@@ -60,6 +63,7 @@ export const generateTiers = <TData extends Record<string, string>>(
 ) => ({
   accessorKey: "tier",
   header: "Tier",
+  searchable: false,
   cell: ({ getValue }: CellContext<TData, string>) => (
     <Badge>{tiers[getValue().toLowerCase()]}</Badge>
   ),

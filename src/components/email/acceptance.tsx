@@ -1,8 +1,14 @@
 import data from "@/data/config";
-import Template from "./template";
+import Template from "./template.jsx";
 import { Button, Section, Text } from "@react-email/components";
 
-const Acceptance = ({ name, position, preview }) => {
+interface props {
+  name: string;
+  position: string;
+  preview: string;
+}
+
+const Acceptance = ({ name, position, preview }: props) => {
   return (
     <Template name={name} preview={preview}>
       <Text>
