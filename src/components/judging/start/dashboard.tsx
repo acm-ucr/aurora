@@ -19,7 +19,7 @@ const Dashboard = () => {
       >
         <AccordionItem value="item-1" className="w-full">
           <div className="text-md flex w-full flex-row items-center justify-between px-2">
-            <AccordionTrigger>ROUND 1 - TEAM 1</AccordionTrigger>
+            <AccordionTrigger hidden>ROUND 1 - TEAM 1</AccordionTrigger>
             <Link
               href="/judge/start/1"
               className="text-md flex flex-row items-center justify-between gap-2 rounded-md bg-hackathon-tags-gray-bg px-2 py-1 text-hackathon-tags-gray-text"
