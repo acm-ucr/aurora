@@ -86,6 +86,8 @@ export const COLUMNS: (ColumnDef<Panelist> & Column)[] = [
     header: "Photo",
     enableSorting: false,
     searchable: false,
-    cell: ({ row }) => <View src={row.getValue("photo")} title="Photo" />,
+    cell: ({ row }) => (
+      <View src={row.getValue("photo")} title="Photo" type="photo" />
+    ),
   },
 ];
