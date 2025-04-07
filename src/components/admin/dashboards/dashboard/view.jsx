@@ -17,6 +17,21 @@ const View = ({ title, src, type }) => {
     visible: false,
   });
 
+  const openPDF = () => {
+    const byteCharacters = atob(src.split(",")[1]);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "application/pdf" });
+
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, "_blank");
+  };
+
   return (
     <div className="flex w-full items-center justify-between">
       <Dialog
@@ -40,7 +55,9 @@ const View = ({ title, src, type }) => {
 
       <Badge
         className="text-black hover:cursor-pointer"
-        onClick={() => setModal({ src, title, visible: true })}
+        onClick={() =>
+          type === "photo" ? setModal({ src, title, visible: true }) : openPDF()
+        }
       >
         view
       </Badge>
