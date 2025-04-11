@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Dashboard from "@/components/judging/start/dashboard";
 
 const Page = () => {
   return (
-    <div>
-      <Link href="/judge/start/1">TEAM 1</Link>
+    <div className="w-full p-2">
+      <Dashboard />
     </div>
   );
 };
