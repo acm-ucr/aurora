@@ -1,10 +1,11 @@
 import Dashboard from "@/components/judging/start/dashboard";
+import ProtectedPage from "@/components/protected";
 
 const Page = () => {
   return (
-    <div className="w-full p-2">
+    <ProtectedPage restrictions={{ judges: [1] }} title="Judge | Start">
       <Dashboard />
-    </div>
+    </ProtectedPage>
   );
 };
 

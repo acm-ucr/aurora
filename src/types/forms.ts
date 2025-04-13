@@ -44,6 +44,12 @@ export type CheckboxInput = Input & {
   field: string;
   options: string[];
 };
+export type SliderInput = Input & {
+  input: "slider";
+  title: string;
+  field: string;
+  question: string;
+};
 
 export type TextareaInput = Input & {
   input: "textarea";
