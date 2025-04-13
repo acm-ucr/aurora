@@ -24,6 +24,7 @@ export const ROLES: Record<code, roles> = {
 };
 
 type sizesShort = "XS" | "S" | "M" | "L" | "XL" | "XXL";
+
 type sizesLong =
   | "Extra Small"
   | "Small"

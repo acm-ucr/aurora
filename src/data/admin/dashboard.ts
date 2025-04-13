@@ -1,32 +1,18 @@
-interface attributes {
-  admins: string[];
-  committees: string[];
-  judges: string[];
-  mentors: string[];
-  volunteers: string[];
-  interests: string[];
-  participants: string[];
-  sponsors: string[];
-  panels: string[];
-  feedback: string[];
-  leads: string[];
-}
+type keys =
+  | "admins"
+  | "committees"
+  | "judges"
+  | "mentors"
+  | "volunteers"
+  | "interests"
+  | "participants"
+  | "resumes"
+  | "sponsors"
+  | "panels"
+  | "feedback"
+  | "leads";
 
-interface auth {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-  POST: {};
-  GET: {
-    admins: number[];
-  };
-  PUT: {
-    admins: number[];
-  };
-  DELETE: {
-    admins: number[];
-  };
-}
-
-export const ATTRIBUTES: attributes = {
+export const ATTRIBUTES: Record<keys, string[]> = {
   admins: [
     "name",
     "email",
@@ -92,13 +78,13 @@ export const ATTRIBUTES: attributes = {
     "gender",
     "shirt",
     "diet",
-    "resume",
     "name",
     "email",
     "roles",
     "discord",
     "team",
   ],
+  resumes: ["name", "email", "school", "grade", "resume", "status"],
   sponsors: [
     "name",
     "email",
@@ -143,6 +129,20 @@ export const ATTRIBUTES: attributes = {
     "diet",
   ],
 };
+
+interface auth {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  POST: {};
+  GET: {
+    admins: number[];
+  };
+  PUT: {
+    admins: number[];
+  };
+  DELETE: {
+    admins: number[];
+  };
+}
 
 export const AUTH: auth = {
   POST: {},

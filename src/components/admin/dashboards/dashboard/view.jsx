@@ -10,12 +10,27 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-const View = ({ title, src }) => {
+const View = ({ title, src, type }) => {
   const [modal, setModal] = useState({
     title: "",
     src: "",
     visible: false,
   });
+
+  const openPDF = () => {
+    const byteCharacters = atob(src.split(",")[1]);
+    const byteNumbers = new Array(byteCharacters.length);
+
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+
+    const byteArray = new Uint8Array(byteNumbers);
+    const blob = new Blob([byteArray], { type: "application/pdf" });
+
+    const blobUrl = URL.createObjectURL(blob);
+    window.open(blobUrl, "_blank");
+  };
 
   return (
     <div className="flex w-full items-center justify-between">
@@ -31,22 +46,30 @@ const View = ({ title, src }) => {
             fill={true}
             className="h-full w-full object-cover"
             src={modal.src}
-            alt="Photo of the Judge"
-            data-cy="modal-image"
+            alt={
+              type === "photo" ? "Photo of the Judge" : "Resume of Participant"
+            }
           />
         </DialogContent>
       </Dialog>
 
       <Badge
         className="text-black hover:cursor-pointer"
-        onClick={() => setModal({ src, title, visible: true })}
+        onClick={() =>
+          type === "photo" ? setModal({ src, title, visible: true }) : openPDF()
+        }
       >
         view
       </Badge>
 
       <Download
         className={`h-full hover:cursor-pointer hover:opacity-70`}
-        onClick={() => download(src, `${title.replace(" ", "_")}.png`)}
+        onClick={() =>
+          download(
+            src,
+            `${title.replace(" ", "_")}.${type === "photo" ? "png" : "pdf"}`,
+          )
+        }
       />
     </div>
   );

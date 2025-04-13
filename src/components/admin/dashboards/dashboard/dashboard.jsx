@@ -1,8 +1,7 @@
-"use client";
 import {
   getCoreRowModel,
+  getExpandedRowModel,
   getFilteredRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -11,6 +10,12 @@ import Toolbar from "./toolbar";
 import Filters from "./filters";
 import Table from "./table";
 import { Label } from "@/components/ui/label";
+
+import { api } from "@/utils/api";
+
+import { useEffect } from "react";
+
+import { useInfiniteQuery, keepPreviousData } from "@tanstack/react-query";
 
 const Dashboard = ({
   title,
@@ -23,15 +28,51 @@ const Dashboard = ({
   const [data, setData] = useState([]);
   const [filters, setFilters] = useState([{ id: "status", value: [-1, 0, 1] }]);
   const [selected, setSelected] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [expanded, setExpanded] = useState({});
   const [meta, setMeta] = useState({
     total: 0,
-    first: "",
     last: "",
   });
 
   const page = title.toLowerCase();
   const empty = `No ${title} Available`;
+
+  const fetchData = async ({ pageParam }) => {
+    const { size = 20 } = searchParams;
+
+    const res = await api({
+      url: `/api/dashboard/${page}?size=${size}&last=${pageParam}`,
+      method: "GET",
+    });
+
+    setMeta({ total: res.total, last: res.last });
+
+    return { items: res.items, last: res.last, total: res.total };
+  };
+
+  const {
+    data: queryData,
+    fetchNextPage,
+    refetch,
+    isFetching,
+    isRefetching,
+    isLoading,
+    isFetchingNextPage,
+  } = useInfiniteQuery({
+    queryKey: [page, searchParams],
+    queryFn: fetchData,
+    initialPageParam: undefined,
+    getNextPageParam: (lastPage) => lastPage.last,
+    placeholderData: keepPreviousData,
+    refetchOnWindowFocus: false,
+  });
+
+  useEffect(() => {
+    if (queryData) {
+      const flattenedData = queryData.pages.flatMap((page) => page.items || []);
+      setData(flattenedData);
+    }
+  }, [queryData, isLoading, isFetching]);
 
   const {
     getHeaderGroups,
@@ -43,13 +84,16 @@ const Dashboard = ({
     columns,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    getRowCanExpand: (_row) => true,
     onRowSelectionChange: setSelected,
     enableRowSelection: true,
+    onExpandedChange: setExpanded,
     state: {
       rowSelection: selected,
       columnFilters: filters,
+      expanded,
     },
   });
 
@@ -71,18 +115,18 @@ const Dashboard = ({
 
       <Toolbar
         meta={meta}
-        setMeta={setMeta}
         searchParams={searchParams}
         page={page}
         filters={filters}
         setFilters={setFilters}
         data={data}
         setData={setData}
+        refetch={refetch}
         tags={tags}
         getFilteredSelectedRowModel={getFilteredSelectedRowModel}
         toggleAllRowsSelected={toggleAllRowsSelected}
-        setLoading={setLoading}
         searchableItems={searchableItems}
+        setExpanded={setExpanded}
       />
 
       <Table
@@ -93,7 +137,13 @@ const Dashboard = ({
         getRowModel={getRowModel}
         subcolumns={subcolumns}
         empty={empty}
-        loading={loading}
+        loading={isLoading}
+        isRefetching={isRefetching}
+        isFetchingNextPage={isFetchingNextPage}
+        fetchNextPage={fetchNextPage}
+        isFetching={isFetching}
+        totalFetched={data.length}
+        totalDBRowCount={meta.total}
       />
     </div>
   );

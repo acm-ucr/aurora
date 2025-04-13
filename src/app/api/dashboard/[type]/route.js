@@ -3,6 +3,7 @@ import { db } from "@/utils/firebase";
 import {
   doc,
   updateDoc,
+  setDoc,
   collection,
   getDocs,
   getDoc,
@@ -14,9 +15,8 @@ import {
   limit,
   startAfter,
   getCountFromServer,
-  endBefore,
   orderBy,
-  limitToLast,
+  deleteDoc,
 } from "firebase/firestore";
 import { authenticate } from "@/utils/auth";
 import { AUTH, ATTRIBUTES } from "@/data/admin/dashboard";
@@ -47,7 +47,6 @@ export const POST = async (req, { params }) => {
     );
   }
   const body = await req.json();
-
   try {
     if (types.has(params.type)) {
       const element = {};
@@ -60,6 +59,17 @@ export const POST = async (req, { params }) => {
         timestamp: Timestamp.now(),
         [`roles.${params.type}`]: 0,
       });
+
+      if (params.type === "participants" && body["resume"]) {
+        setDoc(doc(db, "resumes", user.id), {
+          name: body["name"],
+          email: body["email"],
+          school: body["school"],
+          grade: body["grade"],
+          resume: body["resume"],
+          status: 0,
+        });
+      }
 
       updateDoc(doc(db, "statistics", "shirt"), {
         [`${params.type}.0.${element.shirt}`]: increment(1),
@@ -97,10 +107,7 @@ export const POST = async (req, { params }) => {
 };
 
 export const GET = async (req, { params }) => {
-  const direction = req.nextUrl.searchParams.get("direction");
-  const index = req.nextUrl.searchParams.get("index");
   const size = req.nextUrl.searchParams.get("size");
-  const first = req.nextUrl.searchParams.get("first");
   const last = req.nextUrl.searchParams.get("last");
 
   const res = NextResponse;
@@ -114,10 +121,11 @@ export const GET = async (req, { params }) => {
   }
 
   const output = [];
+
   try {
     let snapshot;
     if (types.has(params.type)) {
-      if (direction === "next" && last !== "undefined") {
+      if (last !== "undefined") {
         const lastDocument = await getDoc(doc(db, "users", last));
 
         snapshot = await getDocs(
@@ -127,18 +135,6 @@ export const GET = async (req, { params }) => {
             where(`roles.${params.type}`, "in", [-1, 0, 1]),
             startAfter(lastDocument),
             limit(size),
-          ),
-        );
-      } else if (direction === "prev" && first !== "undefined") {
-        const firstDocument = await getDoc(doc(db, "users", first));
-
-        snapshot = await getDocs(
-          query(
-            collection(db, "users"),
-            orderBy(`roles.${params.type}`),
-            where(`roles.${params.type}`, "in", [-1, 0, 1]),
-            endBefore(firstDocument),
-            limitToLast(size),
           ),
         );
       } else {
@@ -167,29 +163,27 @@ export const GET = async (req, { params }) => {
           hidden: false,
         });
       });
+
+      const countFromServer = await getCountFromServer(
+        query(
+          collection(db, "users"),
+          where(`roles.${params.type}`, "in", [-1, 0, 1]),
+        ),
+      );
+
+      const total = countFromServer.data().count;
+      const lastDoc = output.length > 0 ? output[output.length - 1].uid : "";
+
+      return res.json(
+        {
+          message: "OK",
+          items: output,
+          total: total,
+          last: lastDoc,
+        },
+        { status: 200 },
+      );
     }
-
-    const countFromServer = await getCountFromServer(
-      query(
-        collection(db, "users"),
-        where(`roles.${params.type}`, "in", [-1, 0, 1]),
-      ),
-    );
-
-    const total = countFromServer.data().count;
-    const lastDoc = output.length > 0 ? output[output.length - 1].uid : "";
-    const firstDoc = output.length > 0 ? output[0].uid : "";
-    return res.json(
-      {
-        message: "OK",
-        items: output,
-        total: total,
-        first: firstDoc,
-        last: lastDoc,
-        page: parseInt(index) + 1,
-      },
-      { status: 200 },
-    );
   } catch (err) {
     return res.json(
       { message: `Internal Server Error: ${err}` },
@@ -274,7 +268,7 @@ export const PUT = async (req, { params }) => {
 export const DELETE = async (req, { params }) => {
   const res = NextResponse;
   const { auth, message } = await authenticate(AUTH.DELETE);
-  const objects = req.nextUrl.searchParams.get("remove").split(",");
+  const objects = await req.json();
 
   if (auth !== 200) {
     return res.json(
@@ -285,14 +279,29 @@ export const DELETE = async (req, { params }) => {
   try {
     if (types.has(params.type)) {
       await Promise.all(
-        objects.map(async (object) => {
-          const snapshot = await getDoc(doc(db, "users", object));
+        objects.map(async ({ uid, shirt, diet, gender, age }) => {
+          const snapshot = await getDoc(doc(db, "users", uid));
           const status = snapshot.data().roles[params.type];
-          await updateDoc(doc(db, "users", object), {
+          await updateDoc(doc(db, "users", uid), {
             [`roles.${params.type}`]: deleteField(),
           });
-          await updateDoc(doc(db, "statistics", "statistics"), {
-            [`${params.type}.${status}`]: increment(-1),
+          if (params.type === "participants") {
+            await deleteDoc(doc(db, "resumes", uid));
+          }
+          updateDoc(doc(db, "statistics", "shirt"), {
+            [`${params.type}.${status}.${shirt}`]: increment(-1),
+          });
+
+          updateDoc(doc(db, "statistics", "diet"), {
+            [`${params.type}.${status}.${diet}`]: increment(-1),
+          });
+
+          updateDoc(doc(db, "statistics", "gender"), {
+            [`${params.type}.${status}.${gender}`]: increment(-1),
+          });
+
+          updateDoc(doc(db, "statistics", "age"), {
+            [`${params.type}.${status}.${age}`]: increment(-1),
           });
         }),
       );

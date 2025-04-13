@@ -2,7 +2,13 @@ import { authenticate } from "@/utils/auth";
 import { db } from "@/utils/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { NextRequest, NextResponse } from "next/server";
-import { contact } from "@/types/contacts";
+
+type contact = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+};
 
 export const GET = async (req: NextRequest) => {
   const res = NextResponse;

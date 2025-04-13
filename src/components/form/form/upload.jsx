@@ -51,7 +51,7 @@ const Upload = ({ field, user, setUser, text, maxSize, types, required }) => {
         {text}
         {required && <span className="text-red-500">*</span>}
       </p>
-      <div className="flex w-full flex-col items-center" data-cy="upload">
+      <div className="flex w-full flex-col items-center">
         {!file && (
           <label
             htmlFor="dropzone-file"
@@ -63,7 +63,7 @@ const Upload = ({ field, user, setUser, text, maxSize, types, required }) => {
                 Upload from my computer
               </p>
             </div>
-            <div className="w-full" data-cy="upload-input">
+            <div className="w-full">
               <input
                 id="dropzone-file"
                 onChange={handleInput}
@@ -75,10 +75,7 @@ const Upload = ({ field, user, setUser, text, maxSize, types, required }) => {
           </label>
         )}
         {file && (
-          <div
-            className="my-2 flex w-full items-center justify-between bg-gray-200 px-2 py-2"
-            data-cy="upload-success"
-          >
+          <div className="my-2 flex w-full items-center justify-between bg-gray-200 px-2 py-2">
             <div className="flex items-center">
               {file.type.split("/")[0] === "image" ? (
                 <LucideImage className="mr-2 text-xl" />
@@ -98,7 +95,6 @@ const Upload = ({ field, user, setUser, text, maxSize, types, required }) => {
               <X
                 className="text-gray-500 hover:cursor-pointer hover:text-red-600"
                 onClick={() => setFile(null)}
-                data-cy="upload-cancel"
               />
             </div>
           </div>
@@ -118,7 +114,6 @@ const Upload = ({ field, user, setUser, text, maxSize, types, required }) => {
                 className="h-full w-full object-cover"
                 src={file.src}
                 alt="Photo of the Judge"
-                data-cy="modal-image"
               />
             </DialogContent>
           </Dialog>

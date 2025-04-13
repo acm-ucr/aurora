@@ -1,7 +1,7 @@
 import { generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
-import { Tags } from "@/types/dashboard";
-import { ColumnDef, CellContext } from "@tanstack/react-table";
+import { Column, Tags } from "@/types/dashboard";
+import { ColumnDef } from "@tanstack/react-table";
 
 type Participant = {
   phone: string;
@@ -13,7 +13,6 @@ type Participant = {
   gender: string;
   shirt: string;
   diet: string;
-  resume: string;
   name: string;
   email: string;
   roles: string;
@@ -32,9 +31,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-export const COLUMNS: (ColumnDef<Participant, string> & {
-  searchable?: boolean;
-})[] = [
+export const COLUMNS: (ColumnDef<Participant> & Column)[] = [
   generateSelect(),
   {
     accessorKey: "name",
@@ -42,12 +39,15 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["name"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          row.getToggleSelectedHandler()(e);
+          row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("name")}
       </div>
     ),
   },
@@ -57,12 +57,15 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["email"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          row.getToggleSelectedHandler()(e);
+          row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("email")}
       </div>
     ),
   },
@@ -72,12 +75,15 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["discord"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          row.getToggleSelectedHandler()(e);
+          row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("discord")}
       </div>
     ),
   },
@@ -87,12 +93,15 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["team"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          row.getToggleSelectedHandler()(e);
+          row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
-        {props.getValue() ?? "N/A"}
+        {row.getValue("team")}
       </div>
     ),
   },
@@ -102,12 +111,15 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["shirt"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={(e) => {
+          row.getToggleSelectedHandler()(e);
+          row.getToggleExpandedHandler()();
+        }}
         className="hover:cursor-pointer"
       >
-        {props.getValue() ?? "N/A"}
+        {row.getValue("shirt")}
       </div>
     ),
   },
@@ -117,10 +129,9 @@ export const COLUMNS: (ColumnDef<Participant, string> & {
 export const ATTRIBUTES = {
   country: "",
   diet: "",
-  resume: "",
 };
 
-export const SUBCOLUMNS = [
+export const SUBCOLUMNS: (ColumnDef<Participant> & Column)[] = [
   generateSelect(),
   {
     accessorKey: "school",
@@ -128,9 +139,7 @@ export const SUBCOLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["school"]>) => (
-      <div>{props.getValue()}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue("school")}</div>,
   },
   {
     accessorKey: "grade",
@@ -138,9 +147,7 @@ export const SUBCOLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["grade"]>) => (
-      <div>{props.getValue()}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue("grade")}</div>,
   },
   {
     accessorKey: "major",
@@ -148,9 +155,7 @@ export const SUBCOLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["major"]>) => (
-      <div>{props.getValue()}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue("major")}</div>,
   },
   {
     accessorKey: "diet",
@@ -158,9 +163,7 @@ export const SUBCOLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["diet"]>) => (
-      <div>{props.getValue()}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue("diet")}</div>,
   },
   {
     accessorKey: "age",
@@ -168,9 +171,7 @@ export const SUBCOLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["age"]>) => (
-      <div>{props.getValue()}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue("age")}</div>,
   },
   {
     accessorKey: "gender",
@@ -178,8 +179,6 @@ export const SUBCOLUMNS = [
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Participant, Participant["gender"]>) => (
-      <div>{props.getValue()}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue("gender")}</div>,
   },
 ];

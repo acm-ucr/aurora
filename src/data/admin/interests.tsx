@@ -1,7 +1,7 @@
 import { generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
-import { Tags } from "@/types/dashboard";
-import { ColumnDef, CellContext } from "@tanstack/react-table";
+import { Column, Tags } from "@/types/dashboard";
+import { ColumnDef } from "@tanstack/react-table";
 
 type Interest = {
   name: string;
@@ -20,9 +20,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-export const COLUMNS: (ColumnDef<Interest, string> & {
-  searchable?: boolean;
-})[] = [
+export const COLUMNS: (ColumnDef<Interest> & Column)[] = [
   generateSelect(),
   {
     accessorKey: "name",
@@ -30,12 +28,12 @@ export const COLUMNS: (ColumnDef<Interest, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Interest, Interest["name"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("name")}
       </div>
     ),
   },
@@ -45,12 +43,12 @@ export const COLUMNS: (ColumnDef<Interest, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Interest, Interest["email"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("email")}
       </div>
     ),
   },
@@ -60,12 +58,12 @@ export const COLUMNS: (ColumnDef<Interest, string> & {
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Interest, Interest["eventSource"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("eventSource")}
       </div>
     ),
   },

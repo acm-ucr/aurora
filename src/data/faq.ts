@@ -7,7 +7,7 @@ export const QUESTIONS: QuestionAnswer[] = [
   {
     question: "What is hackathon website?",
     answer:
-      "This repo centralizes the backbone for all websites. It serves as a template for mainly the backend, user registration, user dashboard and and admin portal for organizers. The frontend is built out by respective hackathon committees.",
+      "This repo centralizes the backbone for all websites. It serves as a template for mainly the backend, user registration, user dashboard and admin portal for organizers. The frontend is built out by respective hackathon committees.",
   },
   {
     question: "How do I join the committee?",
@@ -18,10 +18,5 @@ export const QUESTIONS: QuestionAnswer[] = [
     question: "How to get started with coding?",
     answer:
       "Attend weekly meetings for full onboarding. You can clone the repo, install necesssary packages with `npm i`(download node.js first). You would need to reach out to a swe lead for repo secrets file. Follow the steps on the readme for more.",
-  },
-  {
-    question: "How did we build out this robust system with so many services?",
-    answer:
-      "Check out `/engineering` to read up on the different technologies we used and the challenges we solved!",
   },
 ];

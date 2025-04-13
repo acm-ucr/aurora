@@ -9,8 +9,6 @@ import {
   deleteDoc,
   getDoc,
   orderBy,
-  endBefore,
-  limitToLast,
   limit,
   getCountFromServer,
   query,
@@ -59,10 +57,7 @@ export const POST = async (req) => {
 };
 
 export const GET = async (req) => {
-  const direction = req.nextUrl.searchParams.get("direction");
-  const index = req.nextUrl.searchParams.get("index");
   const size = req.nextUrl.searchParams.get("size");
-  const first = req.nextUrl.searchParams.get("first");
   const last = req.nextUrl.searchParams.get("last");
 
   const res = NextResponse;
@@ -76,39 +71,27 @@ export const GET = async (req) => {
   }
 
   const output = [];
+
   try {
     let snapshot;
-
-    if (direction === "next" && last !== "undefined") {
+    if (last !== "undefined") {
       const lastDocument = await getDoc(doc(db, "feedback", last));
 
       snapshot = await getDocs(
         query(
-          collection(db, "teams"),
-          orderBy(`status`),
-          where(`status`, "in", [-1, 0, 1]),
+          collection(db, "feedback"),
+          orderBy("status"),
+          where("status", "in", [-1, 0, 1]),
           startAfter(lastDocument),
           limit(size),
-        ),
-      );
-    } else if (direction === "prev" && first !== "undefined") {
-      const firstDocument = await getDoc(doc(db, "feedback", first));
-
-      snapshot = await getDocs(
-        query(
-          collection(db, "feedback"),
-          orderBy(`status`),
-          where(`status`, "in", [-1, 0, 1]),
-          endBefore(firstDocument),
-          limitToLast(size),
         ),
       );
     } else {
       snapshot = await getDocs(
         query(
           collection(db, "feedback"),
-          orderBy(`status`),
-          where(`status`, "in", [-1, 0, 1]),
+          orderBy("status"),
+          where("status", "in", [-1, 0, 1]),
           limit(size),
         ),
       );
@@ -137,21 +120,18 @@ export const GET = async (req) => {
     });
 
     const countFromServer = await getCountFromServer(
-      query(collection(db, "feedback"), where(`status`, "in", [-1, 0, 1])),
+      query(collection(db, "feedback"), where("status", "in", [-1, 0, 1])),
     );
 
     const total = countFromServer.data().count;
     const lastDoc = output.length > 0 ? output[output.length - 1].uid : "";
-    const firstDoc = output.length > 0 ? output[0].uid : "";
 
     return res.json(
       {
         message: "OK",
         items: output,
         total: total,
-        first: firstDoc,
         last: lastDoc,
-        page: parseInt(index) + 1,
       },
       { status: 200 },
     );

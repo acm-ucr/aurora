@@ -1,7 +1,7 @@
 import Details from "./details";
 import NewTeam from "./new";
 import { getSession } from "@/utils/auth";
-import { fetchTeam } from "@/actions/join";
+import { fetchTeam } from "../actions/fetchTeam";
 import { Label } from "@/components/ui/label";
 
 const Team = async () => {

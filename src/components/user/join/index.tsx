@@ -1,4 +1,4 @@
-import { fetchTeam } from "@/actions/join";
+import { fetchTeam } from "../actions/fetchTeam";
 import Invite from "./invite";
 
 interface props {
@@ -11,7 +11,7 @@ const Join = async ({ params }: props) => {
   const { team: id } = params;
   const team = await fetchTeam(id);
 
-  return <div>{team && <Invite team={team} id={id} />}</div>;
+  return team && <Invite team={team} id={id} />;
 };
 
 export default Join;
