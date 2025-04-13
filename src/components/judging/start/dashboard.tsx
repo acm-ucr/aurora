@@ -85,24 +85,19 @@ const Dashboard = () => {
                 </div>
               </div>
               <AccordionContent className="flex flex-col gap-4 bg-white p-2 text-black">
-                {/* {QUESTIONS.map((question, index) => (
-                  <div key={index}>
-                    <div className="flex flex-row justify-between text-2xl text-hackathon-blue-100">
-                      <div className="font-bold">
-                        {question.title.toUpperCase()}
-                      </div>
-                      <Badge type="accept">{question.rating}/5</Badge>
+                {(["implementation", "idea", "design"] as const).map((key) => (
+                  <div key={key} className="mt-4">
+                    <div className="flex justify-between text-lg font-bold text-hackathon-blue-100">
+                      <span>{key.toUpperCase()}</span>
+                      <Badge type="accept">
+                        {current.feedback?.[key]?.rating ?? 0}/5
+                      </Badge>
                     </div>
-                    <div>
-                      <div className="text-lg font-bold">
-                        {question.question}
-                      </div>
-                      <div className="text-black/50">
-                        The technical execution of this project was pretty good!
-                      </div>
-                    </div>
+                    <p className="text-black/50">
+                      {current.feedback?.[key]?.comment || "No response"}
+                    </p>
                   </div>
-                ))} */}
+                ))}
               </AccordionContent>
             </AccordionItem>
           );
