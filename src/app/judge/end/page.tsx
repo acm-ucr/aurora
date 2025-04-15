@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import image1 from "@/public/engineering/hackathon/judgeAssets3.png";
-import image2 from "@/public/engineering/hackathon/judgeAssets4.png";
+import image1 from "@/public/engineering/hackathon/judgeAssets3.webp";
+import image2 from "@/public/engineering/hackathon/judgeAssets4.webp";
 
 const Page = () => {
   return (

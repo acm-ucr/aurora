@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { getSession } from "@/utils/auth";
 import Link from "next/link";
 import Image from "next/image";
-import image1 from "@/public/engineering/hackathon/judgeAssets1.png";
-import image2 from "@/public/engineering/hackathon/judgeAssets2.png";
+import image1 from "@/public/engineering/hackathon/judgeAssets1.webp";
+import image2 from "@/public/engineering/hackathon/judgeAssets2.webp";
 const Page = async () => {
   const session = await getSession();
 
