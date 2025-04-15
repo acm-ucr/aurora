@@ -34,7 +34,9 @@ const CheckinPage = () => {
             className="overflow-hidden rounded-full"
             alt="Picture of user's profile"
           />
-          <p className="text-2xl font-bold">{session.user.firstName} {session.user.lastName}</p>
+          <p className="text-2xl font-bold">
+            {session.user.firstName} {session.user.lastName}
+          </p>
           <p className="text-base">{session.user.email}</p>
         </div>
         <div className="m-auto flex h-1/3 w-2/3 flex-col items-center justify-center rounded-lg bg-white lg:h-5/6">

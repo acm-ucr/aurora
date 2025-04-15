@@ -94,8 +94,8 @@ const Questions = ({
                         ...object,
                         [field.field]: object[field.field].includes(option)
                           ? object[field.field].filter(
-                            (item) => item !== option,
-                          )
+                              (item) => item !== option,
+                            )
                           : [...object[field.field], option],
                       });
                     }}

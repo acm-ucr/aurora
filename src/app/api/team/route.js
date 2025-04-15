@@ -24,7 +24,13 @@ export const POST = async (req) => {
         figma: "",
       },
       name: team.name,
-      members: [{ discord: user.discord, name: `${user.firstName} ${user.lastName}`, uid: user.id }],
+      members: [
+        {
+          discord: user.discord,
+          name: `${user.firstName} ${user.lastName}`,
+          uid: user.id,
+        },
+      ],
       status: 0,
     };
     const docRef = await addDoc(collection(db, "teams"), newTeam);
@@ -45,7 +51,6 @@ export const POST = async (req) => {
     );
   }
 };
-
 
 export const PUT = async (req) => {
   const res = NextResponse;
