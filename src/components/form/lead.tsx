@@ -13,7 +13,8 @@ const Lead = () => {
 
   const [lead, setLead] = useState({
     ...ATTRIBUTES,
-    name: session?.user.name || "",
+    firstName: session?.user.firstName || "",
+    lastName: session?.user.lastName || "",
     roles: session?.user.roles || {},
     email: session?.user.email || "",
     form: "leads",

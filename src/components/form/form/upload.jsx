@@ -22,7 +22,7 @@ const getType = (types) => "." + types.join(",.");
 const Upload = ({ field, user, setUser, text, maxSize, types, required }) => {
   const [file, setFile] = useState(
     user[field] && user[field].startsWith("data:image")
-      ? { src: user[field], type: "image", title: `${user.name}.png` }
+      ? { src: user[field], type: "image", title: `${user.firstName}.png` }
       : null,
   );
   const [uploading, setUploading] = useState(false);
@@ -107,7 +107,7 @@ const Upload = ({ field, user, setUser, text, maxSize, types, required }) => {
           >
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>{user.name}&apos;s Picture</DialogTitle>
+                <DialogTitle>{user.firstName}&apos;s Picture</DialogTitle>
               </DialogHeader>
               <embed
                 fill={true}

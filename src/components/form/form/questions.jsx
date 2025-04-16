@@ -110,7 +110,6 @@ const Questions = ({
           {field.input === "terms" && (
             <Terms
               options={field.options}
-              toggle={object[field.field].length === field.options.length}
               onClick={() => {
                 setObject({
                   ...object,
@@ -120,8 +119,15 @@ const Questions = ({
                       : [...field.options],
                 });
               }}
+              onMLHClick={() => {
+                setObject({
+                  ...object,
+                  mlh: !object["mlh"],
+                });
+              }}
             />
           )}
+
           {field.input === "radio" && (
             <>
               <p className="mb-1 font-semibold">

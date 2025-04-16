@@ -5,7 +5,7 @@ import Link from "next/link";
 const Page = async () => {
   const session = await getSession();
 
-  const name = session?.user?.name;
+  const name = session?.user?.firstName;
 
   return (
     <div className="flex w-full flex-col items-center justify-center bg-gradient-to-b from-hackathon-blue-200 to-[#3A749A]">

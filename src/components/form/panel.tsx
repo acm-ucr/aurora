@@ -13,7 +13,8 @@ const Panel = () => {
 
   const [panel, setPanel] = useState({
     ...ATTRIBUTES,
-    name: session?.user.name || "",
+    firstName: session?.user.firstName || "",
+    lastName: session?.user.lastName || "",
     email: session?.user.email || "",
     roles: session?.user.roles || {},
     photo: session?.user.photo ?? "",
@@ -29,7 +30,7 @@ const Panel = () => {
     await submit({
       data: panel,
       schema,
-      url: "/api/dashboard/panelists",
+      url: "/api/dashboard/panels",
       setLoading,
       setState,
     });

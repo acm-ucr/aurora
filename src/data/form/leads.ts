@@ -21,7 +21,8 @@ import { SCHOOLS } from "./schools";
 import data from "@/data/config";
 
 interface Attributes {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   major: string;
@@ -41,7 +42,8 @@ interface Attributes {
 }
 
 export const ATTRIBUTES: Attributes = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
   major: "",
@@ -62,7 +64,8 @@ export const ATTRIBUTES: Attributes = {
 
 interface Fields {
   description: Description;
-  name: TextInput;
+  firstName: TextInput;
+  lastName: TextInput;
   email: TextInput;
   phone: TextInput;
   discord: TextInput;
@@ -93,12 +96,23 @@ export const FIELDS: Fields = {
       }, a ${data.description} hackathon.`,
     ],
   },
-  name: {
+  firstName: {
     input: "input",
-    name: "name",
-    placeholder: "John Doe",
+    name: "firstName",
+    placeholder: "John",
     type: "text",
-    title: "Name",
+    title: "First Name",
+    maxLength: 50,
+    width: 12,
+    editable: false,
+    required: true,
+  },
+  lastName: {
+    input: "input",
+    name: "lastName",
+    placeholder: "Doe",
+    type: "text",
+    title: "Last Name",
     maxLength: 50,
     width: 12,
     editable: false,

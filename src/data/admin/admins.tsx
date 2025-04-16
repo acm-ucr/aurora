@@ -5,7 +5,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Column, Tags } from "@/types/dashboard";
 
 type Admin = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   affiliation: string;
   discord: string;
@@ -31,6 +32,8 @@ export const TAGS: Tags[] = [
 export const COLUMNS: (ColumnDef<Admin> & Column)[] = [
   generateSelect(),
   {
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
+    id: "fullName",
     accessorKey: "name",
     header: "Name",
     enableColumnFilter: true,
@@ -44,7 +47,7 @@ export const COLUMNS: (ColumnDef<Admin> & Column)[] = [
         }}
         className="hover:cursor-pointer"
       >
-        {row.getValue("name")}
+        {row.getValue("fullName")}
       </div>
     ),
   },

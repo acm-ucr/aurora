@@ -13,7 +13,8 @@ const Admin = () => {
 
   const [admin, setAdmin] = useState({
     ...ATTRIBUTES,
-    name: session?.user.name || "",
+    firstName: session?.user.firstName || "",
+    lastName: session?.user.lastName || "",
     email: session?.user.email || "",
     roles: session?.user.roles || {},
     form: "admins",

@@ -2,16 +2,22 @@ import Checkbox from "@/components/checkbox";
 import { useState } from "react";
 type props = {
   options: string[];
-  toggle: boolean;
   onClick: () => void;
+  onMLHClick: () => void;
 };
 
-const Terms = ({ options, toggle, onClick }: props) => {
-  const [checkedState, setChecked] = useState(toggle);
+const Terms = ({ options, onClick, onMLHClick }: props) => {
+  const [checked, setChecked] = useState(false);
+  const [mlh, setMLH] = useState(false);
 
   const onClickWithCheckBox = () => {
     onClick();
-    setChecked(!checkedState);
+    setChecked(!checked);
+  };
+
+  const onClickWithCheckBoxMLH = () => {
+    onMLHClick();
+    setMLH(!mlh);
   };
 
   return (
@@ -26,9 +32,16 @@ const Terms = ({ options, toggle, onClick }: props) => {
         ))}
       </ul>
 
-      <Checkbox id="terms" checked={checkedState} onClick={onClickWithCheckBox}>
-        By selecting this I agree to all of the above terms
-      </Checkbox>
+      <div className="flex flex-col gap-4">
+        <Checkbox id="terms" checked={checked} onClick={onClickWithCheckBox}>
+          By selecting this I agree to all of the above terms
+        </Checkbox>
+
+        <Checkbox id="mlh" checked={mlh} onClick={onClickWithCheckBoxMLH}>
+          I authorize MLH to send me occasional emails about relevant events,
+          career opportunities, and community announcements.
+        </Checkbox>
+      </div>
     </>
   );
 };

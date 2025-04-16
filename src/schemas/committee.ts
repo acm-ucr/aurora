@@ -10,7 +10,8 @@ import {
 } from "@/data/form/information";
 
 export const schema = z.object({
-  name: z.string().min(1, { message: "Name is required" }),
+  firstName: z.string().min(1, { message: "First name is required" }),
+  lastName: z.string().min(1, { message: "Last name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
   discord: z.string().min(1, { message: "Discord username is required" }),
   major: z.enum(MAJORS as [string, ...string[]], {

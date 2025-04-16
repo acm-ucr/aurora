@@ -5,7 +5,7 @@ const Status = ({ object, statuses, setState }) => {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <p>
-        Hello <b>{object.name}</b>, your status is currently
+        Hello <b>{object.firstName}</b>, your status is currently
       </p>
       <Badge className="m-2">{statuses[object.roles[object.form]]}</Badge>
 

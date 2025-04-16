@@ -2,7 +2,8 @@ import { z } from "zod";
 import { GENDERS, SHIRTS, AGES, DIETS } from "@/data/form/information";
 
 export const schema = z.object({
-  name: z.string().min(1, { message: "Name is required" }),
+  firstName: z.string().min(1, { message: "First name is required" }),
+  lastName: z.string().min(1, { message: "Last name is required" }),
   email: z.string().email({ message: "Invalid email address" }),
   phone: z.string().regex(/^\d{3} \d{3} \d{4}$/, {
     message: "Invalid phone number. Expected format: 123 456 7890",

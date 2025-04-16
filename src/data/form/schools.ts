@@ -1,6 +1,7 @@
 type schools = string[];
 
 export const SCHOOLS: schools = [
+  "University of California, Riverside",
   "Aalto University",
   "Aarhus University",
   "Abbey Park High School",
@@ -1742,7 +1743,6 @@ export const SCHOOLS: schools = [
   "University of California, Irvine",
   "University of California, Los Angeles",
   "University of California, Merced",
-  "University of California, Riverside",
   "University of California, San Diego",
   "University of California, Santa Barbara",
   "University of California, Santa Cruz",

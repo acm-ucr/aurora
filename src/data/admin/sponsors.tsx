@@ -5,7 +5,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Column, Tags } from "@/types/dashboard";
 
 type Sponsor = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   company: string;
   position: string;
@@ -27,7 +28,9 @@ export const TAGS: Tags[] = [
 export const COLUMNS: (ColumnDef<Sponsor> & Column)[] = [
   generateSelect(),
   {
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
     accessorKey: "name",
+    id: "fullName",
     header: "Name",
     enableColumnFilter: true,
     filterFn: "includesString",
@@ -37,7 +40,7 @@ export const COLUMNS: (ColumnDef<Sponsor> & Column)[] = [
         onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {row.getValue("name")}
+        {row.getValue("fullName")}
       </div>
     ),
   },

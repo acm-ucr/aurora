@@ -20,7 +20,8 @@ import data from "@/data/config";
 
 type Fields = {
   description: Description;
-  name: TextInput;
+  firstName: TextInput;
+  lastName: TextInput;
   email: TextInput;
   phone: TextInput;
   discord: TextInput;
@@ -36,7 +37,8 @@ type Fields = {
 };
 
 type Attributes = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   discord: string;
@@ -72,16 +74,27 @@ export const FIELDS: Fields = {
       "Note: Mentors are not permitted to become participants for the hackathon.",
     ],
   },
-  name: {
+  firstName: {
     input: "input",
-    name: "name",
+    name: "firstName",
     type: "text",
-    title: "Name",
+    title: "First Name",
     maxLength: 50,
     width: 12,
     editable: false,
     required: true,
-    placeholder: "John Doe",
+    placeholder: "John",
+  },
+  lastName: {
+    input: "input",
+    name: "lastName",
+    type: "text",
+    title: "Last Name",
+    maxLength: 50,
+    width: 12,
+    editable: false,
+    required: true,
+    placeholder: "Doe",
   },
   email: {
     input: "input",
@@ -216,7 +229,8 @@ export const FIELDS: Fields = {
 };
 
 export const ATTRIBUTES: Attributes = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
   discord: "",

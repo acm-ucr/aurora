@@ -27,11 +27,23 @@ export const FIELDS = {
       "Panelists are not required to stay the full duration of the event, but are encouraged to checkout the various events, workshops, and opportunities that are available.",
     ],
   },
-  name: {
+  firstName: {
     input: "input",
-    name: "name",
+    name: "firstName",
     type: "text",
-    title: "Name",
+    title: "First name",
+    placeholder: "John",
+    maxLength: 50,
+    width: 12,
+    editable: false,
+    required: true,
+  },
+  lastName: {
+    input: "input",
+    name: "lastName",
+    type: "text",
+    title: "Last name",
+    placeholder: "Doe",
     maxLength: 50,
     width: 12,
     editable: false,
@@ -56,6 +68,7 @@ export const FIELDS = {
     maxLength: 50,
     width: 12,
     required: true,
+    editable: true,
   },
   panelist: {
     input: "radio",
@@ -74,6 +87,7 @@ export const FIELDS = {
     maxLength: 50,
     width: 12,
     required: true,
+    editable: true,
   },
 
   title: {
@@ -85,6 +99,7 @@ export const FIELDS = {
     maxLength: 50,
     width: 12,
     required: true,
+    editable: true,
   },
   gender: {
     input: "radio",
@@ -132,7 +147,8 @@ export const FIELDS = {
 };
 
 interface Attributes {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   gender: string;
@@ -145,7 +161,8 @@ interface Attributes {
 }
 
 export const ATTRIBUTES: Attributes = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
   gender: "",

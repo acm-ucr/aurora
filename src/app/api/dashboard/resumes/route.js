@@ -59,10 +59,12 @@ export const GET = async (req) => {
     }
 
     snapshot.forEach((doc) => {
-      const { name, email, school, grade, resume, status } = doc.data();
+      const { firstName, lastName, email, school, grade, resume, status } =
+        doc.data();
       output.push({
         uid: doc.id,
-        name,
+        firstName,
+        lastName,
         email,
         school,
         grade,

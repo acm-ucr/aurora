@@ -17,7 +17,8 @@ export const TAGS = [
 ];
 
 type Panelist = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   discord: string;
   availability: string[];
@@ -30,7 +31,9 @@ type Panelist = {
 export const COLUMNS: (ColumnDef<Panelist> & Column)[] = [
   generateSelect(),
   {
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
     accessorKey: "name",
+    id: "fullName",
     header: "Name",
     enableColumnFilter: true,
     filterFn: "includesString",
@@ -40,7 +43,7 @@ export const COLUMNS: (ColumnDef<Panelist> & Column)[] = [
         onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {row.getValue("name")}
+        {row.getValue("fullName")}
       </div>
     ),
   },

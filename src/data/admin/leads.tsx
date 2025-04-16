@@ -15,7 +15,8 @@ export const TAGS: Tags[] = [
 ];
 
 type Lead = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   discord: string;
   grade: string;
@@ -25,7 +26,9 @@ type Lead = {
 export const COLUMNS: (ColumnDef<Lead> & Column)[] = [
   generateSelect(),
   {
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
     accessorKey: "name",
+    id: "fullName",
     header: "Name",
     enableColumnFilter: true,
     filterFn: "includesString",
@@ -35,7 +38,7 @@ export const COLUMNS: (ColumnDef<Lead> & Column)[] = [
         onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {row.getValue("name")}
+        {row.getValue("fullName")}
       </div>
     ),
   },

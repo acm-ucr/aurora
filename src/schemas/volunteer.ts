@@ -9,7 +9,8 @@ import {
   DIETS,
 } from "@/data/form/information";
 export const schema = z.object({
-  name: z.string().min(1, { message: "Name is invalid" }),
+  firstName: z.string().min(1, { message: "First name is invalid" }),
+  lastName: z.string().min(1, { message: "Last name is invalid" }),
   email: z.string().email({ message: "Invalid email address" }),
   phone: z.string().regex(/^\d{3} \d{3} \d{4}$/, {
     message: "Invalid phone number. Expected format: 123 456 7890",

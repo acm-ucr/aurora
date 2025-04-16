@@ -6,7 +6,7 @@ import Mentor from "@/components/form/mentor";
 import Participant from "@/components/form/participant";
 import Sponsor from "@/components/form/sponsor";
 import Volunteer from "@/components/form/volunteer";
-import Panel from "@/components/form/panelist";
+import Panel from "@/components/form/panel";
 import Lead from "@/components/form/lead";
 import Ideas from "@/components/form/ideas";
 import Judge from "@/components/form/judge";

@@ -9,7 +9,8 @@ import data from "../config";
 import { Tags } from "@/types/dashboard";
 
 type Resume = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   school: string;
   grade: string;
@@ -32,17 +33,19 @@ export const COLUMNS: (ColumnDef<Resume, string> & {
 })[] = [
   generateSelect(),
   {
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
     accessorKey: "name",
+    id: "fullName",
     header: "Name",
     enableColumnFilter: true,
     filterFn: "includesString",
     searchable: true,
-    cell: (props: CellContext<Resume, Resume["name"]>) => (
+    cell: ({ row }) => (
       <div
-        onClick={props.row.getToggleSelectedHandler()}
+        onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {props.getValue()}
+        {row.getValue("fullName")}
       </div>
     ),
   },
@@ -87,10 +90,12 @@ export const COLUMNS: (ColumnDef<Resume, string> & {
     header: ({ table }) => {
       const downloadZip = () => {
         const { rows } = table.getRowModel();
-        const resumes = rows.map(({ original: { name, resume } }) => ({
-          resume,
-          name,
-        }));
+        const resumes = rows.map(
+          ({ original: { firstName, lastName, resume } }) => ({
+            resume,
+            name: `${firstName} ${lastName}`,
+          }),
+        );
         const zip = new JSZip();
         const folder = zip.folder("resumes");
 

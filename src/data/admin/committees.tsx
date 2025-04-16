@@ -5,7 +5,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Column, Tags } from "@/types/dashboard";
 
 type Committee = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   discord: string;
   phone: string;
@@ -33,7 +34,10 @@ export const TAGS: Tags[] = [
 export const COLUMNS: (ColumnDef<Committee> & Column)[] = [
   generateSelect(),
   {
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
     accessorKey: "name",
+
+    id: "fullName",
     header: "Name",
     enableColumnFilter: true,
     filterFn: "includesString",
@@ -43,7 +47,7 @@ export const COLUMNS: (ColumnDef<Committee> & Column)[] = [
         onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {row.getValue("name")}
+        {row.getValue("fullName")}
       </div>
     ),
   },

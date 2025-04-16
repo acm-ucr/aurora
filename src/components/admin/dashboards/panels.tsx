@@ -8,12 +8,12 @@ type props = {
   searchParams: SearchParams;
 };
 
-const Panelists = ({ searchParams }: props) => {
+const Panels = ({ searchParams }: props) => {
   return (
     <div className="flex h-full flex-col gap-3 py-4 font-poppins">
       <Table
         searchParams={searchParams}
-        title="Panelists"
+        title="Panels"
         columns={COLUMNS}
         subcolumns={[]}
         tags={TAGS}
@@ -22,4 +22,4 @@ const Panelists = ({ searchParams }: props) => {
     </div>
   );
 };
-export default Panelists;
+export default Panels;

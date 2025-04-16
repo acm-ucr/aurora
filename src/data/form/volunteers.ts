@@ -19,7 +19,8 @@ import {
 
 interface Fields {
   description: Description;
-  name: TextInput;
+  firstName: TextInput;
+  lastName: TextInput;
   email: TextInput;
   phone: TextInput;
   discord: TextInput;
@@ -54,12 +55,23 @@ export const FIELDS: Fields = {
       "Note: Volunteers are not permitted to become participants for the hackathon.",
     ],
   },
-  name: {
+  firstName: {
     input: "input",
-    name: "name",
-    placeholder: "John Doe",
+    name: "firstName",
+    placeholder: "John",
     type: "text",
-    title: "Name",
+    title: "First Name",
+    maxLength: 50,
+    width: 12,
+    editable: false,
+    required: true,
+  },
+  lastName: {
+    input: "input",
+    name: "lastName",
+    placeholder: "Doe",
+    type: "text",
+    title: "Last Name",
     maxLength: 50,
     width: 12,
     editable: false,
@@ -189,7 +201,8 @@ export const FIELDS: Fields = {
 };
 
 interface Attributes {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   discord: string;
@@ -205,7 +218,8 @@ interface Attributes {
 }
 
 export const ATTRIBUTES: Attributes = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
   discord: "",

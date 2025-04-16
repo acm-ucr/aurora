@@ -10,7 +10,8 @@ import data from "@/data/config";
 import { AFFILIATIONS } from "./information";
 
 interface Attributes {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   discord: string;
   grade: string;
@@ -25,7 +26,8 @@ interface Attributes {
 
 interface Fields {
   description: Description;
-  name: TextInput;
+  firstName: TextInput;
+  lastName: TextInput;
   email: TextInput;
   discord: TextInput;
   major: SelectInput;
@@ -39,7 +41,8 @@ interface Fields {
 }
 
 export const ATTRIBUTES: Attributes = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   discord: "",
   grade: "",
@@ -72,16 +75,27 @@ export const FIELDS: Fields = {
       "Note: Admins are not permitted to become participants for the hackathon.",
     ],
   },
-  name: {
+  firstName: {
     input: "input",
-    name: "name",
+    name: "firstName",
     type: "text",
-    title: "Name",
+    title: "First Name",
     maxLength: 50,
     width: 12,
     editable: false,
     required: true,
-    placeholder: "John Doe",
+    placeholder: "John",
+  },
+  lastName: {
+    input: "input",
+    name: "lastName",
+    type: "text",
+    title: "Last Name",
+    maxLength: 50,
+    width: 12,
+    editable: false,
+    required: true,
+    placeholder: "John",
   },
   email: {
     input: "input",

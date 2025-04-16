@@ -94,8 +94,8 @@ export const TABS: Tabs = {
           target: "_self",
         },
         {
-          name: "Panelists",
-          link: "/admin/panelists",
+          name: "Panels",
+          link: "/admin/panels",
           icon: <Cat className={iconStyle} />,
           target: "_self",
         },

@@ -20,7 +20,8 @@ export const options: NextAuthOptions = {
         return {
           id: profile.sub,
           email: profile.email,
-          name: profile.name,
+          firstName: profile.given_name,
+          lastName: profile.family_name,
           image: profile.picture,
           team: "",
           photo: "",

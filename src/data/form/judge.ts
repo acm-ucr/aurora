@@ -10,7 +10,8 @@ import { GENDERS, SHIRTS, AGES, DIETS } from "./information";
 import data from "@/data/config";
 
 interface Attributes {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   gender: string;
@@ -25,7 +26,8 @@ interface Attributes {
 
 interface Fields {
   description: Description;
-  name: TextInput;
+  firstName: TextInput;
+  lastName: TextInput;
   email: TextInput;
   phone: TextInput;
   gender: RadioInput;
@@ -71,12 +73,23 @@ export const FIELDS: Fields = {
       "Note: Judges are not permitted to become participants for the hackathon.",
     ],
   },
-  name: {
+  firstName: {
     input: "input",
-    name: "name",
-    placeholder: "John Doe",
+    name: "firstName",
+    placeholder: "John",
     type: "text",
-    title: "Name",
+    title: "First Name",
+    maxLength: 50,
+    width: 12,
+    editable: false,
+    required: true,
+  },
+  lastName: {
+    input: "input",
+    name: "lastName",
+    placeholder: "Doe",
+    type: "text",
+    title: "Last Name",
     maxLength: 50,
     width: 12,
     editable: false,
@@ -195,7 +208,8 @@ export const FIELDS: Fields = {
 };
 
 export const ATTRIBUTES: Attributes = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
   gender: "",

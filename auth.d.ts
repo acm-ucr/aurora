@@ -4,7 +4,8 @@ declare module "next-auth" {
   export interface User {
     id: string;
     email: string;
-    name: string;
+    firstName: string;
+    lastName: string;
     image: string;
     roles: {
       [key: string]: number;

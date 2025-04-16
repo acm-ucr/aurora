@@ -13,7 +13,8 @@ type Participant = {
   gender: string;
   shirt: string;
   diet: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   roles: string;
   discord: string;
@@ -34,7 +35,9 @@ export const TAGS: Tags[] = [
 export const COLUMNS: (ColumnDef<Participant> & Column)[] = [
   generateSelect(),
   {
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
     accessorKey: "name",
+    id: "fullName",
     header: "Name",
     enableColumnFilter: true,
     filterFn: "includesString",
@@ -47,7 +50,7 @@ export const COLUMNS: (ColumnDef<Participant> & Column)[] = [
         }}
         className="hover:cursor-pointer"
       >
-        {row.getValue("name")}
+        {row.getValue("fullName")}
       </div>
     ),
   },

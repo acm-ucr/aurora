@@ -4,7 +4,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Column, Tags } from "@/types/dashboard";
 
 type Mentor = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   discord: string;
   availability: string[];
@@ -28,7 +29,9 @@ export const TAGS: Tags[] = [
 export const COLUMNS: (ColumnDef<Mentor> & Column)[] = [
   generateSelect(),
   {
+    accessorFn: (row) => `${row.firstName} ${row.lastName}`,
     accessorKey: "name",
+    id: "fullName",
     header: "Name",
     enableColumnFilter: true,
     filterFn: "includesString",
@@ -38,7 +41,7 @@ export const COLUMNS: (ColumnDef<Mentor> & Column)[] = [
         onClick={row.getToggleSelectedHandler()}
         className="hover:cursor-pointer"
       >
-        {row.getValue("name")}
+        {row.getValue("fullName")}
       </div>
     ),
   },

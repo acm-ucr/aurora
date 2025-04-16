@@ -30,7 +30,7 @@ export const DELETE = async () => {
       await updateDoc(doc(db, "teams", user.team), {
         members: arrayRemove({
           discord: user.discord,
-          name: user.name,
+          name: `${user.firstName} ${user.lastName}`,
           uid: user.id,
         }),
       });
@@ -68,7 +68,7 @@ export const PUT = async (req) => {
       await updateDoc(doc(db, "teams", team), {
         members: arrayUnion({
           discord: user.discord,
-          name: user.name,
+          name: `${user.firstName} ${user.lastName}`,
           uid: user.id,
         }),
       });

@@ -9,7 +9,8 @@ import data from "@/data/config";
 import { SOURCES, SHIRTS, GENDERS, AGES, DIETS } from "./information";
 
 interface Attributes {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   age: string;
   gender: string;
@@ -20,7 +21,8 @@ interface Attributes {
 }
 
 export const ATTRIBUTES: Attributes = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   age: "",
   gender: "",
@@ -32,7 +34,8 @@ export const ATTRIBUTES: Attributes = {
 
 interface Fields {
   description: Description;
-  name: TextInput;
+  firstName: TextInput;
+  lastName: TextInput;
   email: TextInput;
   age: SelectInput;
   gender: RadioInput;
@@ -61,12 +64,23 @@ export const FIELDS: Fields = {
       "This is simply an interest form, once applications are released, you will be notified immediately and will be required to register again. We hope to see you there!",
     ],
   },
-  name: {
+  firstName: {
     input: "input",
-    name: "name",
-    placeholder: "John Doe",
+    name: "firstName",
+    placeholder: "John",
     type: "text",
-    title: "Name",
+    title: "First Name",
+    maxLength: 50,
+    width: 12,
+    editable: false,
+    required: true,
+  },
+  lastName: {
+    input: "input",
+    name: "lastName",
+    placeholder: "Doe",
+    type: "text",
+    title: "Last Name",
     maxLength: 50,
     width: 12,
     editable: false,

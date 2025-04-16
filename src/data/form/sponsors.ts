@@ -27,7 +27,8 @@ export const TIERS: Tiers = {
 };
 
 interface Attributes {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   phone: string;
   company: string;
@@ -38,7 +39,8 @@ interface Attributes {
 }
 
 export const ATTRIBUTES: Attributes = {
-  name: "",
+  firstName: "",
+  lastName: "",
   email: "",
   phone: "",
   company: "",
@@ -50,7 +52,8 @@ export const ATTRIBUTES: Attributes = {
 
 type Fields = {
   description: Description;
-  name: TextInput;
+  firstName: TextInput;
+  lastName: TextInput;
   email: TextInput;
   phone: TextInput;
   company: TextInput;
@@ -80,16 +83,27 @@ export const FIELDS: Fields = {
       "Sponsorship members are not required to stay the full duration of the event, but are encouraged to checkout the various events, workshops, and opportunities that are available.",
     ],
   },
-  name: {
+  firstName: {
     input: "input",
-    name: "name",
+    name: "firstName",
     type: "text",
-    title: "Name",
+    title: "First Name",
     maxLength: 50,
     width: 12,
     editable: false,
     required: true,
-    placeholder: "John Doe",
+    placeholder: "John",
+  },
+  lastName: {
+    input: "input",
+    name: "lastName",
+    type: "text",
+    title: "Last Name",
+    maxLength: 50,
+    width: 12,
+    editable: false,
+    required: true,
+    placeholder: "Doe",
   },
   email: {
     input: "input",

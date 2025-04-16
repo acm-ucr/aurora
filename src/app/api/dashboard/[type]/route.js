@@ -62,7 +62,8 @@ export const POST = async (req, { params }) => {
 
       if (params.type === "participants" && body["resume"]) {
         setDoc(doc(db, "resumes", user.id), {
-          name: body["name"],
+          firstName: body["firstName"],
+          lastName: body["lastName"],
           email: body["email"],
           school: body["school"],
           grade: body["grade"],
@@ -90,7 +91,7 @@ export const POST = async (req, { params }) => {
       send({
         email: user.email,
         id: "confirmation",
-        name: user.name,
+        name: user.firstName,
         position: params.type.slice(0, -1),
         subject: `[${data.name}] Thank you for applying!`,
         preview: `Thank you for applying to ${data.name}`,
@@ -225,7 +226,7 @@ export const PUT = async (req, { params }) => {
         await send({
           email: object.email,
           id: id,
-          name: object.name,
+          name: object.firstName,
           position: params.type.slice(0, -1),
           subject: `[${data.name}] ${subject}`,
           preview: preview,
