@@ -2,6 +2,7 @@ import { generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
 import { Column, Tags } from "@/types/dashboard";
 import { ColumnDef } from "@tanstack/react-table";
+import { Lead } from "@/types/users";
 
 export const TAGS: Tags[] = [
   {
@@ -14,16 +15,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-type Lead = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  discord: string;
-  grade: string;
-  gender: string;
-};
-
-export const COLUMNS: (ColumnDef<Lead> & Column)[] = [
+export const COLUMNS: (ColumnDef<Lead, string> & Column)[] = [
   generateSelect(),
   {
     accessorFn: (row) => `${row.firstName} ${row.lastName}`,

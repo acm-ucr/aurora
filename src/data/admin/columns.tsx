@@ -29,20 +29,20 @@ export const generateSelect = <TData extends object>() => ({
   ),
 });
 
-export const generateAffiliation = <TData extends Record<string, string>>(
-  affiliations: Record<string, string>,
-) => ({
+export const generateAffiliation = <TData extends object>() => ({
   accessorKey: "affiliation",
   header: "Affiliation",
   searchable: false,
-  cell: ({ getValue }: CellContext<TData, string>) => {
-    if (!getValue()) {
+  cell: ({ row }: CellContext<TData, string>) => {
+    if (!row.getValue("affiliation")) {
       return <Badge>None</Badge>;
     }
 
+    const affiliation: string = row.getValue("affiliation");
+
     return (
-      <Badge type={getValue().toLowerCase() as keyof typeof COLORS}>
-        {affiliations[getValue().toLowerCase()]}
+      <Badge type={affiliation.toLowerCase() as keyof typeof COLORS}>
+        {affiliation}
       </Badge>
     );
   },
@@ -69,7 +69,7 @@ export const generateStatus = <TData extends object>(
   };
 };
 
-export const generateTiers = <TData extends Record<string, string>>(
+export const generateTiers = <TData extends object>(
   tiers: Record<string, string>,
 ) => ({
   accessorKey: "tier",

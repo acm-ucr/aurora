@@ -7,15 +7,7 @@ import { save } from "@/utils/download";
 import { Download } from "lucide-react";
 import data from "../config";
 import { Tags } from "@/types/dashboard";
-
-type Resume = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  school: string;
-  grade: string;
-  resume: string;
-};
+import { Resume } from "@/types/users";
 
 export const TAGS: Tags[] = [
   {
