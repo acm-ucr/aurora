@@ -50,7 +50,7 @@ export const HACKPACKS = [
       "A full-stack starter using Firebase and Next.js. Ideal for apps with real-time database needs, featuring Tailwind CSS and GitHub Actions.",
   },
   {
-    link: "https://github.com/acm-ucr/firebase-nextjs-hackpack",
+    link: "https://github.com/acm-ucr/mongodb-nextjs-hackpack",
     title: "MongoDB Web App",
     languages: [
       "Javascript",
