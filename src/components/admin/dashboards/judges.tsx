@@ -18,7 +18,6 @@ const Judges = ({ searchParams }: props) => {
         subcolumns={[]}
         tags={TAGS}
         statuses={STATUSES}
-        
       />
     </div>
   );
