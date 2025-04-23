@@ -1,24 +1,8 @@
 import { generateAffiliation, generateSelect, generateStatus } from "./columns";
-import { AFFILIATIONS } from "../form/information";
 import { STATUSES } from "@/data/statuses";
 import { ColumnDef } from "@tanstack/react-table";
 import { Column, Tags } from "@/types/dashboard";
-
-type Committee = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  discord: string;
-  phone: string;
-  age: string;
-  gender: string;
-  school: string;
-  major: string;
-  grade: string;
-  shirt: string;
-  diet: string;
-  restriction: string;
-};
+import { Committee } from "@/types/users";
 
 export const TAGS: Tags[] = [
   {
@@ -31,7 +15,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-export const COLUMNS: (ColumnDef<Committee> & Column)[] = [
+export const COLUMNS: (ColumnDef<Committee, string> & Column)[] = [
   generateSelect(),
   {
     accessorFn: (row) => `${row.firstName} ${row.lastName}`,
@@ -111,6 +95,6 @@ export const COLUMNS: (ColumnDef<Committee> & Column)[] = [
       </div>
     ),
   },
-  generateAffiliation(AFFILIATIONS),
+  generateAffiliation(),
   generateStatus(STATUSES),
 ];

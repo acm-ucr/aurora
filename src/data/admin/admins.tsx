@@ -1,22 +1,8 @@
 import { generateAffiliation, generateSelect, generateStatus } from "./columns";
-import { AFFILIATIONS } from "../form/information";
 import { STATUSES } from "../statuses";
 import { ColumnDef } from "@tanstack/react-table";
 import { Column, Tags } from "@/types/dashboard";
-
-type Admin = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  affiliation: string;
-  discord: string;
-  major: string;
-  grade: string;
-  gender: string;
-  shirt: string;
-  age: string;
-  diet: string;
-};
+import { Admin } from "@/types/users";
 
 export const TAGS: Tags[] = [
   {
@@ -29,7 +15,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-export const COLUMNS: (ColumnDef<Admin> & Column)[] = [
+export const COLUMNS: (ColumnDef<Admin, string> & Column)[] = [
   generateSelect(),
   {
     accessorFn: (row) => `${row.firstName} ${row.lastName}`,
@@ -123,7 +109,7 @@ export const COLUMNS: (ColumnDef<Admin> & Column)[] = [
       </div>
     ),
   },
-  generateAffiliation(AFFILIATIONS),
+  generateAffiliation(),
   generateStatus(STATUSES),
 ];
 

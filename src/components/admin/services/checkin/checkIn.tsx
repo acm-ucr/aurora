@@ -115,6 +115,8 @@ const CheckIn = () => {
               field={null}
               title={null}
               required={null}
+              disabled={false}
+              searchable={false}
             />
           )}
           <Scanner setResult={setResult} />

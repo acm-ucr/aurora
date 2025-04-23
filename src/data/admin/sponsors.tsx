@@ -3,16 +3,7 @@ import { generateSelect, generateStatus, generateTiers } from "./columns";
 import { STATUSES } from "@/data/statuses";
 import { ColumnDef } from "@tanstack/react-table";
 import { Column, Tags } from "@/types/dashboard";
-
-type Sponsor = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  company: string;
-  position: string;
-  tier: string;
-  comments: string;
-};
+import { Sponsor } from "@/types/users";
 
 export const TAGS: Tags[] = [
   {
@@ -25,7 +16,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-export const COLUMNS: (ColumnDef<Sponsor> & Column)[] = [
+export const COLUMNS: (ColumnDef<Sponsor, string> & Column)[] = [
   generateSelect(),
   {
     accessorFn: (row) => `${row.firstName} ${row.lastName}`,

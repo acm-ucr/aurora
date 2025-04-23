@@ -11,8 +11,31 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Input } from "@/components/ui/input";
+import { GoogleEvent } from "@/types/calendar";
+import { Dispatch, SetStateAction } from "react";
+import { Participant } from "@/types/users";
 
-const VirtualizedContent = ({ items, setSelected, userFn, searchable }) => {
+interface SelectTypes {
+  items: Participant[],
+  title: string | null,
+  required: boolean | null,
+  placeholder: string,
+  user: Participant,
+  setUser: Dispatch<SetStateAction<Participant | null>> ,
+  field: string | null,
+  disabled: boolean,
+  searchable: boolean
+  userFn: (event: any) => void
+}
+
+interface VirtualizedContentTypes {
+  items: Participant[],
+  setSelected: Dispatch<SetStateAction<null>>,
+  userFn: (event: Participant) => void,
+  searchable: boolean,
+}
+
+const VirtualizedContent = ({ items, setSelected, userFn, searchable }: VirtualizedContentTypes) => {
   const ref = useRef(null);
   const [options, setOptions] = useState(items);
   const { getTotalSize, getVirtualItems } = useVirtualizer({
@@ -84,7 +107,7 @@ const Select = ({
   disabled = false,
   searchable = false,
   userFn = (value) => setUser({ ...user, [field]: value }),
-}) => {
+}: SelectTypes) => {
   const [selected, setSelected] = useState(null);
 
   return (

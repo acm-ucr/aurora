@@ -2,24 +2,7 @@ import { generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
 import { Column, Tags } from "@/types/dashboard";
 import { ColumnDef } from "@tanstack/react-table";
-
-type Participant = {
-  phone: string;
-  major: string;
-  age: number;
-  country: string;
-  school: string;
-  grade: string;
-  gender: string;
-  shirt: string;
-  diet: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  roles: string;
-  discord: string;
-  team: string;
-};
+import { Participant } from "@/types/users";
 
 export const TAGS: Tags[] = [
   {
@@ -32,7 +15,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-export const COLUMNS: (ColumnDef<Participant> & Column)[] = [
+export const COLUMNS: (ColumnDef<Participant, string> & Column)[] = [
   generateSelect(),
   {
     accessorFn: (row) => `${row.firstName} ${row.lastName}`,
@@ -134,7 +117,7 @@ export const ATTRIBUTES = {
   diet: "",
 };
 
-export const SUBCOLUMNS: (ColumnDef<Participant> & Column)[] = [
+export const SUBCOLUMNS: (ColumnDef<Participant, string> & Column)[] = [
   generateSelect(),
   {
     accessorKey: "school",

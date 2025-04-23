@@ -1,5 +1,4 @@
 import View from "@/components/admin/dashboards/dashboard/view";
-import { AFFILIATIONS } from "../form/information";
 import { generateAffiliation, generateSelect, generateStatus } from "./columns";
 import { STATUSES } from "@/data/statuses";
 import JSZip from "jszip";
@@ -8,18 +7,7 @@ import { Download } from "lucide-react";
 import data from "../config";
 import { Column, Tags } from "@/types/dashboard";
 import { ColumnDef } from "@tanstack/react-table";
-
-type Judge = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  gender: string;
-  title: string;
-  affiliation: string;
-  shirt: string;
-  photo: string;
-};
+import { Judge } from "@/types/users";
 
 export const TAGS: Tags[] = [
   {
@@ -32,7 +20,7 @@ export const TAGS: Tags[] = [
   },
 ];
 
-export const COLUMNS: (ColumnDef<Judge> & Column)[] = [
+export const COLUMNS: (ColumnDef<Judge, string> & Column)[] = [
   generateSelect(),
   {
     accessorFn: (row) => `${row.firstName} ${row.lastName}`,
@@ -97,7 +85,7 @@ export const COLUMNS: (ColumnDef<Judge> & Column)[] = [
       </div>
     ),
   },
-  generateAffiliation(AFFILIATIONS),
+  generateAffiliation(),
   generateStatus(STATUSES),
   {
     accessorKey: "photo",
@@ -146,7 +134,7 @@ export const COLUMNS: (ColumnDef<Judge> & Column)[] = [
     cell: ({ row }) => (
       <View
         src={row.getValue("photo")}
-        title={row.getValue("name")}
+        title={row.getValue("fullName")}
         type="photo"
       />
     ),

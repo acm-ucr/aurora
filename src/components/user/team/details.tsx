@@ -15,8 +15,13 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Team } from "@/types/users";
 
-const Details = ({ team }) => {
+interface DetailsParams {
+  team: Team
+}
+
+const Details = ({team}: DetailsParams) => {
   const [details, setDetails] = useState(team);
 
   const handleCopy = () => {
