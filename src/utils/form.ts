@@ -6,12 +6,14 @@ export const submit = async <T extends z.ZodObject<z.ZodRawShape>>({
   data,
   schema,
   url,
+  method = "POST",
   setLoading,
   setState,
 }: {
   data: z.infer<T>;
   schema: T;
   url: string;
+  method?: "POST" | "PUT";
   setLoading: (loading: boolean) => void;
   setState: (state: number) => void;
 }) => {
@@ -29,7 +31,7 @@ export const submit = async <T extends z.ZodObject<z.ZodRawShape>>({
 
   try {
     await api({
-      method: "POST",
+      method: method,
       url: url,
       body: data,
     });

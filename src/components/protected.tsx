@@ -48,7 +48,7 @@ const ProtectedPage = async ({ children, restrictions, title }: props) => {
     <>
       <title>{title}</title>
       {navigation && <Navigation />}
-      <div className="relative z-0 flex h-screen w-full items-start overflow-x-hidden bg-hackathon-page px-10">
+      <div className="relative z-0 flex h-screen w-full items-start overflow-x-hidden bg-hackathon-page px-6">
         <div className="h-full w-full py-10 md:py-0">{children}</div>
       </div>
     </>
