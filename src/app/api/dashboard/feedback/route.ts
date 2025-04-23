@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/utils/firebase";
 import {
   addDoc,
@@ -17,7 +17,7 @@ import {
 import { authenticate } from "@/utils/auth";
 import { AUTH } from "@/data/admin/dashboard";
 
-export const POST = async (req) => {
+export const POST = async (req: NextRequest) => {
   const res = NextResponse;
   const { auth } = await authenticate(AUTH.POST);
 
@@ -56,7 +56,7 @@ export const POST = async (req) => {
   }
 };
 
-export const GET = async (req) => {
+export const GET = async (req: NextRequest) => {
   const size = req.nextUrl.searchParams.get("size");
   const last = req.nextUrl.searchParams.get("last");
 
@@ -143,7 +143,7 @@ export const GET = async (req) => {
   }
 };
 
-export const PUT = async (req) => {
+export const PUT = async (req: NextRequest) => {
   const res = NextResponse;
   const { auth, message } = await authenticate(AUTH.PUT);
 
@@ -174,7 +174,7 @@ export const PUT = async (req) => {
   }
 };
 
-export const DELETE = async (req) => {
+export const DELETE = async (req: Request) => {
   const res = NextResponse;
   const { auth, message } = await authenticate(AUTH.DELETE);
   const objects = req.nextUrl.searchParams.get("remove").split(",");
