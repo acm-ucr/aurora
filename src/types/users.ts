@@ -124,5 +124,5 @@ export type Team = {
     devpost: string;
     github: string;
     figma: string;
-  }[];
+  };
 };

@@ -17,10 +17,18 @@ import {
 } from "@/components/ui/dialog";
 import { UploadInput } from "@/types/forms";
 
-const getSize = (maxSize: number) => BYTES[maxSize[1]] * maxSize[0];
+const getSize = (maxSize: [number, string]) => BYTES[maxSize[1]] * maxSize[0];
 const getType = (types: string[]) => "." + types.join(",.");
 
-const Upload = ({ field, user, setUser, text, maxSize, types, required }: UploadInput) => {
+const Upload = ({
+  field,
+  user,
+  setUser,
+  text,
+  maxSize,
+  types,
+  required,
+}: UploadInput) => {
   const [file, setFile] = useState(
     user[field] && user[field].startsWith("data:image")
       ? { src: user[field], type: "image", title: `${user.firstName}.png` }
@@ -32,7 +40,7 @@ const Upload = ({ field, user, setUser, text, maxSize, types, required }: Upload
   const handleInput = async (e) => {
     setUploading(true);
     const blob = await compress(e.target.files[0]);
-    if (blob.size > getSize(maxSize)) {
+    if (blob.size > getSize(maxSize[0])) {
       toaster(`File too big, exceeds ${maxSize[0]} ${maxSize[1]}!`, "error");
       return;
     }
@@ -113,7 +121,7 @@ const Upload = ({ field, user, setUser, text, maxSize, types, required }: Upload
               <embed
                 fill={true}
                 className="h-full w-full object-cover"
-                src={file.src}
+                src={file ? file.src : null}
                 alt="Photo of the Judge"
               />
             </DialogContent>

@@ -18,10 +18,10 @@ import { Label } from "@/components/ui/label";
 import { Team } from "@/types/users";
 
 interface DetailsParams {
-  team: Team
+  team: Team;
 }
 
-const Details = ({team}: DetailsParams) => {
+const Details = ({ team }: DetailsParams) => {
   const [details, setDetails] = useState(team);
 
   const handleCopy = () => {

@@ -9,7 +9,7 @@ import { GENDERS, GRADES, SHIRTS, MAJORS, DIETS, AGES } from "./information";
 import data from "@/data/config";
 import { AFFILIATIONS } from "./information";
 
-interface Attributes {
+export interface Attributes {
   firstName: string;
   lastName: string;
   email: string;

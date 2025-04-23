@@ -16,26 +16,31 @@ import { Dispatch, SetStateAction } from "react";
 import { Participant } from "@/types/users";
 
 interface SelectTypes {
-  items: Participant[],
-  title: string | null,
-  required: boolean | null,
-  placeholder: string,
-  user: Participant,
-  setUser: Dispatch<SetStateAction<Participant | null>> ,
-  field: string | null,
-  disabled: boolean,
-  searchable: boolean
-  userFn: (event: any) => void
+  items: Participant[];
+  title: string | null;
+  required: boolean | null;
+  placeholder: string;
+  user: Participant;
+  setUser: Dispatch<SetStateAction<Participant | null>>;
+  field: string | null;
+  disabled: boolean;
+  searchable: boolean;
+  userFn: (event: any) => void;
 }
 
 interface VirtualizedContentTypes {
-  items: Participant[],
-  setSelected: Dispatch<SetStateAction<null>>,
-  userFn: (event: Participant) => void,
-  searchable: boolean,
+  items: Participant[];
+  setSelected: Dispatch<SetStateAction<null>>;
+  userFn: (event: Participant) => void;
+  searchable: boolean;
 }
 
-const VirtualizedContent = ({ items, setSelected, userFn, searchable }: VirtualizedContentTypes) => {
+const VirtualizedContent = ({
+  items,
+  setSelected,
+  userFn,
+  searchable,
+}: VirtualizedContentTypes) => {
   const ref = useRef(null);
   const [options, setOptions] = useState(items);
   const { getTotalSize, getVirtualItems } = useVirtualizer({

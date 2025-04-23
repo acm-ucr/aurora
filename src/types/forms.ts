@@ -1,3 +1,5 @@
+import { User } from "@/types/users";
+
 interface Input {
   width: number;
   required: boolean;
@@ -59,6 +61,8 @@ export type TextareaInput = Input & {
   placeholder: string;
 };
 export type UploadInput = Input & {
+  user: User;
+  setUser: () => void;
   input: "upload";
   field: string;
   text: string;

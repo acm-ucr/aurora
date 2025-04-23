@@ -1,7 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { User } from "@/types/users";
+import { StatusMapping } from "@/data/statuses";
+import { Attributes } from "@/data/form/admins";
 
-const Status = ({ object, statuses, setState }) => {
+interface StatusTypes {
+  object: Attributes;
+  statuses: StatusMapping;
+  setState: (e: number) => void;
+}
+
+const Status = ({ object, statuses, setState }: StatusTypes) => {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <p>
