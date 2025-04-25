@@ -1,19 +1,20 @@
 import { StatusMapping } from "@/data/statuses";
+import { Round } from "./rounds";
 
 export type User = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  status: StatusMapping;
+    firstName: string;
+    lastName: string;
+    email: string;
+    status: StatusMapping;
 };
 
 export type Admin = {
-  gender: string;
-  major: string;
-  diet: string;
-  grade: string;
-  discord: string;
-  affiliation:
+    gender: string;
+    major: string;
+    diet: string;
+    grade: string;
+    discord: string;
+    affiliation:
     | "director"
     | "marketing"
     | "sponsorship"
@@ -22,14 +23,14 @@ export type Admin = {
     | "uiux"
     | "operations"
     | "student";
-  shirt: string;
+    shirt: string;
 } & User;
 
 export type Committee = {
-  discord: string;
-  shirt: string;
-  grade: string;
-  affiliation:
+    discord: string;
+    shirt: string;
+    grade: string;
+    affiliation:
     | "director"
     | "marketing"
     | "sponsorship"
@@ -41,13 +42,13 @@ export type Committee = {
 } & User;
 
 export type Interest = {
-  eventSource: string;
+    eventSource: string;
 } & User;
 
 export type Judge = {
-  photo: string;
-  title: string;
-  affiliation:
+    photo: string;
+    title: string;
+    affiliation:
     | "director"
     | "marketing"
     | "sponsorship"
@@ -59,67 +60,67 @@ export type Judge = {
 } & User;
 
 export type Lead = {
-  grade: string;
-  discord: string;
+    grade: string;
+    discord: string;
 } & User;
 
 export type Mentor = {
-  grade: string;
-  discord: string;
+    grade: string;
+    discord: string;
 } & User;
 
 export type Panelist = {
-  availability: string[];
-  response: string;
+    availability: string[];
+    response: string;
 } & User;
 
 export type Participant = {
-  phone: string;
-  major: string;
-  age: number;
-  country: string;
-  school: string;
-  grade: string;
-  gender: string;
-  diet: string;
-  roles: string;
-  team: string;
-  discord: string;
+    phone: string;
+    major: string;
+    age: number;
+    country: string;
+    school: string;
+    grade: string;
+    gender: string;
+    diet: string;
+    roles: string;
+    team: string;
+    discord: string;
 } & User;
 
 export type Resume = {
-  school: string;
-  grade: string;
-  resume: string;
+    school: string;
+    grade: string;
+    resume: string;
 } & User;
 
 export type Sponsor = {
-  company: string;
-  position: string;
-  tier: string;
-  comments: string;
-  tiers: string[];
+    company: string;
+    position: string;
+    tier: string;
+    comments: string;
+    tiers: string[];
 } & User;
 
 export type Volunteer = {
-  discord: string;
-  major: string;
-  grade: string;
-  availability: string[];
-  gender: string;
-  shirt: string;
+    discord: string;
+    major: string;
+    grade: string;
+    availability: string[];
+    gender: string;
+    shirt: string;
 } & User;
 
 export type Team = {
-  id: string;
-  name: string;
-  members: {
+    id: string;
     name: string;
-    discord: string;
-  }[];
-  discords: string[];
-  links: {
-    name: string;
-    link: string;
-  }[];
+    members: {
+        name: string;
+        discord: string;
+    }[];
+    discords: string[];
+    links: {
+        [link: string]: string;
+    }[];
+    rounds: Round[][];
 };

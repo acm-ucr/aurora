@@ -10,6 +10,7 @@ import Judging from "@/components/admin/services/judging/judging";
 import Mentors from "@/components/admin/dashboards/mentors";
 import Contacts from "@/components/admin/services/contacts";
 import Participants from "@/components/admin/dashboards/participants";
+import Results from "@/components/admin/services/results";
 import Resumes from "@/components/admin/dashboards/resumes";
 import Sponsors from "@/components/admin/dashboards/sponsors";
 import Panels from "@/components/admin/dashboards/panels";
@@ -34,6 +35,7 @@ const Page = ({ params, searchParams }) => {
     mentors: <Mentors searchParams={searchParams} />,
     contacts: <Contacts />,
     participants: <Participants searchParams={searchParams} />,
+    results: <Results />,
     resumes: <Resumes searchParams={searchParams} />,
     settings: <Settings />,
     sponsors: <Sponsors searchParams={searchParams} />,

@@ -66,8 +66,9 @@ export const GET = async () => {
     });
 
     judgesSnapshot.forEach((doc) => {
-      const { affiliation, name } = doc.data();
+      const { affiliation, firstName, lastName } = doc.data();
 
+      const name = firstName + " " + lastName;
       judges.push({
         affiliation,
         name,

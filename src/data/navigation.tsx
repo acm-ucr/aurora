@@ -25,6 +25,7 @@ import {
   FolderSearch2,
   HandCoins,
   Cat,
+  Trophy,
 } from "lucide-react";
 import data from "./config";
 import { SiInstagram } from "@icons-pack/react-simple-icons";
@@ -155,6 +156,12 @@ export const TABS: Tabs = {
           name: "Judging",
           link: "/admin/judging",
           icon: <MonitorCog className={iconStyle} />,
+          target: "_self",
+        },
+        {
+          name: "Results",
+          link: "/admin/results",
+          icon: <Trophy className={iconStyle} />,
           target: "_self",
         },
         {

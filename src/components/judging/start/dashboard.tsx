@@ -13,8 +13,7 @@ import { api } from "@/utils/api";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "@/components/loading";
 import { QUESTIONS } from "@/data/judge/form";
-
-type Round = { name: string; affiliation: string; uid: "string" };
+import { Round } from "@/types/rounds";
 const Dashboard = () => {
   const fetchRounds = async () => {
     const { items } = await api({ url: "/api/judging/start", method: "GET" });
