@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { AGES, SHIRTS, GENDERS, DIETS } from "@/data/form/information"; // Common imports found in 8 out of 12 schemas
+import { MAJORS, AGES, GRADES, SHIRTS, GENDERS, DIETS } from "@/data/form/information"; // Common imports found in most schemas
 
 // following exports are common in 9 out of 12 schemas
 export const schema = z.object({
