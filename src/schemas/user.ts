@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { AGES, SHIRTS, GENDERS, DIETS } from "@/data/form/information"; //Common imports found in 8 out of 12 schemas
+import { AGES, SHIRTS, GENDERS, DIETS } from "@/data/form/information"; // Common imports found in 8 out of 12 schemas
 
-//following exports are common in 9 out of 12 schemas
+// following exports are common in 9 out of 12 schemas
 export const schema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
