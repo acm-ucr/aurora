@@ -5,19 +5,35 @@
   },
   "extends": [
     "next/core-web-vitals",
-    "google",
     "prettier",
     "plugin:@tanstack/eslint-plugin-query/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
-  "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "jsdoc"
+  ],
   "rules": {
-    "require-jsdoc": 0,
+    "jsdoc/check-alignment": "error",
+    "jsdoc/check-indentation": "warn",
+    "jsdoc/check-param-names": "error",
+    "jsdoc/require-jsdoc": [
+      "warn",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true,
+          "ArrowFunctionExpression": false,
+          "FunctionExpression": false
+        }
+      }
+    ],
     "jsx-a11y/alt-text": 1,
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
