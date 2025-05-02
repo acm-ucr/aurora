@@ -161,7 +161,7 @@ const Questions = ({
                 </Label>
               </div>
               <Textarea
-                className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-none"
+                className="placeholder:text-hackathon-gray-200 w-full resize-none border border-1 border-black pl-3 focus:outline-none"
                 maxLength={500}
                 value={object[field.name]}
                 onChange={(e) =>
@@ -191,7 +191,7 @@ const Questions = ({
         <Link
           href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf"
           target="_blank"
-          className="mt-1 flex items-center text-hackathon-green-300 no-underline hover:text-opacity-65"
+          className="text-hackathon-green-300 hover:text-opacity-65 mt-1 flex items-center no-underline"
         >
           MLH Code of Conduct
           <SquareArrowOutUpRight className="mx-2" size={15} />
@@ -199,7 +199,7 @@ const Questions = ({
         <Link
           href="https://mlh.io/privacy"
           target="_blank"
-          className="mt-3 flex items-center text-hackathon-green-300 no-underline hover:text-opacity-65"
+          className="text-hackathon-green-300 hover:text-opacity-65 mt-3 flex items-center no-underline"
         >
           MLH Privacy Policy
           <SquareArrowOutUpRight className="mx-2" size={15} />
@@ -207,7 +207,7 @@ const Questions = ({
         <Link
           href="https://github.com/MLH/mlh-policies/blob/main/contest-terms.md"
           target="_blank"
-          className="mt-3 flex items-center text-hackathon-green-300 no-underline hover:text-opacity-65"
+          className="text-hackathon-green-300 hover:text-opacity-65 mt-3 flex items-center no-underline"
         >
           MLH Contest Terms and Conditions
           <SquareArrowOutUpRight className="mx-2" size={15} />

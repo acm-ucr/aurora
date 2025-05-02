@@ -16,7 +16,7 @@ const DashboardWrapper = async () => {
 
   return (
     <Providers session={session}>
-      <div className="flex h-full flex-col gap-3 py-4 font-poppins">
+      <div className="font-poppins flex h-full flex-col gap-3 py-4">
         <Header />
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
           <div className="col-span-1 flex flex-col gap-3 md:col-span-2">

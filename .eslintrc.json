@@ -13,11 +13,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "jsdoc"
-  ],
+  "plugins": ["react", "@typescript-eslint", "jsdoc"],
   "rules": {
     "jsdoc/check-alignment": "error",
     "jsdoc/check-indentation": "warn",

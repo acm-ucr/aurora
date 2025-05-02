@@ -10,7 +10,7 @@ interface props {
 const Modal = ({ event, setEvent }: props) => {
   return (
     event && (
-      <div className="absolute left-1/2 top-1/2 z-10 w-1/2 -translate-x-1/2 -translate-y-1/2 rounded">
+      <div className="absolute top-1/2 left-1/2 z-10 w-1/2 -translate-x-1/2 -translate-y-1/2 rounded">
         <div
           className={`bg-hackathon-red-200 flex items-center justify-between rounded-t p-3 ${event.color}`}
         >

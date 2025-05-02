@@ -212,7 +212,7 @@ const Toolbar = ({
         <Trash2
           onClick={confirmDelete}
           size={30}
-          className="mx-2 text-hackathon-gray-300 duration-150 hover:cursor-pointer hover:opacity-70"
+          className="text-hackathon-gray-300 mx-2 duration-150 hover:cursor-pointer hover:opacity-70"
         />
       </div>
 

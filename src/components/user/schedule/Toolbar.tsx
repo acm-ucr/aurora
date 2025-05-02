@@ -17,7 +17,7 @@ const Toolbar = ({ onFilterChange }: props) => {
           }}
           className={`m-0.5 px-3 py-1 ${
             selected === "all"
-              ? "rounded bg-hackathon-green-300 text-white"
+              ? "bg-hackathon-green-300 rounded text-white"
               : "bg-white text-black"
           }`}
         >
@@ -30,7 +30,7 @@ const Toolbar = ({ onFilterChange }: props) => {
           }}
           className={`m-0.5 px-3 py-1 ${
             selected === "hackweek"
-              ? "rounded bg-hackathon-green-300 text-white"
+              ? "bg-hackathon-green-300 rounded text-white"
               : "bg-white text-black"
           }`}
         >
@@ -43,7 +43,7 @@ const Toolbar = ({ onFilterChange }: props) => {
           }}
           className={`m-0.5 px-3 py-1 ${
             selected === "hackathon"
-              ? "rounded bg-hackathon-green-300 text-white"
+              ? "bg-hackathon-green-300 rounded text-white"
               : "bg-white text-black"
           }`}
         >

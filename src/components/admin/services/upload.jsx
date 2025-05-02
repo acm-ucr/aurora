@@ -51,13 +51,13 @@ const Upload = ({ text, setObjects, objects, size, types }) => {
           {objects?.files.map((file, index) => (
             <div
               key={index}
-              className="mb-1 mr-1 flex !max-w-fit items-center bg-hackathon-gray-100 p-0 px-2 py-1"
+              className="bg-hackathon-gray-100 mr-1 mb-1 flex !max-w-fit items-center p-0 px-2 py-1"
             >
-              <p className="m-0 whitespace-nowrap text-sm font-semibold text-gray-500">
+              <p className="m-0 text-sm font-semibold whitespace-nowrap text-gray-500">
                 {displayFile(file)}
               </p>
               <X
-                className="ml-2 text-sm text-hackathon-gray-300 hover:cursor-pointer hover:text-red-600"
+                className="text-hackathon-gray-300 ml-2 text-sm hover:cursor-pointer hover:text-red-600"
                 onClick={() => {
                   setObjects({
                     ...objects,

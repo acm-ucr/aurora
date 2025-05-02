@@ -18,7 +18,7 @@ const Result = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <div className="flex h-full flex-col gap-3 py-4 font-poppins">
+    <div className="font-poppins flex h-full flex-col gap-3 py-4">
       <Label className="pr-5 text-2xl font-bold">Results</Label>
       {data ? (
         <div className="flex flex-col gap-3">

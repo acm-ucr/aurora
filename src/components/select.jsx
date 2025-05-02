@@ -52,7 +52,7 @@ const VirtualizedContent = ({ items, setSelected, userFn, searchable }) => {
 
             return (
               <DropdownMenuItem
-                className="absolute left-0 top-0 w-full capitalize"
+                className="absolute top-0 left-0 w-full capitalize"
                 style={{
                   height: `${virtualRow.size}px`,
                   transform: `translateY(${virtualRow.start}px)`,
@@ -98,14 +98,14 @@ const Select = ({
       <DropdownMenu className="max-w-full">
         <DropdownMenuTrigger className="w-full" asChild>
           <Button
-            className="w-full justify-between whitespace-normal break-words text-left capitalize"
+            className="w-full justify-between text-left break-words whitespace-normal capitalize"
             variant="outline"
             disabled={disabled}
           >
             {selected ? (
               selected
             ) : (
-              <p className="font-normal text-hackathon-gray-200">
+              <p className="text-hackathon-gray-200 font-normal">
                 {placeholder}
               </p>
             )}

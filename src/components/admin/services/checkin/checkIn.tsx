@@ -98,7 +98,7 @@ const CheckIn = () => {
   };
 
   return (
-    <div className="flex h-full flex-col gap-3 py-4 font-poppins">
+    <div className="font-poppins flex h-full flex-col gap-3 py-4">
       <Label className="pr-5 text-2xl font-bold">Checkin</Label>
       <div className="flex flex-col items-center justify-center">
         <div className="flex w-full flex-col gap-3 overflow-hidden py-3">

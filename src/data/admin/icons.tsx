@@ -21,25 +21,25 @@ import {
 
 export const ICONS: Record<string, JSX.Element> = {
   github: (
-    <Github className="mr-2 text-lg hover:text-hackathon-green-300 hover:opacity-75" />
+    <Github className="hover:text-hackathon-green-300 mr-2 text-lg hover:opacity-75" />
   ),
   devpost: (
-    <Devpost className="mr-2 text-lg hover:text-hackathon-green-300 hover:opacity-75" />
+    <Devpost className="hover:text-hackathon-green-300 mr-2 text-lg hover:opacity-75" />
   ),
   figma: (
-    <Figma className="mr-2 text-lg hover:text-hackathon-green-300 hover:opacity-75" />
+    <Figma className="hover:text-hackathon-green-300 mr-2 text-lg hover:opacity-75" />
   ),
-  winner: <Crown className="ml-1 text-lg text-hackathon-yellow-100" />,
-  phone: <Phone className="mr-2 text-hackathon-blue-200" />,
-  email: <Mail className="mr-2 text-lg text-hackathon-blue-200" />,
-  shirt: <Shirt className="mr-2 text-lg text-hackathon-blue-200" />,
-  diet: <Apple className="mr-2 text-hackathon-blue-200" />,
-  age: <Cake className="mr-2 text-lg text-hackathon-blue-200" />,
-  gender: <User className="mr-2 text-lg text-hackathon-blue-200" />,
-  grade: <School className="mr-2 text-lg text-hackathon-blue-200" />,
-  major: <BookOpen className="mr-2 text-lg text-hackathon-blue-200" />,
-  school: <School className="mr-2 text-lg text-hackathon-blue-200" />,
-  country: <MapPin className="mr-2 text-lg text-hackathon-blue-200" />,
-  eventSource: <Calendar className="mr-2 text-lg text-hackathon-blue-200" />,
-  priorHackathons: <Clock className="mr-2 text-lg text-hackathon-blue-200" />,
+  winner: <Crown className="text-hackathon-yellow-100 ml-1 text-lg" />,
+  phone: <Phone className="text-hackathon-blue-200 mr-2" />,
+  email: <Mail className="text-hackathon-blue-200 mr-2 text-lg" />,
+  shirt: <Shirt className="text-hackathon-blue-200 mr-2 text-lg" />,
+  diet: <Apple className="text-hackathon-blue-200 mr-2" />,
+  age: <Cake className="text-hackathon-blue-200 mr-2 text-lg" />,
+  gender: <User className="text-hackathon-blue-200 mr-2 text-lg" />,
+  grade: <School className="text-hackathon-blue-200 mr-2 text-lg" />,
+  major: <BookOpen className="text-hackathon-blue-200 mr-2 text-lg" />,
+  school: <School className="text-hackathon-blue-200 mr-2 text-lg" />,
+  country: <MapPin className="text-hackathon-blue-200 mr-2 text-lg" />,
+  eventSource: <Calendar className="text-hackathon-blue-200 mr-2 text-lg" />,
+  priorHackathons: <Clock className="text-hackathon-blue-200 mr-2 text-lg" />,
 };

@@ -120,7 +120,7 @@ const Details = ({ team }) => {
 
             {details.members.map(({ name, discord }, index) => (
               <div key={index} className="space-y-1 rounded-lg bg-gray-100 p-4">
-                <p className="text-sm font-medium leading-none">{name}</p>
+                <p className="text-sm leading-none font-medium">{name}</p>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
                   <Discord size={20} />
                   <span>{discord}</span>

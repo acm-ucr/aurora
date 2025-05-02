@@ -42,7 +42,7 @@ function Badge({ className, variant, type = "gray", ...props }: BadgeProps) {
         background,
         text,
         hover,
-        "border-4 capitalize text-black",
+        "border-4 text-black capitalize",
       )}
       {...props}
     />

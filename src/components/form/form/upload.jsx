@@ -58,8 +58,8 @@ const Upload = ({ field, user, setUser, text, maxSize, types, required }) => {
             className="flex h-fit w-full cursor-pointer flex-col items-center justify-center rounded border border-slate-200 bg-white hover:bg-slate-100"
           >
             <div className="flex flex-col items-center justify-center py-4">
-              <LucideUpload className="mb-2 text-3xl text-hackathon-gray-200" />
-              <p className="text-sm font-semibold text-hackathon-gray-200">
+              <LucideUpload className="text-hackathon-gray-200 mb-2 text-3xl" />
+              <p className="text-hackathon-gray-200 text-sm font-semibold">
                 Upload from my computer
               </p>
             </div>
