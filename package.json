@@ -9,7 +9,7 @@
     "lint": "next lint",
     "format": "npx prettier --write .",
     "check": "npx prettier --check .",
-    "eslint": "npx eslint . --ext js --ext jsx",
+    "eslint": "npx eslint .",
     "prepare": "husky install"
   },
   "devDependencies": {
