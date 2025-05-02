@@ -36,7 +36,8 @@ const types = new Set([
   "leads",
 ]);
 
-export const POST = async (req, { params }) => {
+export const POST = async (req, props) => {
+  const params = await props.params;
   const res = NextResponse;
   const { auth, message, user } = await authenticate(AUTH.POST);
 
@@ -107,7 +108,8 @@ export const POST = async (req, { params }) => {
   }
 };
 
-export const GET = async (req, { params }) => {
+export const GET = async (req, props) => {
+  const params = await props.params;
   const size = req.nextUrl.searchParams.get("size");
   const last = req.nextUrl.searchParams.get("last");
 
@@ -193,7 +195,8 @@ export const GET = async (req, { params }) => {
   }
 };
 
-export const PUT = async (req, { params }) => {
+export const PUT = async (req, props) => {
+  const params = await props.params;
   const res = NextResponse;
   const { objects, status } = await req.json();
   const { auth, message } = await authenticate(AUTH.PUT);
@@ -266,7 +269,8 @@ export const PUT = async (req, { params }) => {
   }
 };
 
-export const DELETE = async (req, { params }) => {
+export const DELETE = async (req, props) => {
+  const params = await props.params;
   const res = NextResponse;
   const { auth, message } = await authenticate(AUTH.DELETE);
   const objects = await req.json();

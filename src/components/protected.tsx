@@ -13,7 +13,7 @@ interface props {
 
 const ProtectedPage = async ({ children, restrictions, title }: props) => {
   const session = await getSession();
-  const header = headers();
+  const header = await headers();
   const pathName = header.get("x-url") || "";
 
   if (!session) {

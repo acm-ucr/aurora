@@ -15,10 +15,10 @@ import React from "react";
 import { notFound } from "next/navigation";
 
 type props = {
-  params: { type: string };
+  params: Promise<{ type: string }>;
 };
 
-const components: Record<string, React.ReactElement> = {
+const components: Record<string, React.ReactElement<any>> = {
   admin: <Admin />,
   committee: <Committee />,
   feedback: <Feedback />,
@@ -36,7 +36,8 @@ const capitalizeFirstLetter = (word: string) => {
   return word[0].toUpperCase() + word.slice(1);
 };
 
-const Page = ({ params }: props) => {
+const Page = async (props0: props) => {
+  const params = await props0.params;
   if (components.hasOwnProperty(params.type)) {
     return (
       <ProtectedPage

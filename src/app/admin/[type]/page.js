@@ -22,7 +22,9 @@ import Settings from "@/components/admin/services/settings";
 import Timer from "@/components/admin/services/timer";
 import { notFound } from "next/navigation";
 
-const Page = ({ params, searchParams }) => {
+const Page = async props => {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const components = {
     admins: <Admins searchParams={searchParams} />,
     calendar: <Events />,

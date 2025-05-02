@@ -30,6 +30,8 @@ import {
 import data from "./config";
 import { SiInstagram } from "@icons-pack/react-simple-icons";
 
+import type { JSX } from "react";
+
 const iconStyle = "mr-2 w-4 h-4";
 
 interface Tab {

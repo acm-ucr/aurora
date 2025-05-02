@@ -11,9 +11,7 @@ const ScanQRCode = ({ setResult }: Props) => {
     },
   });
 
-  return (
-    <video ref={ref as React.LegacyRef<HTMLVideoElement>} className="w-full" />
-  );
+  return (<video ref={ref as React.Ref<HTMLVideoElement>} className="w-full" />);
 };
 
 export default ScanQRCode;
