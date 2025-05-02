@@ -32,7 +32,7 @@ const Dashboard = () => {
       <Accordion
         type="single"
         collapsible
-        className="w-full rounded-md border-black/20 bg-hackathon-blue-200 text-white"
+        className="bg-hackathon-blue-200 w-full rounded-md border-black/20 text-white"
       >
         {data.rounds.map((round: Round[], index: number) => {
           const current = round[0];
@@ -41,7 +41,7 @@ const Dashboard = () => {
               <AccordionItem
                 value={`empty-${index}`}
                 key={index}
-                className="w-full bg-hackathon-gray-200 p-2"
+                className="bg-hackathon-gray-200 w-full p-2"
               >
                 R{index + 1} - No Team
               </AccordionItem>
@@ -68,7 +68,7 @@ const Dashboard = () => {
                   <Badge className="whitespace-nowrap">{table}</Badge>
                   <Link
                     href={`/judge/start/${round[0]?.uid}`}
-                    className="text-md flex flex-row items-center justify-between gap-2 rounded-md bg-hackathon-tags-gray-bg px-2 py-1 text-black"
+                    className="text-md bg-hackathon-tags-gray-bg flex flex-row items-center justify-between gap-2 rounded-md px-2 py-1 text-black"
                   >
                     <Pencil size={20} />
                   </Link>
@@ -77,7 +77,7 @@ const Dashboard = () => {
               <AccordionContent className="flex flex-col gap-4 bg-white p-2 text-black">
                 {QUESTIONS.map((question, index) => (
                   <div key={index}>
-                    <div className="flex flex-row justify-between text-2xl text-hackathon-blue-100">
+                    <div className="text-hackathon-blue-100 flex flex-row justify-between text-2xl">
                       <div className="font-bold">
                         {question.title.toUpperCase()}
                       </div>

@@ -22,9 +22,9 @@ interface props {
 
 const Start = ({ id }: props) => {
   return (
-    <div className="overflow-scroll-y flex h-full w-full flex-col items-center font-poppins">
-      <div className="flex w-10/12 flex-col items-center pb-12 pt-5 md:w-1/2 xl:w-1/3">
-        <p className="m-0 w-full rounded-t bg-hackathon-green-300 px-4 py-4 text-xl font-semibold">
+    <div className="overflow-scroll-y font-poppins flex h-full w-full flex-col items-center">
+      <div className="flex w-10/12 flex-col items-center pt-5 pb-12 md:w-1/2 xl:w-1/3">
+        <p className="bg-hackathon-green-300 m-0 w-full rounded-t px-4 py-4 text-xl font-semibold">
           Team {id} - SUPERNOVA
         </p>
         <div className="w-full rounded-b bg-white p-8">
@@ -67,7 +67,7 @@ const Start = ({ id }: props) => {
             </div>
 
             <Textarea
-              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-hidden"
+              className="placeholder:text-hackathon-gray-200 w-full resize-none border border-1 border-black pl-3 focus:outline-hidden"
               maxLength={500}
             />
             <Label>Idea</Label>
@@ -82,7 +82,7 @@ const Start = ({ id }: props) => {
               <Slider defaultValue={[0]} max={4} step={1} />
             </div>
             <Textarea
-              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-hidden"
+              className="placeholder:text-hackathon-gray-200 w-full resize-none border border-1 border-black pl-3 focus:outline-hidden"
               maxLength={500}
             />
             <Label>Design</Label>
@@ -97,12 +97,12 @@ const Start = ({ id }: props) => {
               <Slider defaultValue={[0]} max={4} step={1} />
             </div>
             <Textarea
-              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-hidden"
+              className="placeholder:text-hackathon-gray-200 w-full resize-none border border-1 border-black pl-3 focus:outline-hidden"
               maxLength={500}
             />
             <Label>Notes</Label>
             <Textarea
-              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-hidden"
+              className="placeholder:text-hackathon-gray-200 w-full resize-none border border-1 border-black pl-3 focus:outline-hidden"
               maxLength={500}
             />
 

@@ -49,7 +49,7 @@ const Statistics = () => {
   }));
 
   return (
-    <div className="flex h-full flex-col py-4 font-poppins">
+    <div className="font-poppins flex h-full flex-col py-4">
       <Label className="pr-5 text-2xl font-bold">Statistics</Label>
       <div className="flex h-full items-start">
         <ToggleGroup

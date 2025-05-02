@@ -22,7 +22,7 @@ const Terms = ({ options, onClick, onMLHClick }: props) => {
 
   return (
     <>
-      <p className="mb-1 mt-3 font-semibold">
+      <p className="mt-3 mb-1 font-semibold">
         Terms and Conditions
         <span className="text-red-500">*</span>
       </p>

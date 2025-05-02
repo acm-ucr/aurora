@@ -22,7 +22,7 @@ import Settings from "@/components/admin/services/settings";
 import Timer from "@/components/admin/services/timer";
 import { notFound } from "next/navigation";
 
-const Page = async props => {
+const Page = async (props) => {
   const searchParams = await props.searchParams;
   const params = await props.params;
   const components = {

@@ -22,7 +22,7 @@ const CheckinPage = () => {
 
   return (
     <div className="flex h-[calc(100vh-48px)] w-full flex-col">
-      <div className="pb-3 pt-4">
+      <div className="pt-4 pb-3">
         <Label className="pr-5 text-2xl font-bold">Checkin</Label>
       </div>
       <div className="flex h-full flex-col lg:flex-row">

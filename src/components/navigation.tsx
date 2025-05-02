@@ -58,7 +58,7 @@ const Navigation = () => {
                   </CollapsibleTrigger>
                 </SidebarGroupLabel>
               )}
-              <CollapsibleContent className="overflow-hidden transition-transform data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+              <CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden transition-transform">
                 <SidebarGroupContent>
                   <SidebarMenu>
                     {subTabs.tabs &&
@@ -73,10 +73,10 @@ const Navigation = () => {
                                 {icon}
                               </span>
                               {open && (
-                                <span className="ml-2 mr-1 flex items-center">
+                                <span className="mr-1 ml-2 flex items-center">
                                   {name}
                                   {target === "_blank" && (
-                                    <SquareArrowOutUpRight className="ml-1 mt-1 h-4 w-4" />
+                                    <SquareArrowOutUpRight className="mt-1 ml-1 h-4 w-4" />
                                   )}
                                 </span>
                               )}

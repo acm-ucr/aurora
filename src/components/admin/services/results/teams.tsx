@@ -10,7 +10,7 @@ const Teams = ({ teams, setTeam }: props) => {
           <ToggleGroupItem
             key={index}
             value={name + index}
-            className="items-center justify-between whitespace-nowrap rounded-sm bg-white px-4 py-6 text-left opacity-100 hover:opacity-70 data-[state=on]:bg-hackathon-blue-100 data-[state=on]:text-white"
+            className="data-[state=on]:bg-hackathon-blue-100 items-center justify-between rounded-sm bg-white px-4 py-6 text-left whitespace-nowrap opacity-100 hover:opacity-70 data-[state=on]:text-white"
             onClick={() => setTeam({ name, ...team })}
           >
             <div className="w-3/4 truncate text-ellipsis">{name}</div>

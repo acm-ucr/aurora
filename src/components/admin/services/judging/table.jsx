@@ -29,7 +29,7 @@ const Table = ({ data }) => {
         return (
           <div
             key={`row: ${Math.floor(virtualItem.index / 4)}`}
-            className="absolute left-0 top-0 grid w-full grid-cols-4"
+            className="absolute top-0 left-0 grid w-full grid-cols-4"
             style={{
               height: `${virtualItem.size}px`,
               transform: `translateY(${virtualItem.start}px)`,
@@ -54,21 +54,21 @@ const Table = ({ data }) => {
                               key={index}
                               href={link.link}
                               target="_blank"
-                              className="m-0 p-0 text-xl text-black no-underline hover:text-hackathon-blue-100!"
+                              className="hover:text-hackathon-blue-100! m-0 p-0 text-xl text-black no-underline"
                             >
                               {ICONS[link.name]}
                             </Link>
                           ))}
                     </div>
                     {group.table && (
-                      <p className="mb-0 whitespace-nowrap font-semibold text-hackathon-green-300">
+                      <p className="text-hackathon-green-300 mb-0 font-semibold whitespace-nowrap">
                         table {group.table}
                       </p>
                     )}
                   </div>
                   {group.rounds.map((judges, index) => (
                     <div key={index} className="my-2 flex items-center">
-                      <p className="mb-0 mr-2 font-semibold">{index + 1}</p>
+                      <p className="mr-2 mb-0 font-semibold">{index + 1}</p>
                       <div className="flex items-center">
                         {judges.map(({ name }, i) => {
                           return <Badge key={i}>{name}</Badge>;

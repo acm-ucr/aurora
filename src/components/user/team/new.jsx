@@ -93,13 +93,13 @@ const NewTeam = () => {
       <Tabs defaultValue="join" className="w-full">
         <TabsList className="mb-8 grid w-full grid-cols-2 space-x-4 bg-transparent">
           <TabsTrigger
-            className="rounded-sm bg-gray-200 py-2 text-xl font-bold text-gray-500 data-[state=active]:text-hackathon-blue-200 md:text-2xl"
+            className="data-[state=active]:text-hackathon-blue-200 rounded-sm bg-gray-200 py-2 text-xl font-bold text-gray-500 md:text-2xl"
             value="join"
           >
             Join a Team
           </TabsTrigger>
           <TabsTrigger
-            className="rounded-sm bg-gray-200 py-2 text-xl font-bold text-gray-500 data-[state=active]:text-hackathon-blue-200 md:text-2xl"
+            className="data-[state=active]:text-hackathon-blue-200 rounded-sm bg-gray-200 py-2 text-xl font-bold text-gray-500 md:text-2xl"
             value="create"
           >
             Create a Team
@@ -108,7 +108,7 @@ const NewTeam = () => {
         <TabsContent className="items-center" value="join">
           <Card>
             <CardHeader className="items-center">
-              <CardTitle className="text-4xl font-bold text-hackathon-blue-200">
+              <CardTitle className="text-hackathon-blue-200 text-4xl font-bold">
                 Join a Team
               </CardTitle>
               <CardDescription className="text-xl">
@@ -120,7 +120,7 @@ const NewTeam = () => {
                 Team ID
               </Label>
               <Input
-                className="w-1/2 rounded-sm border-2 border-hackathon-blue-200 py-6 text-xl"
+                className="border-hackathon-blue-200 w-1/2 rounded-sm border-2 py-6 text-xl"
                 id="team"
                 placeholder="ie. abc123"
                 onChange={(e) => setTeam({ id: e.target.value, name: "" })}
@@ -128,7 +128,7 @@ const NewTeam = () => {
             </CardContent>
             <CardFooter className="flex flex-col items-center">
               <Button
-                className="w-1/8 mt-5 h-14 rounded-sm bg-hackathon-blue-200 text-2xl font-bold"
+                className="bg-hackathon-blue-200 mt-5 h-14 w-1/8 rounded-sm text-2xl font-bold"
                 onClick={handleJoin}
               >
                 Join Team
@@ -139,7 +139,7 @@ const NewTeam = () => {
         <TabsContent className="items-center" value="create">
           <Card>
             <CardHeader className="items-center">
-              <CardTitle className="text-4xl font-bold text-hackathon-blue-200">
+              <CardTitle className="text-hackathon-blue-200 text-4xl font-bold">
                 Create a Team
               </CardTitle>
               <CardDescription className="text-xl">
@@ -152,7 +152,7 @@ const NewTeam = () => {
                 Team Name
               </Label>
               <Input
-                className="w-1/2 rounded-sm border-2 border-hackathon-blue-200 py-6 text-xl"
+                className="border-hackathon-blue-200 w-1/2 rounded-sm border-2 py-6 text-xl"
                 id="name"
                 type="text"
                 placeholder="ie. Cool Coders"
@@ -161,7 +161,7 @@ const NewTeam = () => {
             </CardContent>
             <CardFooter className="flex flex-col items-center">
               <Button
-                className="w-1/8 mt-5 h-14 rounded-sm bg-hackathon-blue-200 text-2xl font-bold"
+                className="bg-hackathon-blue-200 mt-5 h-14 w-1/8 rounded-sm text-2xl font-bold"
                 onClick={handleCreate}
               >
                 Create Team

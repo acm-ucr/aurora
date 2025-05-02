@@ -50,7 +50,7 @@ const Find = () => {
   if (isLoading) return <Loading />;
   return (
     <div className="flex h-full w-full flex-col">
-      <div className="sticky top-0 z-20 bg-gray-100 pb-6 pt-4">
+      <div className="sticky top-0 z-20 bg-gray-100 pt-4 pb-6">
         <Label className="pr-5 text-2xl font-bold">Find a Team</Label>
         <Toolbar data={data ?? []} setSearch={setSearch} />
       </div>
