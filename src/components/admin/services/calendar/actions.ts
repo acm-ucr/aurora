@@ -45,7 +45,7 @@ export const getEvents = async () => {
         item.color = LABELS[category].background;
       } else {
         category = "other";
-        item.color = "!bg-hackathon-tags-gray-text";
+        item.color = "bg-hackathon-tags-gray-text!";
       }
       item.category = category;
       item.assignee = assignee;

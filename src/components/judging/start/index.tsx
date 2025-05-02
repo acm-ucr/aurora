@@ -67,7 +67,7 @@ const Start = ({ id }: props) => {
             </div>
 
             <Textarea
-              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-none"
+              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-hidden"
               maxLength={500}
             />
             <Label>Idea</Label>
@@ -82,7 +82,7 @@ const Start = ({ id }: props) => {
               <Slider defaultValue={[0]} max={4} step={1} />
             </div>
             <Textarea
-              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-none"
+              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-hidden"
               maxLength={500}
             />
             <Label>Design</Label>
@@ -97,12 +97,12 @@ const Start = ({ id }: props) => {
               <Slider defaultValue={[0]} max={4} step={1} />
             </div>
             <Textarea
-              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-none"
+              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-hidden"
               maxLength={500}
             />
             <Label>Notes</Label>
             <Textarea
-              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-none"
+              className="border-1 w-full resize-none border border-black pl-3 placeholder:text-hackathon-gray-200 focus:outline-hidden"
               maxLength={500}
             />
 

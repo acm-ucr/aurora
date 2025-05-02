@@ -95,8 +95,8 @@ const Calendar = () => {
         dayPropGetter={(event: Date) => {
           const bg =
             event.toLocaleDateString() == new Date().toLocaleDateString()
-              ? "!bg-hackathon-green-100"
-              : "!bg-white";
+              ? "bg-hackathon-green-100!"
+              : "bg-white!";
           return {
             className: bg,
             style: {

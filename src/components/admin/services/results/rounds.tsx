@@ -22,7 +22,7 @@ const Rounds = ({ team }: props) => {
             key={index}
             href={value ?? ""}
             target="_blank"
-            className="text-xl text-black no-underline hover:!text-hackathon-blue-100"
+            className="text-xl text-black no-underline hover:text-hackathon-blue-100!"
           >
             {ICONS[key]}
           </Link>

@@ -51,7 +51,7 @@ const Schedule = ({ eventList }: props) => {
             currentDate.setDate(currentDate.getDate() + index);
             return (
               <div
-                className="font-montserrat m-5 ml-0 flex flex-grow items-center justify-start border-b-[1px] border-black text-sm font-light text-black md:text-lg"
+                className="font-montserrat m-5 ml-0 flex grow items-center justify-start border-b-[1px] border-black text-sm font-light text-black md:text-lg"
                 key={index}
               >
                 {day} -{" "}

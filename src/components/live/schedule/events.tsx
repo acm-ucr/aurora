@@ -19,11 +19,11 @@ const Events = ({ events, totalDays }: props) => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="mx-auto grid w-10/12 grid-cols-7 items-center justify-between rounded border-2 border-black text-base">
+      <div className="mx-auto grid w-10/12 grid-cols-7 items-center justify-between rounded-sm border-2 border-black text-base">
         {totalDays.map((day) => (
           <button
             key={day}
-            className={`flex justify-center rounded p-2 text-black focus:outline-none ${
+            className={`flex justify-center rounded p-2 text-black focus:outline-hidden ${
               selectedDay === day ? "bg-hackathon-blue-100" : "bg-transparent"
             }`}
             onClick={() => setSelectedDay(day)}

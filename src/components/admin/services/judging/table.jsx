@@ -42,7 +42,7 @@ const Table = ({ data }) => {
                 ref={measureElement}
                 data-index={virtualItem.index + index}
               >
-                <div className="w-full rounded bg-white p-3">
+                <div className="w-full rounded-sm bg-white p-3">
                   <div className="flex items-center justify-between">
                     <Badge> {group.name}</Badge>
                     <div className="ml-2 flex w-full justify-start">
@@ -54,7 +54,7 @@ const Table = ({ data }) => {
                               key={index}
                               href={link.link}
                               target="_blank"
-                              className="m-0 p-0 text-xl text-black no-underline hover:!text-hackathon-blue-100"
+                              className="m-0 p-0 text-xl text-black no-underline hover:text-hackathon-blue-100!"
                             >
                               {ICONS[link.name]}
                             </Link>

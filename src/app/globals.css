@@ -3,6 +3,11 @@
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
 
+@plugin 'tailwindcss-animate';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:is(.dark *));
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -97,6 +102,130 @@
     50% {
       opacity: 0;
     }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+@theme {
+  --font-poppins: var(--font-poppins);
+
+  --color-hackathon-blue-100: #38a3a5;
+  --color-hackathon-blue-200: #22577a;
+  --color-hackathon-green-100: #e7f7e9;
+  --color-hackathon-green-200: #80ed99;
+  --color-hackathon-green-300: #57cc99;
+  --color-hackathon-green-400: #3cb97a;
+  --color-hackathon-yellow-100: #ffcf55;
+  --color-hackathon-gray-100: #e7e7e7;
+  --color-hackathon-gray-200: #9ea4af;
+  --color-hackathon-gray-300: #525252;
+  --color-hackathon-page: #f5f5f5;
+
+  --color-hackathon-tags-red-bg: #ffe9e2;
+  --color-hackathon-tags-red-text: #f07167;
+  --color-hackathon-tags-yellow-bg: #fff0bc;
+  --color-hackathon-tags-yellow-text: #ffb81c;
+  --color-hackathon-tags-green-bg: #cfedea;
+  --color-hackathon-tags-green-text: #00afb9;
+  --color-hackathon-tags-gray-bg: #e9e9e9;
+  --color-hackathon-tags-gray-text: #969696;
+  --color-hackathon-tags-purple-bg: #e6dff6;
+  --color-hackathon-tags-purple-text: #825ed0;
+  --color-hackathon-tags-grayblue-bg: #d3dde4;
+  --color-hackathon-tags-grayblue-text: #22577a;
+  --color-hackathon-tags-teal-bg: #d7eded;
+  --color-hackathon-tags-teal-text: #38a3a5;
+  --color-hackathon-tags-lightgreen-bg: #ddf5eb;
+  --color-hackathon-tags-lightgreen-text: #57cc99;
+  --color-hackathon-tags-pink-bg: #ffe3fb;
+  --color-hackathon-tags-pink-text: #f583f1;
+  --color-hackathon-tags-white: #fff;
+
+  --color-sidebar: #22577a;
+  --color-sidebar-foreground: #f5f5f5;
+  --color-sidebar-primary: #38a3a5;
+  --color-sidebar-primary-foreground: #f5f5f5;
+  --color-sidebar-accent: #ffcf55;
+  --color-sidebar-accent-foreground: #22577a;
+  --color-sidebar-border: #e7e7e7;
+  --color-sidebar-ring: #ffcf55;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-collapsible-down: collapsible-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-collapsible-up: collapsible-up 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes collapsible-up {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes caret-blink {
+    0%,
+    70%,
+    100% {
+      opacity: 1;
+    }
+    20%,
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
   }
 }
 

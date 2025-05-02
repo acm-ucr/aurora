@@ -13,7 +13,7 @@ type props = {
 const Hackpack = ({ text, languages, link, description }: props) => {
   return (
     <Link
-      className="items-center justify-between rounded bg-white p-3 opacity-100 hover:opacity-70"
+      className="items-center justify-between rounded-sm bg-white p-3 opacity-100 hover:opacity-70"
       href={link}
       target="_black"
     >

@@ -8,7 +8,7 @@ const Page = async () => {
   const name = session?.user?.firstName;
 
   return (
-    <div className="flex w-full flex-col items-center justify-center bg-gradient-to-b from-hackathon-blue-200 to-[#3A749A]">
+    <div className="flex w-full flex-col items-center justify-center bg-linear-to-b from-hackathon-blue-200 to-[#3A749A]">
       <p className="font-poppins text-4xl font-bold text-white">
         Judging Portal
       </p>

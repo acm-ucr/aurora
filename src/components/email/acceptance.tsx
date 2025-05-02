@@ -22,7 +22,7 @@ const Acceptance = ({ name, position, preview }: props) => {
       <Section className="text-center">
         <Button
           href={data.discord}
-          className="rounded bg-[#7289da] px-5 py-3 text-center text-xs font-semibold text-white no-underline"
+          className="rounded-sm bg-[#7289da] px-5 py-3 text-center text-xs font-semibold text-white no-underline"
         >
           Join Discord
         </Button>

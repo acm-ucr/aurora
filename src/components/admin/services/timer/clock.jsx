@@ -42,11 +42,11 @@ const Timer = ({ onRemove }) => {
     .padStart(2, "0");
 
   return (
-    <div className="mb-4 flex scroll-m-4 flex-col items-center justify-between rounded bg-white p-4">
+    <div className="mb-4 flex scroll-m-4 flex-col items-center justify-between rounded-sm bg-white p-4">
       <div className="flex w-full items-center justify-between">
         <input
           disabled={play}
-          className="flex-grow bg-transparent pl-2 text-3xl font-semibold outline-none"
+          className="grow bg-transparent pl-2 text-3xl font-semibold outline-hidden"
           placeholder="Untitled Timer"
         />
         <Trash2
@@ -66,11 +66,11 @@ const Timer = ({ onRemove }) => {
           <InputOTPGroup className="">
             <InputOTPSlot
               index={0}
-              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded-sm bg-slate-200 text-4xl font-bold"
             />
             <InputOTPSlot
               index={1}
-              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded-sm bg-slate-200 text-4xl font-bold"
             />
           </InputOTPGroup>
           <p className="text-xl font-semibold">Minutes</p>
@@ -80,11 +80,11 @@ const Timer = ({ onRemove }) => {
           <InputOTPGroup className="">
             <InputOTPSlot
               index={2}
-              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded-sm bg-slate-200 text-4xl font-bold"
             />
             <InputOTPSlot
               index={3}
-              className="mx-1 my-3 h-20 w-14 rounded bg-slate-200 text-4xl font-bold"
+              className="mx-1 my-3 h-20 w-14 rounded-sm bg-slate-200 text-4xl font-bold"
             />
           </InputOTPGroup>
           <p className="text-xl font-semibold">Seconds</p>
