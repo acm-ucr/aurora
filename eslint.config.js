@@ -3,7 +3,7 @@
 import js from "@eslint/js";
 import next from "eslint-config-next";
 import prettier from "eslint-config-prettier";
-import { typescriptEslint } from "@typescript-eslint/eslint-plugin";
+import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import jsdoc from "eslint-plugin-jsdoc";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 
