@@ -1,3 +1,5 @@
+import { unknown } from "zod";
+
 type keys =
   | "admins"
   | "committees"
@@ -156,7 +158,7 @@ export const ATTRIBUTES: Record<keys, string[]> = {
 };
 
 interface auth {
-  POST: {};
+  POST: unknown;
   GET: {
     admins: number[];
   };
@@ -169,7 +171,7 @@ interface auth {
 }
 
 export const AUTH: auth = {
-  POST: {},
+  POST: unknown,
   GET: {
     admins: [1],
   },
