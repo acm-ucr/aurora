@@ -18,6 +18,7 @@ type props = {
   params: Promise<{ type: string }>;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const components: Record<string, React.ReactElement<any>> = {
   admin: <Admin />,
   committee: <Committee />,
