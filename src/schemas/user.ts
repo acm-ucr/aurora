@@ -6,9 +6,9 @@ import {
   MAJORS,
   AGES,
   DIETS,
-} from "@/data/form/information"; // Common imports found in most schemas
+} from "@/data/form/information";
 
-// following exports are common in 9 out of 12 schemas
+
 export const schema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
