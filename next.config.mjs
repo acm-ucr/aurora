@@ -9,17 +9,23 @@ const nextConfig = {
     return [
       {
         source: "/admin",
-        destination: "/admin/participants",
+        destination: "/admin/dashboard/participants",
         permanent: true,
       },
+      {
+        source: "/admin/dashboard",
+        destination: "/admin/dashboard/participants",
+        permanent: true,
+      },
+
       {
         source: "/user",
         destination: "/user/dashboard",
         permanent: true,
       },
       {
-        source: "/form",
-        destination: "/form/participant",
+        source: "/apply",
+        destination: "/apply/participant",
         permanent: true,
       },
     ];

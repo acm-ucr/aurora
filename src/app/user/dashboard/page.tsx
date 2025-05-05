@@ -1,17 +1,7 @@
-import ProtectedPage from "@/components/protected";
 import Dashboard from "@/components/user/dashboard";
 
-const Page = () => {
-  return (
-    <ProtectedPage
-      title="User | Dashboard"
-      restrictions={{
-        participants: [1, 0, -1],
-      }}
-    >
-      <Dashboard />
-    </ProtectedPage>
-  );
+export const metadata = {
+  title: "User | Dashboard",
 };
 
-export default Page;
+export default Dashboard;

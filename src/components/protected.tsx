@@ -2,17 +2,16 @@ import RELEASES from "@/data/releases";
 import Fault from "@/utils/error";
 import Navigation from "@/components/navigation";
 import { headers } from "next/headers";
-import { getSession } from "@/utils/auth";
 import SignIn from "@/utils/signin";
+import { Session as SessionType } from "next-auth";
 
 interface props {
   children: React.ReactNode;
   restrictions: Record<string, number[]>;
-  title: string;
+  session: SessionType | null;
 }
 
-const ProtectedPage = async ({ children, restrictions, title }: props) => {
-  const session = await getSession();
+const ProtectedPage = async ({ children, restrictions, session }: props) => {
   const header = headers();
   const pathName = header.get("x-url") || "";
 
@@ -46,7 +45,6 @@ const ProtectedPage = async ({ children, restrictions, title }: props) => {
 
   return (
     <>
-      <title>{title}</title>
       {navigation && <Navigation />}
       <div className="relative z-0 flex h-screen w-full items-start overflow-x-hidden bg-hackathon-page px-10">
         <div className="h-full w-full py-10 md:py-0">{children}</div>

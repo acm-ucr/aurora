@@ -1,17 +1,7 @@
-import ProtectedPage from "@/components/protected";
 import Team from "@/components/user/team/team";
 
-const Page = () => {
-  return (
-    <ProtectedPage
-      title="User | Team"
-      restrictions={{
-        participants: [1],
-      }}
-    >
-      <Team />
-    </ProtectedPage>
-  );
+export const metadata = {
+  title: "User | Team",
 };
 
-export default Page;
+export default Team;
