@@ -1,5 +1,4 @@
 import Start from "@/components/judging/start";
-import ProtectedPage from "@/components/protected";
 
 interface props {
   params: {
@@ -14,11 +13,7 @@ export const metadata = {
 const Page = ({ params }: props) => {
   const { id } = params;
 
-  return (
-    <ProtectedPage restrictions={{}}>
-      <Start id={id} />
-    </ProtectedPage>
-  );
+  return <Start id={id} />;
 };
 
 export default Page;

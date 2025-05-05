@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { getSession } from "@/utils/auth";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
-const Page = async () => {
-  const session = await getSession();
+const Page = () => {
+  const { data: session } = useSession();
 
   const name = session?.user?.firstName;
 
