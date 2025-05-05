@@ -1,3 +1,4 @@
 import Visualizer from "next-route-visualizer";
 
-export default Visualizer;
+const Page = () => <Visualizer />;
+export default Page;
