@@ -16,8 +16,7 @@ const JudgeLayout = async ({ children }: Props) => {
     <Providers session={session}>
       <Toaster />
       <ProtectedPage restrictions={{}} session={session}>
-        {" "}
-        {children}{" "}
+        {children}
       </ProtectedPage>
     </Providers>
   );
