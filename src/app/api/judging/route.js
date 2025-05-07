@@ -76,9 +76,6 @@ export const GET = async () => {
       });
     });
 
-    console.log("Judges", judges);
-    console.log("Teams", teams, "2th team", teams[2].rounds);
-
     return res.json(
       { message: "OK", items: { teams, judges } },
       { status: 200 },
