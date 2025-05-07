@@ -12,7 +12,7 @@ const Modal = ({ event, setEvent }: props) => {
     event && (
       <div className="absolute left-1/2 top-1/2 z-10 w-1/2 -translate-x-1/2 -translate-y-1/2 rounded">
         <div
-          className={`bg-hackathon-primary flex items-center justify-between rounded-t p-3 ${event.color}`}
+          className={`flex items-center justify-between rounded-t bg-hackathon-primary p-3 ${event.color}`}
         >
           <span className="text-3xl font-bold text-white">{event.summary}</span>
           <X
@@ -20,7 +20,7 @@ const Modal = ({ event, setEvent }: props) => {
             className="text-xl text-white hover:cursor-pointer hover:!text-red-500"
           />
         </div>
-        <div className="border-hackathon-gray-300 rounded-b border-x-2 border-b-2 bg-white px-3 py-2">
+        <div className="rounded-b border-x-2 border-b-2 border-hackathon-gray-300 bg-white px-3 py-2">
           <div className="flex items-center justify-between">
             <div>
               {event.startDate.toLocaleString("default", {
