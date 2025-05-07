@@ -1,20 +1,17 @@
-import { CheckboxInput, SliderInput } from "@/types/forms";
-
+import { SliderInput, ToggleInput } from "@/types/forms";
 const TRACKS = ["Beginner", "Sustainable", "Women", "Data", "UI/UX"];
-
 interface Fields {
-  tracks: CheckboxInput;
+  tracks: ToggleInput;
   implementation: SliderInput;
   idea: SliderInput;
   design: SliderInput;
 }
-
 export const FIELDS: Fields = {
   tracks: {
-    input: "checkboxes",
+    input: "toggle",
     width: 12,
     field: "tracks",
-    text: "Tracks",
+    title: "Tracks",
     required: true,
     options: TRACKS,
     editable: true,
@@ -47,21 +44,3 @@ export const FIELDS: Fields = {
     question: "How user-friendly is this project?",
   },
 };
-
-export const QUESTIONS = [
-  {
-    title: "Implementation",
-    question: "Describe the complexity of the project.",
-    rating: 4,
-  },
-  {
-    title: "IDEA",
-    question: "Was the idea orignal or creative?",
-    rating: 2,
-  },
-  {
-    title: "Design",
-    question: "How user-friendly is this project?",
-    rating: 3,
-  },
-];

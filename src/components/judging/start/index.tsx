@@ -4,6 +4,7 @@ import Form from "./form";
 import { submit } from "@/utils/form";
 import { schema } from "@/schemas/judging";
 import { FIELDS } from "@/data/judge/form";
+import { useRouter } from "next/navigation";
 interface props {
   id: string;
   name: string;
@@ -12,6 +13,7 @@ interface props {
 }
 
 const Start = ({ id, name, round, table }: props) => {
+  const router = useRouter();
   const [form, setForm] = useState({
     teamId: id,
     teamName: name,
@@ -34,6 +36,7 @@ const Start = ({ id, name, round, table }: props) => {
       setLoading,
       setState,
     });
+    router.push("/judge/start");
   };
   return (
     <Form

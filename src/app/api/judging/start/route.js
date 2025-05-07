@@ -48,27 +48,47 @@ export const PUT = async (req) => {
     const { teamId, round, tracks, implementation, idea, design } = body;
     const roundIndex = parseInt(round) - 1;
 
-    const snapshot = await getDoc(doc(db, "teams", teamId));
+    const teamsSnap = await getDoc(doc(db, "teams", teamId));
+    const updatedTeamRounds = JSON.parse(teamsSnap.data().rounds);
 
-    const { rounds } = snapshot.data();
-    const updatedRounds = JSON.parse(rounds);
-
-    updatedRounds[roundIndex] = updatedRounds[roundIndex].map((judge) =>
-      judge.uid === user.id
-        ? {
-            ...judge,
-            feedback: {
-              tracks,
-              implementation,
-              idea,
-              design,
-            },
-          }
-        : judge,
+    updatedTeamRounds[roundIndex] = updatedTeamRounds[roundIndex].map(
+      (judge) =>
+        judge.uid === user.id
+          ? {
+              ...judge,
+              feedback: {
+                tracks,
+                implementation,
+                idea,
+                design,
+              },
+            }
+          : judge,
     );
 
     await updateDoc(doc(db, "teams", teamId), {
-      rounds: JSON.stringify(updatedRounds),
+      rounds: JSON.stringify(updatedTeamRounds),
+    });
+    const judgesSnap = await getDoc(doc(db, "users", user.id));
+    const updatedJudgeRounds = JSON.parse(judgesSnap.data().rounds);
+
+    updatedJudgeRounds[roundIndex] = updatedJudgeRounds[roundIndex].map(
+      (team) =>
+        team.uid === teamId
+          ? {
+              ...team,
+              feedback: {
+                tracks,
+                implementation,
+                idea,
+                design,
+              },
+            }
+          : team,
+    );
+
+    await updateDoc(doc(db, "users", user.id), {
+      rounds: JSON.stringify(updatedJudgeRounds),
     });
 
     return res.json({ message: "OK" }, { status: 200 });

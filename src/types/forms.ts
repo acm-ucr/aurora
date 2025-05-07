@@ -3,13 +3,11 @@ interface Input {
   required: boolean;
   editable: boolean;
 }
-
 export interface Description {
   input: string;
   width: number;
   texts: string[];
 }
-
 export type TextInput = Input & {
   input: "input";
   title: string;
@@ -21,7 +19,6 @@ export type TextInput = Input & {
   editable: boolean;
   required: boolean;
 };
-
 export type SelectInput = Input & {
   input: "select";
   title: string;
@@ -30,17 +27,21 @@ export type SelectInput = Input & {
   placeholder: string;
   searchable: boolean;
 };
-
 export type RadioInput = Input & {
   input: "radio";
   text: string;
   options: string[];
   field: string;
 };
-
 export type CheckboxInput = Input & {
   input: "checkboxes";
   text: string;
+  field: string;
+  options: string[];
+};
+export type ToggleInput = Input & {
+  input: "toggle";
+  title: string;
   field: string;
   options: string[];
 };
@@ -50,7 +51,6 @@ export type SliderInput = Input & {
   field: string;
   question: string;
 };
-
 export type TextareaInput = Input & {
   input: "textarea";
   name: string;
@@ -58,7 +58,6 @@ export type TextareaInput = Input & {
   title: string;
   placeholder: string;
 };
-
 export type UploadInput = Input & {
   input: "upload";
   field: string;
@@ -66,7 +65,6 @@ export type UploadInput = Input & {
   types: string[];
   maxSize: [number, string];
 };
-
 export type TermsAndConditions = Input & {
   input: "terms";
   text: string;
