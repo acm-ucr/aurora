@@ -1,8 +1,7 @@
 import Dashboard from "@/components/judging/start/dashboard";
 
 const Page = () => {
-  return;
-  <Dashboard />;
+  return <Dashboard />;
 };
 
 export default Page;

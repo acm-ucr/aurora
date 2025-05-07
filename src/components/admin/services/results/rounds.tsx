@@ -32,7 +32,7 @@ const Rounds = ({ team }: props) => {
       <Accordion
         type="single"
         collapsible
-        className="w-full rounded-md border-black/20 bg-hackathon-blue-200 text-white"
+        className="w-full overflow-hidden rounded-xl border-black/20 bg-hackathon-blue-200 text-white"
       >
         {team.rounds.map((round: Round[], index: number) => {
           const current = round[0];
@@ -56,48 +56,40 @@ const Rounds = ({ team }: props) => {
                 R{index + 1} - {judge}
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-6 bg-white p-2 text-black">
-                {feedback ? (
-                  <div>
-                    <div className="flex flex-col text-2xl text-hackathon-blue-100">
-                      <div className="font-bold">TRACKS</div>
-                      <div className="flex flex-row gap-2">
-                        {feedback.tracks.map((track: string, index: number) => (
-                          <Badge key={index} type="accept">
-                            {track}
-                          </Badge>
-                        ))}
-                      </div>
+                <div>
+                  <div className="flex flex-col text-2xl text-hackathon-blue-100">
+                    <div className="font-bold">TRACKS</div>
+                    <div className="flex flex-row gap-2">
+                      {feedback?.tracks.map((track: string, index: number) => (
+                        <Badge key={index} type="accept">
+                          {track}
+                        </Badge>
+                      ))}
                     </div>
-                    {Object.entries(FIELDS).map(([_, value], index) => {
-                      const title = value.title;
-                      const question = value.question;
-                      const rating =
-                        feedback[title.toLocaleLowerCase()]?.rating;
-                      const comment =
-                        feedback[value.title.toLocaleLowerCase()].comment;
-                      return (
-                        <div key={index}>
-                          <div className="flex flex-row justify-between text-2xl text-hackathon-blue-100">
-                            <div className="font-bold">
-                              {title.toUpperCase()}
-                            </div>
-                            <Badge type="accept">
-                              {rating ? `${rating}/5` : "N/A"}
-                            </Badge>
-                          </div>
-                          <div>
-                            <div className="text-lg font-bold">{question}</div>
-                            <div className="text-black/50">
-                              {comment ?? "No Response"}
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
                   </div>
-                ) : (
-                  <div className="font-semibold">No Feedback Submitted</div>
-                )}
+                  {Object.entries(FIELDS).map(([key, value], index) => {
+                    const title = value.title;
+                    const question = value.question;
+                    const rating =
+                      feedback?.[title.toLocaleLowerCase()].rating ?? 0;
+                    const comment =
+                      feedback?.[value.title.toLocaleLowerCase()].comment ??
+                      "No Response";
+                    if (key === "tracks") return null;
+                    return (
+                      <div key={index}>
+                        <div className="flex flex-row justify-between text-2xl text-hackathon-blue-100">
+                          <div className="font-bold">{title.toUpperCase()}</div>
+                          <Badge type="accept">{rating}/5</Badge>
+                        </div>
+                        <div>
+                          <div className="text-lg font-bold">{question}</div>
+                          <div className="text-black/50">{comment}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </AccordionContent>
             </AccordionItem>
           );

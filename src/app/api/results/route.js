@@ -20,10 +20,9 @@ export const GET = async () => {
     const snapshot = await getDocs(collection(db, "teams"));
 
     snapshot.forEach((doc) => {
-      const { firstName, lastName, table, rounds, links } = doc.data();
+      const { name, table, rounds, links } = doc.data();
       if (rounds) {
         const formattedRounds = JSON.parse(rounds);
-        const name = firstName + " " + lastName;
 
         output.push({ name, table, links, rounds: formattedRounds });
       }
