@@ -123,4 +123,5 @@ export type Team = {
     [link: string]: string;
   }[];
   rounds: Round[][];
+  table: number;
 };

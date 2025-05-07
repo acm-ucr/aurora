@@ -16,7 +16,9 @@ const Rounds = ({ team }: props) => {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex w-full flex-row items-center gap-3">
-        <Label className="pr-5 text-2xl font-bold">{team.name}</Label>
+        <Label className="pr-5 text-2xl font-bold">
+          Team {team.table} - {team.name}
+        </Label>
         {Object.entries(team.links).map(([key, value], index) => {
           if (!value.length) return null;
           return (
