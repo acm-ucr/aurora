@@ -12,6 +12,7 @@ import { Round } from "@/types/rounds";
 import { cn } from "@/utils/tailwind";
 import Link from "next/link";
 import { COLORS } from "@/data/tags";
+import { ICONS } from "@/data/admin/icons";
 
 type props = { team: Team };
 const Rounds = ({ team }: props) => {
@@ -36,7 +37,8 @@ const Rounds = ({ team }: props) => {
                   "inline-flex rounded-md px-4 py-2",
                 )}
               >
-                {text}
+                <div>{ICONS[key as keyof typeof ICONS]}</div>
+                <div>{text}</div>
               </Link>
             );
           })}
