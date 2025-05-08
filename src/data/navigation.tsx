@@ -25,7 +25,6 @@ import {
   FolderSearch2,
   HandCoins,
   Cat,
-  Trophy,
   Notebook,
 } from "lucide-react";
 import data from "./config";

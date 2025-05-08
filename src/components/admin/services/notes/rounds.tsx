@@ -24,6 +24,7 @@ const Rounds = ({ team }: props) => {
         <div className="flex gap-3">
           {Object.entries(team.links).map(([key, value], index) => {
             if (!value.length) return null;
+            const text = key.charAt(0).toLocaleUpperCase() + key.slice(1);
             return (
               <Link
                 key={index}
@@ -35,7 +36,7 @@ const Rounds = ({ team }: props) => {
                   "inline-flex rounded-md px-4 py-2",
                 )}
               >
-                {key}
+                {text}
               </Link>
             );
           })}
@@ -100,7 +101,7 @@ const Rounds = ({ team }: props) => {
                       feedback?.[title.toLocaleLowerCase()].rating ?? 0;
                     const comment =
                       feedback?.[value.title.toLocaleLowerCase()].comment ??
-                      "The project demonstrated a well-structured and thoughtful approach to implementation. It integrated both frontend and backend systems effectively, showcasing a strong grasp of full-stack development principles. The use of modern frameworks, database optimization, and clear separation of concerns highlighted a mature development process. Overall, the implementation was solid and reflected a good balance between technical depth and practical application.";
+                      "No response";
                     if (key === "tracks") return null;
                     return (
                       <div key={index}>
