@@ -4,18 +4,18 @@ import Contact from "./contact";
 import { Label } from "@/components/ui/label";
 
 const contacts = [
-  "participants",
-  "judges",
-  "volunteers",
-  "mentors",
   "admins",
   "committees",
-  "sponsors",
-  "interests",
   "feedback",
+  "interests",
+  "judges",
   "leads",
+  "mentors",
   "panelists",
+  "participants",
+  "sponsors",
   "teams",
+  "volunteers",
 ];
 
 const Contacts = () => {
