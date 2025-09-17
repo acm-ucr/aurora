@@ -108,7 +108,7 @@ const Toolbar = ({
       color: "red",
       visible: true,
       onClick: handleDelete,
-      button: "confirm",
+      button: "Confirm",
     });
   };
 
